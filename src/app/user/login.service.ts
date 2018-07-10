@@ -26,6 +26,10 @@ export class LoginService {
     this.loggedInSubject.next(false);
   }
 
+  getToken(): string {
+    return localStorage.getItem(environment.tokenName);
+  }
+
   private hasToken() : boolean {
     return !!localStorage.getItem(environment.tokenName);
   }

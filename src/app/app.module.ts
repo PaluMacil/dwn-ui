@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // https://ng-bootstrap.github.io
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // https://github.com/FortAwesome/angular-fontawesome
 
@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
 import { NavComponent } from './nav/nav.component';
-import { TrayComponent } from './tray/tray.component';
+import { TokenInterceptor } from './token.interceptor';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -18,17 +19,19 @@ import { TrayComponent } from './tray/tray.component';
     AppComponent,
     HomeComponent,
     PageComponent,
-    NavComponent,
-    TrayComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     FontAwesomeModule,
     HttpClientModule,
-    RoutingModule
+    RoutingModule,
+    UserModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
