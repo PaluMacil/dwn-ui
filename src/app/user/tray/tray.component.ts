@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { UserService } from '../user.service';
+import { Me } from '../../shared/models/me';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-tray',
@@ -8,9 +11,21 @@ import { LoginService } from '../login.service';
 })
 export class TrayComponent implements OnInit {
 
-  constructor(public loginService: LoginService) { }
+  me: Me;
+
+  iconSignIn = faSignInAlt;
+
+  constructor(
+    public loginService: LoginService,
+    public userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.userService.me().subscribe(
+      res => {
+        this.me = res;
+      }
+    )
   }
 
 }

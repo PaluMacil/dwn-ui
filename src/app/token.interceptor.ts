@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
       const tokenName = environment.tokenName;
       request = request.clone({
         setHeaders: {
-          tokenName: `${this.ls.getToken()}`
+          [tokenName]: `${this.ls.getToken()}`
         }
       });
       return next.handle(request);

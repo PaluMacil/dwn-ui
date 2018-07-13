@@ -1,0 +1,25 @@
+import { User } from './user';
+import { Session } from './session';
+import { Group } from './group';
+import { GROUPS } from '../builtins';
+
+export interface IMe {
+    user: User;
+    session: Session;
+    groups: Group[];
+}
+
+export class Me {
+    constructor(
+        public user: User,
+        public session: Session,
+        public groups: Group[]
+    ) { }
+
+    is(group: string) {
+        for (let g of this.groups) {
+            if (g.name === group) return true;
+        }
+        return false;
+    }
+}

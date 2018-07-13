@@ -1,0 +1,16 @@
+<div ngbDropdown placement="bottom-right" class="d-inline-block">
+  <button class="btn btn-sm btn-outline-secondary" id="profileDropdown" ngbDropdownToggle>
+    {{me.user.displayName}}
+  </button>
+  <div ngbDropdownMenu aria-labelledby="profileDropdown">
+    <button class="dropdown-item">
+      <fa-icon class="pr-2" [icon]="iconProfile"></fa-icon>profile
+    </button>
+    <button class="dropdown-item" *ngIf="me.is(admin)">
+      <fa-icon class="pr-2" [icon]="iconAdmin"></fa-icon>admin
+    </button>
+    <button (click)="loginService.logout()" class="dropdown-item">
+      <fa-icon class="pr-2" [icon]="iconSignOut"></fa-icon>log out
+    </button>
+  </div>
+</div>
