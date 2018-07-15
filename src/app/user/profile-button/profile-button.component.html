@@ -1,5 +1,6 @@
-<div ngbDropdown placement="bottom-right" class="d-inline-block">
-  <button class="btn btn-sm btn-outline-secondary" id="profileDropdown" ngbDropdownToggle>
+<div id="profileButton" ngbDropdown placement="bottom-right" class="d-inline-block">
+  <button class="btn btn-sm btn-outline-secondary pl-4" id="profileDropdown" ngbDropdownToggle>
+    <img class="profile-head rounded-circle" [src]="me.user.picture">
     {{me.user.displayName}}
   </button>
   <div ngbDropdownMenu aria-labelledby="profileDropdown">

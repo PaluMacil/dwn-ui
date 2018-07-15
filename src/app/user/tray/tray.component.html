@@ -3,6 +3,7 @@
     <fa-icon class="pr-2" [icon]="iconSignIn"></fa-icon>log in
 </a>
 <ng-container *ngIf="loginService.isLoggedIn() | async">
+  <fa-icon transform="grow-6" class="mr-3" [icon]="iconAlert"></fa-icon>
   <ng-container *ngIf="me">
     <app-profile-button [me]="me"></app-profile-button>
   </ng-container>

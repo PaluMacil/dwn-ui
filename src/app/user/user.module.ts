@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrayComponent } from './tray/tray.component';
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   declarations: [
     TrayComponent,
-    ProfileButtonComponent
+    ProfileButtonComponent,
+    AccountComponent
   ],
   exports: [
     TrayComponent
