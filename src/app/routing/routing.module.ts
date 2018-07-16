@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from '../home/home.component';
 import { PageComponent } from '../page/page.component';
+import { userEntrypoint } from '../user/user.module';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent
   },
+  {
+    path: 'user',
+    loadChildren: userEntrypoint
+  }
 ];
 
 @NgModule({

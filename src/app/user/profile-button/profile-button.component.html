@@ -4,9 +4,9 @@
     {{me.user.displayName}}
   </button>
   <div ngbDropdownMenu aria-labelledby="profileDropdown">
-    <button class="dropdown-item">
+    <a class="dropdown-item" routerLink="user/account" >
       <fa-icon class="pr-2" [icon]="iconProfile"></fa-icon>profile
-    </button>
+    </a>
     <button class="dropdown-item" *ngIf="me.is(admin)">
       <fa-icon class="pr-2" [icon]="iconAdmin"></fa-icon>admin
     </button>

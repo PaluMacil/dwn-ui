@@ -4,21 +4,25 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrayComponent } from './tray/tray.component';
 import { ProfileButtonComponent } from './profile-button/profile-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AccountComponent } from './account/account.component';
+import { UserRoutingModule } from './user-routing/user-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    UserRoutingModule
   ],
   declarations: [
     TrayComponent,
-    ProfileButtonComponent,
-    AccountComponent
+    ProfileButtonComponent
   ],
   exports: [
     TrayComponent
   ]
 })
 export class UserModule { }
+
+export function userEntrypoint() {
+  return UserModule;
+}
