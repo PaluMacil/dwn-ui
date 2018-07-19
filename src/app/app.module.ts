@@ -9,9 +9,9 @@ import { RoutingModule } from './routing/routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PageComponent } from './page/page.component';
-import { NavComponent } from './nav/nav.component';
 import { TokenInterceptor } from './token.interceptor';
 import { UserModule } from './user/user.module';
+import { NavModule } from './nav/nav.module';
 
 
 @NgModule({
@@ -19,7 +19,6 @@ import { UserModule } from './user/user.module';
     AppComponent,
     HomeComponent,
     PageComponent,
-    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +26,8 @@ import { UserModule } from './user/user.module';
     FontAwesomeModule,
     HttpClientModule,
     RoutingModule,
-    UserModule
+    UserModule,
+    NavModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

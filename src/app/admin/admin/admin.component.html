@@ -1,3 +1,38 @@
-<p>
-  admin works!
-</p>
+<div class="container-fluid">
+    <h1>Admin</h1>
+  
+    <div class="row mb-4">
+      <div class="col">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link"
+              (click)="tab='users'"
+              [class.active]="tab==='users'"
+              [routerLink]="['/', 'admin', 'siteinfo']">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+              (click)="tab='security'"
+              [class.active]="tab==='security'" 
+              [routerLink]="['/', 'admin','sessions']">Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+              (click)="tab='security'"
+              [class.active]="tab==='security'" 
+              [routerLink]="['/', 'admin','users']">Groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+              (click)="tab='security'"
+              [class.active]="tab==='security'" 
+              [routerLink]="['/', 'admin','groups']">Groups</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <app-admin-site-info *ngIf="tab==='siteinfo'"></app-admin-site-info>
+    <app-admin-session-management *ngIf="tab==='sessions'"></app-admin-session-management>
+    <app-user-management *ngIf="tab==='users'"></app-user-management>
+    <app-admin-group-management *ngIf="tab==='groups'"></app-admin-group-management>
+  </div>

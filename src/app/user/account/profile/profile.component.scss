@@ -1,0 +1,10 @@
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.no-edit-spacer {
+    display: inline-block;
+    min-width: 34px;
+}

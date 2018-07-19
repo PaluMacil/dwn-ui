@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from '../profile/profile.component';
-import { SecurityComponent } from '../security/security.component';
+import { AccountComponent } from '../account/account.component';
+
+const accountOutlet = 'account';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ProfileComponent
+    path: ':tab',
+    component: AccountComponent
   },
   {
-    path: 'security',
-    component: SecurityComponent
+    path: '',
+    component: AccountComponent
   }
 ]
 

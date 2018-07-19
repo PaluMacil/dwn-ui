@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Me } from '../../../shared/models/me';
 import { UserService } from '../../user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-profile',
@@ -10,22 +11,13 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  me: Me;
+  @Input() me: Me;
 
-  constructor(
-    public userService: UserService,
-    r: ActivatedRoute
-  ) {
-    this.me = r.snapshot.data.me;
+  iconEdit = faEdit;
+
+  constructor() {
   }
 
   ngOnInit(): void {
-    if (!this.me) {
-      this.userService.me().subscribe(
-        res => {
-          this.me = res;
-        }
-      )
-    }
   }
 }

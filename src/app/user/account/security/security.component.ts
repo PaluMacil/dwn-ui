@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Me } from '../../../shared/models/me';
 
 @Component({
   selector: 'app-security',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./security.component.scss']
 })
 export class SecurityComponent implements OnInit {
-
+  @Input() me: Me;
+  
   constructor() { }
 
   ngOnInit() {
