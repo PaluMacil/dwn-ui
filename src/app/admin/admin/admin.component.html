@@ -6,26 +6,26 @@
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link"
+              (click)="tab='siteinfo'"
+              [class.active]="tab==='siteinfo'"
+              [routerLink]="['/', 'admin', 'siteinfo']">Site Info</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+              (click)="tab='sessions'"
+              [class.active]="tab==='sessions'" 
+              [routerLink]="['/', 'admin','sessions']">Sessions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
               (click)="tab='users'"
-              [class.active]="tab==='users'"
-              [routerLink]="['/', 'admin', 'siteinfo']">Users</a>
+              [class.active]="tab==='users'" 
+              [routerLink]="['/', 'admin','users']">Users</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"
-              (click)="tab='security'"
-              [class.active]="tab==='security'" 
-              [routerLink]="['/', 'admin','sessions']">Groups</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-              (click)="tab='security'"
-              [class.active]="tab==='security'" 
-              [routerLink]="['/', 'admin','users']">Groups</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-              (click)="tab='security'"
-              [class.active]="tab==='security'" 
+              (click)="tab='groups'"
+              [class.active]="tab==='groups'" 
               [routerLink]="['/', 'admin','groups']">Groups</a>
           </li>
         </ul>

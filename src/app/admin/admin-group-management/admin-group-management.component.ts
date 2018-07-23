@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GroupService } from '../group.service';
 
 @Component({
   selector: 'app-admin-group-management',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminGroupManagementComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private gs: GroupService
+  ) { }
 
   ngOnInit() {
   }

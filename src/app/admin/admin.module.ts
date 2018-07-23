@@ -16,7 +16,11 @@ import { AdminRoutingModule } from './admin-routing/admin-routing.module';
   ],
   declarations: [
     AdminComponent, 
-    SetPasswordComponent, AdminSiteInfoComponent, AdminGroupManagementComponent, AdminSessionManagementComponent]
+    SetPasswordComponent,
+    AdminSiteInfoComponent,
+    AdminGroupManagementComponent,
+    AdminSessionManagementComponent
+  ]
 })
 export class AdminModule { }
 

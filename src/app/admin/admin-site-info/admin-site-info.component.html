@@ -1,3 +1,107 @@
-<p>
-  admin-site-info works!
-</p>
+<ng-container *ngIf="info">
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        Protocol
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.protocol }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        Host
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.host }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        Port
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.port }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        Base URL
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.baseURL }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        UI Proxy Port
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.uiProxyPort }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+       Use MMAP
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.valueLogUseMMAP }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        Initial Admin
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.setup.initialAdmin }}
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-sm-3">
+      <b>
+        Initialization Date
+      </b>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-8">
+      {{ info.initializedDate | date: 'medium' }}
+    </div>
+  </div>
+
+</ng-container>

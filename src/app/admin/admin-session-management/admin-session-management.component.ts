@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../user/user.service';
+import { SessionDetails } from '../../shared/models/session-details';
 
 @Component({
   selector: 'app-admin-session-management',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSessionManagementComponent implements OnInit {
 
-  constructor() { }
+  sessions = new Array<SessionDetails>()
+
+  constructor(
+    private us: UserService
+  ) { }
 
   ngOnInit() {
+    this.us.sessions().subscribe(
+      s => {
+        this.sessions.push(...s);
+      }
+    );
   }
 
 }

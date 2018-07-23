@@ -19,7 +19,7 @@ export class LoginService {
   logout(notifyServer = false) : void {
     if (environment.tokenName in localStorage){
       if (notifyServer) {
-        this.http.post('/api/account/logout', {});
+        this.http.delete(`/api/user/logout/${environment.tokenName}`);
       }
       localStorage.removeItem(environment.tokenName);
     }

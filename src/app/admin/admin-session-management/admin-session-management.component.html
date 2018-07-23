@@ -1,3 +1,26 @@
-<p>
-  admin-session-management works!
-</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Display Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Token</th>
+      <th scope="col">Last Login</th>
+      <th scope="col">IP</th>
+      <th scope="col">Session Start</th>
+      <th scope="col">Heartbeat</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let s of sessions; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ s.user.displayName }}</td>
+      <td>{{ s.user.email }}</td>
+      <td>{{ s.session.token }}</td>
+      <td>{{ s.user.lastLogin | date: 'medium' }}</td>
+      <td>{{ s.session.ip.split(':')[0] }}</td>
+      <td>{{ s.session.createdDate | date: 'medium' }}</td>
+      <td>{{ s.session.heartbeat | date: 'medium' }}</td>
+    </tr>
+  </tbody>
+</table>
