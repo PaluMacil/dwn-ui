@@ -1,6 +1,6 @@
 export interface Group {
     name: string;
-    permissions?: any;
+    permissions: string[] | null;
     modifiedBy: string;
     modifiedDate: Date;
 }

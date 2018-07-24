@@ -1,0 +1,21 @@
+<div class="row">
+  <h4 class="col">Permissions</h4>
+</div>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="form">
+      <select class="form-control" formControlName="permission">
+        <option *ngFor="let p of allPermissions" [ngValue]="p">
+          {{ p }}
+        </option>
+      </select>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      <li *ngFor="let p of group.permissions" class="list-group-item text-primary">{{ p }}</li>
+    </ul>
+  </div>
+</div>

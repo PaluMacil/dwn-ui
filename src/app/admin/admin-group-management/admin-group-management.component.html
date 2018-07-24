@@ -1,3 +1,43 @@
-<p>
-  admin-group-management works!
-</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Group Name</th>
+      <th scope="col">Permissions</th>
+      <th scope="col">Modified Date</th>
+      <th scope="col">Modified By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let g of groups; let i = index">
+      <tr *ngIf="selectedGroupName !== g.name" (click)="selectGroup(g)">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ g.name }}</td>
+        <td>{{ g.permissions ? g.permissions.join(', ') : '(none)' }}</td>
+        <td>{{ g.modifiedDate | date: 'medium' }}</td>
+        <td>{{ g.modifiedBy }}</td>
+      </tr>
+      <ng-container *ngIf="selectedGroupName === g.name">
+        <tr class="table-dark">
+          <td>&nbsp;</td>
+          <td colspan="4"><h3>{{ g.name }}</h3></td>
+        </tr>
+        <tr class="table-dark">
+          <th scope="row">{{ i + 1 }}</th>
+          <td colspan="2">
+            <app-permission-selector [group]="g"></app-permission-selector>
+          </td>        
+          <td colspan="2">
+            <div class="row">
+              <h4 class="col">Users</h4>
+            </div>
+          </td>
+        </tr>
+        <tr class="table-dark">
+          <td>&nbsp;</td>
+          <td colspan="4"><em>Modified by {{ g.modifiedBy }} on {{ g.modifiedDate | date:"medium" }}.</em></td>
+        </tr>
+      </ng-container>
+    </ng-container>
+  </tbody>
+</table>

@@ -12,4 +12,8 @@ export class ServerInfoService {
   server() {
     return this.http.get<ServerInfo>('api/info/server')
   }
+
+  permissions() {
+    return this.http.get<string[]>('api/info/permissions')
+  }
 }
