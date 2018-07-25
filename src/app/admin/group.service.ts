@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 import { Group } from '../shared/models/group';
 
@@ -12,5 +12,17 @@ export class GroupService {
 
   groups(): Observable<Group[]> {
     return this.http.get<Group[]>('api/group/all')
+  }
+
+  addPermission(groupName: string, permission: string) {
+    const params = new HttpParams()
+      .set('permission', permission);
+    return this.http.put<Group>(`api/group/permission/${groupName}`, {}, { params });
+  }
+
+  removePermission(groupName: string, permission: string) {
+    const params = new HttpParams()
+      .set('permission', permission);
+    return this.http.delete<Group>(`api/group/permission/${groupName}`, { params });
   }
 }

@@ -25,7 +25,7 @@
         <tr class="table-dark">
           <th scope="row">{{ i + 1 }}</th>
           <td colspan="2">
-            <app-permission-selector [group]="g"></app-permission-selector>
+            <app-permission-selector [group]="g" (change)="updateGroup($event)"></app-permission-selector>
           </td>        
           <td colspan="2">
             <div class="row">

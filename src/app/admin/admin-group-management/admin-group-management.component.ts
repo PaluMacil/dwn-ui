@@ -20,6 +20,11 @@ export class AdminGroupManagementComponent implements OnInit {
     this.selectedGroupName = group.name;
   }
 
+  updateGroup(group: Group) {
+    const idx = this.groups.findIndex(g => g.name === group.name)
+    this.groups[idx] = group;
+  }
+
   ngOnInit() {
     this.gs.groups().subscribe(
       g => this.groups = g
