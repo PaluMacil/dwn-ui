@@ -7,4 +7,5 @@ export interface ServerInfo {
     valueLogUseMMAP: boolean
     setup: { initialAdmin: string }
     initializedDate: Date
+    goVersion: string
 }
