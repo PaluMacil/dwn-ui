@@ -2,6 +2,8 @@ export interface User {
     googleId: string;
     googleImportDate: Date;
     email: string;
+    tag: string;
+    previousTags: string[];
     verifiedEmail: boolean;
     locked: boolean;
     displayName: string;
