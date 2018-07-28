@@ -10,7 +10,7 @@
     <a class="dropdown-item" routerLink="admin/siteinfo" *ngIf="me.is(admin)">
       <fa-icon class="pr-2" [icon]="iconAdmin"></fa-icon>admin
     </a>
-    <button (click)="loginService.logout()" class="dropdown-item">
+    <button (click)="loginService.logout(true)" class="dropdown-item">
       <fa-icon class="pr-2" [icon]="iconSignOut"></fa-icon>log out
     </button>
   </div>

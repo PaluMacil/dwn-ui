@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,20 @@ export class LoginService {
     return this.loggedInSubject.asObservable().pipe(share());
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   logout(notifyServer = false) : void {
     if (environment.tokenName in localStorage){
       if (notifyServer) {
-        this.http.delete(`/api/user/logout/${environment.tokenName}`);
+        this.http.delete(`/api/user/logout/${this.getToken()}`).subscribe();
       }
       localStorage.removeItem(environment.tokenName);
     }
     this.loggedInSubject.next(false);
+    this.router.navigate(['/'])
   }
 
   getToken(): string {
