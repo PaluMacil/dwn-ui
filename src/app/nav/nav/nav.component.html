@@ -1,22 +1,37 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" role="navigation">
-  <a class="navbar-brand" [routerLink]="['/']">
-    <span class="d-block d-lg-none">Dan Wolf</span>
-    <span class="d-none d-lg-block">
-      <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/happy-hair-400.png" alt="">
-    </span>
-  </a>
-  <button class="navbar-toggler" (click)="navbarCollapsed = !navbarCollapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div [ngbCollapse]="navbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <!-- Dan Wolf (show on small screens) -->
+      <span class="d-block d-lg-none">Dan Wolf</span>
+      <!-- Large nav photo (show on large screens) -->
+      <span class="d-none d-lg-block">
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/happy-hair-400.png" alt="">
+      </span>
+    </a>
+    <!-- Hamburger menu icon button -->
+    <button class="navbar-toggler" 
+            (click)="navbarCollapsed = !navbarCollapsed" 
+            type="button" 
+            data-toggle="collapse" 
+            data-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="navbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Nav menu items -->
+      <ul class="navbar-nav mr-auto">
+        <ng-container *ngIf="!navbarCollapsed">
+          <!-- TODO: place profile item list here -->
+          <div class="dropdown-divider"></div>
+        </ng-container>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/']" (click)="navbarCollapsed = true">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://visit.danwolf.net" (click)="navbarCollapsed = true">Visit Me!</a>
+          <a class="nav-link" href="http://visit.danwolf.net" (click)="navbarCollapsed = true">
+            Visit Me!
+          </a>
         </li>
-    </ul>
-  </div>
-</nav>
-  
+      </ul>
+    </div>
+  </nav>
+    
