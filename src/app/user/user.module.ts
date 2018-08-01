@@ -6,6 +6,7 @@ import { ProfileButtonComponent } from './profile-button/profile-button.componen
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserRoutingModule } from './user-routing/user-routing.module';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { TrayActionListComponent } from './tray-action-list/tray-action-list.component';
 
 @NgModule({
   imports: [
@@ -17,10 +18,11 @@ import { UserManagementComponent } from './user-management/user-management.compo
   declarations: [
     TrayComponent,
     ProfileButtonComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    TrayActionListComponent
   ],
   exports: [
-    TrayComponent, UserManagementComponent
+    TrayComponent, TrayActionListComponent, UserManagementComponent
   ]
 })
 export class UserModule { }

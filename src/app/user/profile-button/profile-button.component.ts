@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Me } from '../../shared/models/me';
 import { LoginService } from '../login.service';
-import { faTachometerAlt, faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { GROUPS } from '../../shared/builtins';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-button',
@@ -13,10 +12,7 @@ export class ProfileButtonComponent implements OnInit {
 
   @Input() me: Me;
 
-  iconAdmin = faTachometerAlt;
-  iconProfile = faUserCircle;
   iconSignOut = faSignOutAlt;
-  admin = GROUPS.BuiltInGroupAdmin;
 
   constructor(public loginService: LoginService) { }
 

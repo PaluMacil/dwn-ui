@@ -1,0 +1,10 @@
+<li [ngClass]="listItemStyle">
+  <a [ngClass]="linkStyle" routerLink="user/account" >
+    <fa-icon *ngIf="!simple" class="pr-2" [icon]="iconProfile"></fa-icon>profile
+  </a>
+</li>
+<li [ngClass]="listItemStyle">
+  <a [ngClass]="linkStyle" routerLink="admin/siteinfo" *ngIf="me.is(admin)">
+    <fa-icon *ngIf="!simple" class="pr-2" [icon]="iconAdmin"></fa-icon>admin
+  </a>
+</li>

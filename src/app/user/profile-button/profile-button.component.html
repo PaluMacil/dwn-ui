@@ -4,12 +4,7 @@
     {{me.user.displayName}}
   </button>
   <div ngbDropdownMenu aria-labelledby="profileDropdown">
-    <a class="dropdown-item" routerLink="user/account" >
-      <fa-icon class="pr-2" [icon]="iconProfile"></fa-icon>profile
-    </a>
-    <a class="dropdown-item" routerLink="admin/siteinfo" *ngIf="me.is(admin)">
-      <fa-icon class="pr-2" [icon]="iconAdmin"></fa-icon>admin
-    </a>
+    <app-tray-action-list [me]="me"></app-tray-action-list>
     <button (click)="loginService.logout(true)" class="dropdown-item">
       <fa-icon class="pr-2" [icon]="iconSignOut"></fa-icon>log out
     </button>

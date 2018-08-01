@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../user/login.service';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
   navbarCollapsed = true;
 
-  constructor() { }
+  constructor(
+    public loginService: LoginService,
+    public userService: UserService
+  ) { }
 
   ngOnInit() {
   }
