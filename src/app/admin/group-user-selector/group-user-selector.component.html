@@ -1,0 +1,30 @@
+<div class="row">
+    <h4 class="col">Users</h4>
+  </div>
+  <div class="row">
+    <div class="col">
+      <!--<form [formGroup]="form">-->
+        <div >
+          <div class="input-group">
+            <input #newUser type="text" class="form-control" placeholder="user">
+            <div class="input-group-append">
+              <button (click)="addUser(newUser.value)" class="btn btn-primary" type="button">Add</button>
+            </div>
+          </div>
+        </div>
+      <!--</form>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        <li *ngFor="let u of users" class="list-group-item text-primary">
+          {{ u.displayName }}
+          <button (click)="removeUser(u.email)" type="button" class="close float-right" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

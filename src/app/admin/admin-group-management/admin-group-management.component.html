@@ -20,7 +20,13 @@
       <ng-container *ngIf="selectedGroupName === g.name">
         <tr class="table-dark">
           <td>&nbsp;</td>
-          <td colspan="4"><h3>{{ g.name }}</h3></td>
+          <td colspan="4">
+            <h3>{{ g.name }}
+              <button (click)="selectedGroupName = null" type="button" class="close float-right" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </h3>
+          </td>
         </tr>
         <tr class="table-dark">
           <th scope="row">{{ i + 1 }}</th>
@@ -28,9 +34,7 @@
             <app-permission-selector [group]="g" (change)="updateGroup($event)"></app-permission-selector>
           </td>        
           <td colspan="2">
-            <div class="row">
-              <h4 class="col">Users</h4>
-            </div>
+            <app-group-user-selector [group]="g"></app-group-user-selector>
           </td>
         </tr>
         <tr class="table-dark">

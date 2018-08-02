@@ -9,6 +9,7 @@ import { AdminSessionManagementComponent } from './admin-session-management/admi
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { PermissionSelectorComponent } from './permission-selector/permission-selector.component';
 import { ReactiveFormsModule } from '../../../node_modules/@angular/forms';
+import { GroupUserSelectorComponent } from './group-user-selector/group-user-selector.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '../../../node_modules/@angular/forms';
     AdminSiteInfoComponent,
     AdminGroupManagementComponent,
     AdminSessionManagementComponent,
-    PermissionSelectorComponent
+    PermissionSelectorComponent,
+    GroupUserSelectorComponent
   ]
 })
 export class AdminModule { }
