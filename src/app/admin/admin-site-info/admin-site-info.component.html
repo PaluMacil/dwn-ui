@@ -9,7 +9,7 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.protocol }}
+      {{ info.config.webServer.protocol }}
     </div>
   </div>
 
@@ -22,7 +22,7 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.host }}
+      {{ info.config.webServer.host }}
     </div>
   </div>
 
@@ -35,7 +35,7 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.port }}
+      {{ info.config.webServer.port }}
     </div>
   </div>
 
@@ -48,7 +48,7 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.baseURL }}
+      {{ info.config.webServer.baseURL }}
     </div>
   </div>
 
@@ -61,20 +61,20 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.uiProxyPort }}
+      {{ info.config.webServer.uiProxyPort }}
     </div>
   </div>
 
   <div class="row mb-2">
     <div class="col-sm-3">
       <b>
-       Use MMAP
+       Data Dir
       </b>
     </div>
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.valueLogUseMMAP }}
+      {{ info.config.database.dataDir }}
     </div>
   </div>
 
@@ -87,7 +87,7 @@
     <div class="col-sm-1">
     </div>
     <div class="col-sm-8">
-      {{ info.setup.initialAdmin }}
+      {{ info.config.setup.initialAdmin }}
     </div>
   </div>
 
