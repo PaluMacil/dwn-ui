@@ -6,9 +6,18 @@
       <!--<form [formGroup]="form">-->
         <div >
           <div class="input-group">
-            <input #newUser type="text" class="form-control" placeholder="user">
+            <ng-template #rt let-r="result" let-t="term">
+              <ngb-highlight [result]="r.displayName" [term]="t"></ngb-highlight>
+            </ng-template>
+            <input [ngbTypeahead]="search"
+                   [(ngModel)]="selectedUser"
+                   [resultTemplate]="rt"
+                   [inputFormatter]="formatter"
+                   type="text" 
+                   class="form-control" 
+                   placeholder="user">
             <div class="input-group-append">
-              <button (click)="addUser(newUser.value)" class="btn btn-primary" type="button">Add</button>
+              <button (click)="addUser()" class="btn btn-primary" type="button">Add</button>
             </div>
           </div>
         </div>

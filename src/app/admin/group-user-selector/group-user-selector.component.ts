@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from '../group.service';
 import { Group } from '../../shared/models/group';
 import { User } from '../../shared/models/user';
+import { UserService } from '../../user/user.service';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-group-user-selector',
@@ -10,26 +13,36 @@ import { User } from '../../shared/models/user';
 })
 export class GroupUserSelectorComponent implements OnInit {
   @Input() group: Group;
-  users: Array<User>;
+  users = new Array<User>();
+  selectedUser : User;
 
   constructor(
-    public gs: GroupService
-  ) { 
-    this.users = [];
-  }
+    public gs: GroupService,
+    private us: UserService
+  ) { }
 
-  addUser(email: string) { //TODO: Take an actual user object once the autofill input provides users
-    this.gs.addUser(email, this.group.name).subscribe(
+  search = (text$: Observable<string>) => 
+  text$.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    switchMap(query => query.length < (query.includes('@') ? 3 : 2) ? []
+      : this.us.userSuggestion(query))
+  );
+
+  formatter = (x: {displayName: string}) => x.displayName;
+
+  addUser() {
+    this.gs.addUser(this.selectedUser.email, this.group.name).subscribe(
       ug => {
-        let u = {email: ug.email, displayName: ug.email} as User //TODO: use user from autofill once available
-        this.users.push(u)
+        this.users.push(this.selectedUser)
         this.users = this.users.sort(
           (a,b) => {
             if (a.displayName < b.displayName) return -1;
             if (a.displayName > b.displayName) return 1;
             return 0;
           }
-        )
+        );
+        this.selectedUser = null;
       }
     );
   }
@@ -45,7 +58,7 @@ export class GroupUserSelectorComponent implements OnInit {
   ngOnInit() {
     this.gs.usersFor(this.group.name).subscribe(
       users => {
-        this.users = users;
+        this.users.push(...users);
       }
     )
   }

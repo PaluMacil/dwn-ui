@@ -8,15 +8,18 @@ import { AdminGroupManagementComponent } from './admin-group-management/admin-gr
 import { AdminSessionManagementComponent } from './admin-session-management/admin-session-management.component';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { PermissionSelectorComponent } from './permission-selector/permission-selector.component';
-import { ReactiveFormsModule } from '../../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 import { GroupUserSelectorComponent } from './group-user-selector/group-user-selector.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     UserModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    NgbModule
   ],
   declarations: [
     AdminComponent, 

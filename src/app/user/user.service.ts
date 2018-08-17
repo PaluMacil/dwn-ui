@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { of, Observable } from 'rxjs';
+import { of, Observable, ObservableInput } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Me, IMe } from '../shared/models/me';
 import { User } from '../shared/models/user';
@@ -31,6 +31,17 @@ export class UserService {
       })
     );
     return of(this._me);
+  }
+
+  userSuggestion(query: string): Observable<User[]> {
+    // check if query is a tag, and remove ampersand to allow backend 
+    // to search both as a general term and as tag.
+    if (query.startsWith('@')) {
+      query = query.slice(1);
+    }
+    const params = new HttpParams()
+      .set('query', query);
+    return this.http.get<User[]>(`api/typeahead/user`, { params });
   }
 
   all(): Observable<User[]> {

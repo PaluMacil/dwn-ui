@@ -8,10 +8,26 @@ export interface SetupConfiguration {
 	initialAdmin: string
 }
 
+export interface AuthConfiguration {
+    google: AuthProvider
+}
+
+export interface AuthProvider {
+    ClientID: string
+    ClientSecret: string
+    Endpoint: {
+        AuthURL: string,
+        TokenURL: string
+    }
+    RedirectURL: string
+    Scopes: string[]
+}
+
 export interface Configuration {
-	webServer: WebServerConfiguration
-	setup: SetupConfiguration
+    auth: AuthConfiguration
 	database: DatabaseConfiguration
+	setup: SetupConfiguration
+	webServer: WebServerConfiguration
 }
 
 export interface WebServerConfiguration {
@@ -20,6 +36,7 @@ export interface WebServerConfiguration {
     port: string
     baseURL: string
     uiProxyPort: string
+    contentRoot: string
 }
 
 export interface DatabaseConfiguration {
