@@ -26,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^3.0.0",
     "core-js": "^2.5.7",
+    "ngx-markdown": "^6.1.0",
     "rxjs": "^6.2.2",
     "startbootstrap-resume": "^4.1.1",
     "zone.js": "^0.8.26"

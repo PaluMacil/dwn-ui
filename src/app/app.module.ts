@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; // https://ng-bootstrap.github.io
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // https://github.com/FortAwesome/angular-fontawesome
+import { MarkdownModule } from 'ngx-markdown';
 
 import { RoutingModule } from './routing/routing.module';
 
@@ -12,6 +13,7 @@ import { PageComponent } from './page/page.component';
 import { TokenInterceptor } from './token.interceptor';
 import { UserModule } from './user/user.module';
 import { NavModule } from './nav/nav.module';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import { NavModule } from './nav/nav.module';
     AppComponent,
     HomeComponent,
     PageComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { NavModule } from './nav/nav.module';
     HttpClientModule,
     RoutingModule,
     UserModule,
-    NavModule
+    NavModule,
+    MarkdownModule.forRoot({ loader: HttpClient })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
