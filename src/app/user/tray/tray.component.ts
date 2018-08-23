@@ -21,12 +21,18 @@ export class TrayComponent implements OnInit {
     public userService: UserService
   ) { }
 
-  ngOnInit() {
-    this.userService.me().subscribe(
-      res => {
-        this.me = res;
-      }
-    )
-  }
-
+  ngOnInit() { 
+    this.loginService.isLoggedIn().subscribe(
+        (loggedIn) => {
+          if (loggedIn) {
+            this.userService.me().subscribe(
+              me => this.me = me
+            );
+          } else {
+            this.me = null;
+          }
+        }
+      );
+    }
+      //
 }
