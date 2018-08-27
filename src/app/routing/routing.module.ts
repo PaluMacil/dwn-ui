@@ -6,6 +6,7 @@ import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.compone
 import { PageComponent } from '../page/page.component';
 import { userEntrypoint } from '../user/user.module';
 import { adminEntrypoint } from '../admin/admin.module';
+import { shoppingEntrypoint } from '../shopping/shopping.module';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'policies/privacy',
     component: PrivacyPolicyComponent
+  },
+  {
+    path: 'shopping',
+    loadChildren: shoppingEntrypoint
   }
 ];
 

@@ -1,0 +1,55 @@
+<section class="resume-section p-3 p-lg-5 d-flex d-column">
+  <div class="my-auto">
+    <h1 class="mb-0">
+      Shopping <span class="text-primary">List</span>
+    </h1>
+    <p *ngIf="shoppingList.length === 0">
+      <ngb-alert type="info" [dismissible]="true">
+        <b>Nothing here!</b> It appears you have no current shopping list! 
+        If you have items to add, you can add them below.
+      </ngb-alert>
+    </p>
+    <table *ngIf="shoppingList.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Added By</th>
+          <th>Added</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of shoppingList">
+          <td>
+            <button type="button" (click)="remove(i.name)" class="btn btn-sm btn-primary d-inline-block mr-2">
+              <fa-icon [icon]="itemComplete"></fa-icon>
+            </button>
+            {{ i.name }}
+          </td>
+          <td>{{ i.quantity > 0 ? i.quantity : '' }}</td>
+          <td>{{ i.addedBy }}</td>
+          <td>{{ i.added | date: 'medium' }}</td>
+          <td>{{ i.note }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <form (submit)="add()" [formGroup]="itemForm">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input formControlName="name" required type="text" class="form-control" id="name">
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input formControlName="quantity" type="number" class="form-control" id="quantity">
+      </div>
+      <div class="form-group">
+        <label for="note">Note:</label>
+        <input formControlName="note" type="text" class="form-control" id="note">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!itemForm.valid">
+        Add
+      </button>
+    </form>
+  </div>
+</section>

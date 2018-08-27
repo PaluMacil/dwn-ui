@@ -46,6 +46,11 @@
             Visit Me!
           </a>
         </li>
+        <ng-container *ngIf="loginService.isLoggedIn() | async">
+          <li *ngIf="(userService.me() | async) && (userService.me() | async).is('SPOUSE')" class="nav-item">
+            <a class="nav-link" [routerLink]="['/','shopping','list']">Shopping List</a>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </nav>
