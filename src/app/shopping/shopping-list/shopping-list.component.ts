@@ -55,7 +55,7 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
     this.itemForm = this.fb.group({
       name: ['', [Validators.required, this.itemNotListedValidator(this.shoppingList)]],
-      quantity: [''],
+      quantity: [0],
       note:  ['']
     });
     this.refresh();
