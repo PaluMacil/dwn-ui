@@ -4,9 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { PrivacyPolicyComponent } from '../privacy-policy/privacy-policy.component';
 import { PageComponent } from '../page/page.component';
-import { userEntrypoint } from '../user/user.module';
-import { adminEntrypoint } from '../admin/admin.module';
-import { shoppingEntrypoint } from '../shopping/shopping.module';
+import { UserManagementComponent } from '../user/user-management/user-management.component';
+import { AdminComponent } from '../admin/admin/admin.component';
+import { AdminModule } from '../admin/admin.module';
+import { ShoppingListComponent } from '../shopping/shopping-list/shopping-list.component';
+import { ShoppingModule } from '../shopping/shopping.module';
 
 const routes: Routes = [
   {
@@ -18,12 +20,20 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'user',
-    loadChildren: userEntrypoint
+    path: 'user/management',
+    component: UserManagementComponent
+  },
+  {
+    path: 'user/account',
+    loadChildren: '../user/account/account.module#AccountModule'
   },
   {
     path: 'admin',
-    loadChildren: adminEntrypoint
+    component: AdminComponent
+  },
+  {
+    path: 'admin/:tab',
+    component: AdminComponent
   },
   {
     path: 'policies/privacy',
@@ -31,12 +41,18 @@ const routes: Routes = [
   },
   {
     path: 'shopping',
-    loadChildren: shoppingEntrypoint
+    component: ShoppingListComponent
+  },
+  {
+    path: 'shopping/list',
+    component: ShoppingListComponent
   }
 ];
 
 @NgModule({
   imports: [
+    AdminModule,
+    ShoppingModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]

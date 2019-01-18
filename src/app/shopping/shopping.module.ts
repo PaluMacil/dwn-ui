@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingRoutingModule } from './shopping-routing/shopping-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -11,7 +10,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CommonModule,
     NgbModule,
     FontAwesomeModule,
-    ShoppingRoutingModule, 
     FormsModule,
     ReactiveFormsModule
   ],
@@ -20,7 +18,3 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   ]
 })
 export class ShoppingModule { }
-
-export function shoppingEntrypoint() {
-  return ShoppingModule
-}

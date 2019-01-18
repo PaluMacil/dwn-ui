@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from '../account/account.component';
 
-const accountOutlet = 'account';
-
 const routes: Routes = [
   {
     path: ':tab',

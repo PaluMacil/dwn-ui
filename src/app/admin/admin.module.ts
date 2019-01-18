@@ -6,23 +6,23 @@ import { UserModule } from '../user/user.module';
 import { AdminSiteInfoComponent } from './admin-site-info/admin-site-info.component';
 import { AdminGroupManagementComponent } from './admin-group-management/admin-group-management.component';
 import { AdminSessionManagementComponent } from './admin-session-management/admin-session-management.component';
-import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { PermissionSelectorComponent } from './permission-selector/permission-selector.component';
 import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular/forms';
 import { GroupUserSelectorComponent } from './group-user-selector/group-user-selector.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild([]),
     FormsModule,
     ReactiveFormsModule,
     UserModule,
-    AdminRoutingModule,
     NgbModule
   ],
   declarations: [
-    AdminComponent, 
+    AdminComponent,
     SetPasswordComponent,
     AdminSiteInfoComponent,
     AdminGroupManagementComponent,
@@ -32,7 +32,3 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ]
 })
 export class AdminModule { }
-
-export function adminEntrypoint() {
-  return AdminModule
-}
