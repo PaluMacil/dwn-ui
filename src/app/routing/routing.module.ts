@@ -9,6 +9,8 @@ import { AdminComponent } from '../admin/admin/admin.component';
 import { AdminModule } from '../admin/admin.module';
 import { ShoppingListComponent } from '../shopping/shopping-list/shopping-list.component';
 import { ShoppingModule } from '../shopping/shopping.module';
+import { AppPreloadingStrategy } from './app-preloading.strategy';
+
 
 const routes: Routes = [
   {
@@ -53,7 +55,9 @@ const routes: Routes = [
   imports: [
     AdminModule,
     ShoppingModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: AppPreloadingStrategy
+    })
   ],
   exports: [RouterModule]
 })
