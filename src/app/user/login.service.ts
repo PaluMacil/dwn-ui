@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginService {
   loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
 
-  isLoggedIn() : Observable<boolean> {
+  isLoggedIn(): Observable<boolean> {
     return this.loggedInSubject.asObservable().pipe(share());
   }
 
@@ -20,22 +20,22 @@ export class LoginService {
     private router: Router
   ) { }
 
-  logout(notifyServer = false) : void {
-    if (environment.tokenName in localStorage){
+  logout(notifyServer = false): void {
+    if (environment.tokenName in localStorage) {
       if (notifyServer) {
         this.http.delete(`/api/user/logout/${this.getToken()}`).subscribe();
       }
       localStorage.removeItem(environment.tokenName);
     }
     this.loggedInSubject.next(false);
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
   getToken(): string {
     return localStorage.getItem(environment.tokenName);
   }
 
-  private hasToken() : boolean {
+  private hasToken(): boolean {
     return !!localStorage.getItem(environment.tokenName);
   }
 }

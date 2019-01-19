@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Me } from '../../../shared/models/me';
 import { UserService } from '../../user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile',

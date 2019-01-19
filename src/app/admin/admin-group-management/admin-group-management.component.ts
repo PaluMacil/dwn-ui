@@ -21,7 +21,7 @@ export class AdminGroupManagementComponent implements OnInit {
   }
 
   updateGroup(group: Group) {
-    const idx = this.groups.findIndex(g => g.name === group.name)
+    const idx = this.groups.findIndex(g => g.name === group.name);
     this.groups[idx] = group;
   }
 

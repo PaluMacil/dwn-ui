@@ -17,8 +17,8 @@ export class Me {
     ) { }
 
     is(group: string) {
-        for (let g of this.groups) {
-            if (g.name === group) return true;
+        for (const g of this.groups) {
+            if (g.name === group) { return true; }
         }
         return false;
     }

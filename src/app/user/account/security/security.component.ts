@@ -8,7 +8,7 @@ import { Me } from '../../../shared/models/me';
 })
 export class SecurityComponent implements OnInit {
   @Input() me: Me;
-  
+
   constructor() { }
 
   ngOnInit() {

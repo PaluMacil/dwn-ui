@@ -10,10 +10,10 @@ export class ServerInfoService {
   constructor(private http: HttpClient) { }
 
   server() {
-    return this.http.get<ServerInfo>('api/info/server')
+    return this.http.get<ServerInfo>('api/info/server');
   }
 
   permissions() {
-    return this.http.get<string[]>('api/info/permissions')
+    return this.http.get<string[]>('api/info/permissions');
   }
 }

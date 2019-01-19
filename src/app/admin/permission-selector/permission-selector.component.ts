@@ -24,7 +24,7 @@ export class PermissionSelectorComponent implements OnInit {
     public gs: GroupService
   ) { }
 
-  addPermission(permission: string){
+  addPermission(permission: string) {
     const t = 'test';
     this.gs.addPermission(this.group.name, permission).subscribe(
       g => {
@@ -33,7 +33,7 @@ export class PermissionSelectorComponent implements OnInit {
     );
   }
 
-  removePermission(permission: string){
+  removePermission(permission: string) {
     const t = 'test';
     this.gs.removePermission(this.group.name, permission).subscribe(
       g => {

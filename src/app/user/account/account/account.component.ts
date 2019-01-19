@@ -12,7 +12,7 @@ export class AccountComponent implements OnInit {
   tab = 'profile';
   me: Me;
 
-  constructor(public r: ActivatedRoute,public userService: UserService
+  constructor(public r: ActivatedRoute, public userService: UserService
   ) {
     if (r.snapshot.data.me) {
       this.me = r.snapshot.data.me;
@@ -28,7 +28,7 @@ export class AccountComponent implements OnInit {
         res => {
           this.me = res;
         }
-      )
+      );
     }
   }
 }

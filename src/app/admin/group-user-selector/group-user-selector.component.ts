@@ -14,31 +14,31 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 export class GroupUserSelectorComponent implements OnInit {
   @Input() group: Group;
   users = new Array<User>();
-  selectedUser : User;
+  selectedUser: User;
 
   constructor(
     public gs: GroupService,
     private us: UserService
   ) { }
 
-  search = (text$: Observable<string>) => 
+  search = (text$: Observable<string>) =>
   text$.pipe(
     debounceTime(300),
     distinctUntilChanged(),
     switchMap(query => query.length < (query.includes('@') ? 3 : 2) ? []
       : this.us.userSuggestion(query))
-  );
+  )
 
   formatter = (x: {displayName: string}) => x.displayName;
 
   addUser() {
     this.gs.addUser(this.selectedUser.email, this.group.name).subscribe(
       ug => {
-        this.users.push(this.selectedUser)
+        this.users.push(this.selectedUser);
         this.users = this.users.sort(
-          (a,b) => {
-            if (a.displayName < b.displayName) return -1;
-            if (a.displayName > b.displayName) return 1;
+          (a, b) => {
+            if (a.displayName < b.displayName) { return -1; }
+            if (a.displayName > b.displayName) { return 1; }
             return 0;
           }
         );
@@ -50,7 +50,7 @@ export class GroupUserSelectorComponent implements OnInit {
   removeUser(email: string) {
     this.gs.removeUser(email, this.group.name).subscribe(
       ug => {
-        this.users = this.users.filter(u => u.email !== ug.email)
+        this.users = this.users.filter(u => u.email !== ug.email);
       }
     );
   }
@@ -60,7 +60,7 @@ export class GroupUserSelectorComponent implements OnInit {
       users => {
         this.users.push(...users);
       }
-    )
+    );
   }
 
 }

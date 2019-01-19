@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  tokenName: "dwn-token"
+  tokenName: 'dwn-token'
 };
 
 /*

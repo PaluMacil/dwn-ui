@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { UserService } from '../user.service';
 import { Me } from '../../shared/models/me';
-import { faSignInAlt, faBell } from '@fortawesome/free-solid-svg-icons'
+import { faSignInAlt, faBell } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tray',
@@ -21,7 +21,7 @@ export class TrayComponent implements OnInit {
     public userService: UserService
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.loginService.isLoggedIn().subscribe(
         (loggedIn) => {
           if (loggedIn) {

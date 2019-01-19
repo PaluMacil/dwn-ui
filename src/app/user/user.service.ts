@@ -20,21 +20,22 @@ export class UserService {
   private _me: Me;
 
   me(force?: false): Observable<Me> {
-    if (force || !this._me) return this.http.get<IMe>('api/user/me').pipe(
+    if (force || !this._me) { return this.http.get<IMe>('api/user/me').pipe(
       catchError(e => {
-        this.login.logout(false)
-        return of(e)
+        this.login.logout(false);
+        return of(e);
       }),
       map(m => {
         this._me = new Me(m.user, m.session, m.groups);
         return this._me;
       })
     );
+    }
     return of(this._me);
   }
 
   userSuggestion(query: string): Observable<User[]> {
-    // check if query is a tag, and remove ampersand to allow backend 
+    // check if query is a tag, and remove ampersand to allow backend
     // to search both as a general term and as tag.
     if (query.startsWith('@')) {
       query = query.slice(1);

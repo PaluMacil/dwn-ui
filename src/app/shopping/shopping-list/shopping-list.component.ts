@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingItem } from '../../shared/models/shopping-item';
 import { ShoppingService } from '../shopping.service';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shopping-list',
@@ -18,7 +18,7 @@ export class ShoppingListComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private shoppingService: ShoppingService
-  ) { 
+  ) {
     this.shoppingList = new Array<ShoppingItem>();
   }
 
@@ -39,12 +39,12 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList.length = 0;
     this.shoppingService.list().subscribe(
       items => this.shoppingList.push(...items)
-    )
+    );
   }
 
   itemNotListedValidator(shoppingList: ShoppingItem[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
-      let t = control.parent
+      const t = control.parent;
       if (shoppingList.filter(i => i.name.toLowerCase() === control.value.toLowerCase()).length > 0) {
         return { 'itemNotListed': true };
       }

@@ -9,7 +9,7 @@ import { SessionDetails } from '../../shared/models/session-details';
 })
 export class AdminSessionManagementComponent implements OnInit {
 
-  sessions = new Array<SessionDetails>()
+  sessions = new Array<SessionDetails>();
 
   constructor(
     private us: UserService

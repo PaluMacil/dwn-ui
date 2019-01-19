@@ -11,7 +11,7 @@ import { GROUPS } from '../../shared/builtins';
 export class TrayActionListComponent implements OnInit {
 
   @Input() me: Me;
-  @Input() simple: boolean = false;
+  @Input() simple = false;
 
   iconProfile = faUserCircle;
   iconAdmin = faTachometerAlt;
@@ -26,11 +26,11 @@ export class TrayActionListComponent implements OnInit {
     this.listItemStyle = {
       'nav-item': this.simple,
       '': !this.simple
-    }
+    };
     this.linkStyle = {
       'nav-link': this.simple,
       'dropdown-item': !this.simple
-    }
+    };
   }
 
 }

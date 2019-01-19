@@ -12,7 +12,7 @@ export class ShoppingService {
   ) { }
 
   list() {
-    return this.http.get<ShoppingItem[]>(`api/shopping/list`)
+    return this.http.get<ShoppingItem[]>(`api/shopping/list`);
   }
 
   add(item: ShoppingItem) {

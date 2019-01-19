@@ -13,23 +13,23 @@ export class GroupService {
   constructor(private http: HttpClient) { }
 
   groups(): Observable<Group[]> {
-    return this.http.get<Group[]>('api/group/all')
+    return this.http.get<Group[]>('api/group/all');
   }
 
   groupsFor(email: string) {
-    return this.http.get<Group[]>(`api/user/groups-for/${encodeURIComponent(email)}`)
+    return this.http.get<Group[]>(`api/user/groups-for/${encodeURIComponent(email)}`);
   }
 
   usersFor(groupName: string) {
-    return this.http.get<User[]>(`api/group/users-for/${encodeURIComponent(groupName)}`)
+    return this.http.get<User[]>(`api/group/users-for/${encodeURIComponent(groupName)}`);
   }
 
   addUser(email: string, groupName: string) {
-    return this.http.post<UserGroup>('api/usergroup/add', {email, groupName})
+    return this.http.post<UserGroup>('api/usergroup/add', {email, groupName});
   }
 
   removeUser(email: string, groupName: string) {
-    return this.http.post<UserGroup>('api/usergroup/remove', {email, groupName})
+    return this.http.post<UserGroup>('api/usergroup/remove', {email, groupName});
   }
 
   addPermission(groupName: string, permission: string) {

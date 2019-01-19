@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { LoginService } from './user/login.service'
+import { LoginService } from './user/login.service';
 import { environment } from '../environments/environment';
 
 @Injectable()

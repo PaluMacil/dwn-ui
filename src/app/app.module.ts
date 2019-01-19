@@ -25,7 +25,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
+    NgbModule,
     FontAwesomeModule,
     HttpClientModule,
     RoutingModule,
