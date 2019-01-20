@@ -8,4 +8,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Build
 
-Run `ng build --no-aot` to build the project for prod because I need to stop it from tree shaking the shopping list.
+Run `ng build` to build the project for prod.
