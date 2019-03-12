@@ -2,6 +2,7 @@ export interface ServerInfo {
     config: Configuration;
     initializedDate: Date;
     goVersion: string;
+    numCPUs: number;
 }
 
 export interface SetupConfiguration {
