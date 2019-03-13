@@ -1,3 +1,4 @@
 {
-    "terminal.integrated.cwd": "src\\app"
+    "terminal.integrated.cwd": "src\\app",
+    "editor.tabSize": 2
 }
