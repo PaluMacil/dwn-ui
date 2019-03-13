@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '../../../node_modules/@angular
 import { GroupUserSelectorComponent } from './group-user-selector/group-user-selector.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { AdminLogComponent } from './admin-log/admin-log.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { RouterModule } from '@angular/router';
     AdminGroupManagementComponent,
     AdminSessionManagementComponent,
     PermissionSelectorComponent,
-    GroupUserSelectorComponent
+    GroupUserSelectorComponent,
+    AdminLogComponent
   ]
 })
 export class AdminModule { }
