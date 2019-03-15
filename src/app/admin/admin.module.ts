@@ -12,6 +12,7 @@ import { GroupUserSelectorComponent } from './group-user-selector/group-user-sel
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AdminLogComponent } from './admin-log/admin-log.component';
+import {FileSizeModule} from 'ngx-filesize';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { AdminLogComponent } from './admin-log/admin-log.component';
     FormsModule,
     ReactiveFormsModule,
     UserModule,
+    FileSizeModule,
     NgbModule
   ],
   declarations: [
