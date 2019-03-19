@@ -9,6 +9,11 @@ import { environment } from '../environments/environment';
 export class TokenInterceptor implements HttpInterceptor {
     constructor(public ls: LoginService) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      const attachToken = ['danwolf.net', 'visit.danwolf.net', 'staging.danwolf.net']
+        .some(url => url === location.host) || location.hostname === 'localhost';
+      if (!attachToken) {
+        return next.handle(request);
+      }
       const tokenName = environment.tokenName;
       request = request.clone({
         setHeaders: {
