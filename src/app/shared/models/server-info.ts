@@ -4,6 +4,7 @@ export interface ServerInfo {
     goVersion: string;
     numCPUs: number;
     allocatedMemory: number;
+    dataDirSize: number;
 }
 
 export interface SetupConfiguration {
