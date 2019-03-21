@@ -23,7 +23,7 @@ export class UserService {
     if (force || !this._me) { return this.http.get<IMe>('api/user/me').pipe(
       tap({ error: () => this.login.logout(false) }),
       map(m => {
-        this._me = new Me(m.user, m.session, m.groups);
+        this._me = new Me(m.user, m.session, m.groups, true);
         return this._me;
       })
     );

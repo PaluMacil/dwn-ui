@@ -13,7 +13,8 @@ export class Me {
     constructor(
         public user: User,
         public session: Session,
-        public groups: Group[]
+        public groups: Group[],
+        public authenticated: boolean
     ) { }
 
     is(group: string) {
