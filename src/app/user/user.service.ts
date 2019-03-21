@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { of, Observable, ObservableInput } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Me, IMe } from '../shared/models/me';
 import { User } from '../shared/models/user';
 import { LoginService } from './login.service';
@@ -21,10 +21,7 @@ export class UserService {
 
   me(force?: false): Observable<Me> {
     if (force || !this._me) { return this.http.get<IMe>('api/user/me').pipe(
-      catchError(e => {
-        this.login.logout(false);
-        return of(e);
-      }),
+      tap({ error: () => this.login.logout(false) }),
       map(m => {
         this._me = new Me(m.user, m.session, m.groups);
         return this._me;
