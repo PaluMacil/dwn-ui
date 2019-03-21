@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { share } from 'rxjs/operators';
+import { share, retry } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ export class LoginService {
   logout(notifyServer = false): void {
     if (environment.tokenName in localStorage) {
       if (notifyServer) {
-        this.http.delete(`/api/user/logout/${this.getToken()}`).subscribe();
+        this.http.delete(`/api/user/logout/${this.getToken()}`).pipe(retry(2)).subscribe();
       }
       localStorage.removeItem(environment.tokenName);
     }
