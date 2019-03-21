@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Me } from '../../shared/models/me';
+import { Me } from '../../shared/models';
 import { faTachometerAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { GROUPS } from '../../shared/builtins';
 

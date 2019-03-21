@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { of, Observable, ObservableInput } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { Me, IMe } from '../shared/models/me';
-import { User } from '../shared/models/user';
+import { Me, IMe, User, SessionDetails } from '../shared/models';
 import { LoginService } from './login.service';
-import { SessionDetails } from '../shared/models/session-details';
 
 @Injectable({
   providedIn: 'root'

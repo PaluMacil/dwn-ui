@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
-import { Group } from '../../shared/models/group';
+import { Group } from '../../shared/models';
 import { ServerInfoService } from '../server-info.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { GroupService } from '../group.service';

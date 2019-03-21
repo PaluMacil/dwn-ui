@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingItem } from '../../shared/models/shopping-item';
+import { ShoppingItem } from '../../shared/models';
 import { ShoppingService } from '../shopping.service';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';

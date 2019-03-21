@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Me } from '../../shared/models/me';
+import { Me } from '../../shared/models';
 import { LoginService } from '../login.service';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 

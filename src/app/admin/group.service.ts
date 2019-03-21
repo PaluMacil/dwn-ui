@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
-import { Group } from '../shared/models/group';
-import { User } from '../shared/models/user';
-import { UserGroup } from '../shared/models/user-group';
+import { Group, User, UserGroup } from '../shared/models';
 
 @Injectable({
   providedIn: 'root'

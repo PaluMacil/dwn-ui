@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../group.service';
-import { Group } from '../../shared/models/group';
+import { Group } from '../../shared/models';
 
 @Component({
   selector: 'app-admin-group-management',

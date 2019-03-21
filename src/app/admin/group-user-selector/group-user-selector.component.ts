@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from '../group.service';
-import { Group } from '../../shared/models/group';
-import { User } from '../../shared/models/user';
+import { Group, User } from '../../shared/models';
 import { UserService } from '../../user/user.service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';

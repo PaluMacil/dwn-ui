@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user/user.service';
-import { SessionDetails } from '../../shared/models/session-details';
+import { SessionDetails } from '../../shared/models';
 import { map } from 'rxjs/operators';
 
 @Component({

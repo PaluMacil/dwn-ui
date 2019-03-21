@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerInfoService } from '../server-info.service';
-import { ServerInfo } from '../../shared/models/server-info';
+import { ServerInfo } from '../../shared/models';
 
 @Component({
   selector: 'app-admin-site-info',

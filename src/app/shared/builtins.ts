@@ -1,5 +1,4 @@
-import { Me } from './models/me';
-import { User } from './models/user';
+import { Me } from './models';
 
 export const GROUPS: Readonly<Record<string, string>> = {
     BuiltInGroupAdmin: 'ADMIN',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Me } from '../../../shared/models/me';
+import { Me } from '../../../shared/models';
 
 @Component({
   selector: 'app-security',
