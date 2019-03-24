@@ -1,7 +1,6 @@
 import { User } from './user';
 import { Session } from './session';
 import { Group } from './group';
-import { GROUPS } from '../builtins';
 
 export interface IMe {
     user: User;
@@ -9,7 +8,7 @@ export interface IMe {
     groups: Group[];
 }
 
-export class Me {
+export class Me implements IMe {
     constructor(
         public user: User,
         public session: Session,

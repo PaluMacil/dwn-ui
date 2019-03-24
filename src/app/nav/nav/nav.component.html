@@ -20,13 +20,13 @@
       <!-- Nav menu items -->
       <ul class="navbar-nav mr-auto" (click)="navbarCollapsed = true">
         <ng-container *ngIf="!navbarCollapsed" class="d-block d-lg-none">
-          <ng-container *ngIf="loginService.isLoggedIn() | async">
+          <ng-container *ngIf="userService.isLoggedIn() | async">
             <li class="nav-item">
-              <a class="nav-link" (click)="loginService.logout(true)">log out</a>
+              <a class="nav-link" (click)="userService.logout(true)">log out</a>
             </li>
             <app-tray-action-list [simple]="true" [me]="userService.me() | async"></app-tray-action-list>
           </ng-container>
-          <ng-container *ngIf="!(loginService.isLoggedIn() | async)">
+          <ng-container *ngIf="!(userService.isLoggedIn() | async)">
             <li class="nav-item">
               <a class="nav-link" href="/oauth/google/login">
                 log in
@@ -46,7 +46,7 @@
             Visit Me!
           </a>
         </li>
-        <ng-container *ngIf="loginService.isLoggedIn() | async">
+        <ng-container *ngIf="userService.isLoggedIn() | async">
           <li *ngIf="(userService.me() | async) && (userService.me() | async).is('SPOUSE')" class="nav-item">
             <a class="nav-link" [routerLink]="['/','shopping','list']">Shopping List</a>
           </li>

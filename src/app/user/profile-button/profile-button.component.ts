@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Me } from '../../shared/models';
-import { LoginService } from '../login.service';
+import { UserService } from '../user.service';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -14,7 +14,7 @@ export class ProfileButtonComponent implements OnInit {
 
   iconSignOut = faSignOutAlt;
 
-  constructor(public loginService: LoginService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }

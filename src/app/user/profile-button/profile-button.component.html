@@ -5,7 +5,7 @@
   </button>
   <div ngbDropdownMenu aria-labelledby="profileDropdown">
     <app-tray-action-list [me]="me"></app-tray-action-list>
-    <button (click)="loginService.logout(true)" class="dropdown-item">
+    <button (click)="userService.logout(true)" class="dropdown-item">
       <fa-icon class="pr-2" [icon]="iconSignOut"></fa-icon>log out
     </button>
   </div>

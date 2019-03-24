@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
 import { UserService } from '../user.service';
 import { Me } from '../../shared/models';
 import { faSignInAlt, faBell } from '@fortawesome/free-solid-svg-icons';
@@ -17,12 +16,13 @@ export class TrayComponent implements OnInit {
   iconAlert = faBell;
 
   constructor(
-    public loginService: LoginService,
     public userService: UserService
   ) { }
 
   ngOnInit() {
-    this.loginService.isLoggedIn().subscribe(
+    this.userService.isLoggedIn().subscribe(
+      // TODO: weirdly redundant now that logged in is stored via Me.authenticated;
+      // will eliminate once 
         (loggedIn) => {
           if (loggedIn) {
             this.userService.me().subscribe(
@@ -34,5 +34,4 @@ export class TrayComponent implements OnInit {
         }
       );
     }
-      //
 }

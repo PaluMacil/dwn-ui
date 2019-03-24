@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { of, Observable, ObservableInput } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { of, Observable, BehaviorSubject } from 'rxjs';
+import { map, tap, share, retry } from 'rxjs/operators';
 import { Me, IMe, User, SessionDetails } from '../shared/models';
-import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,14 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private login: LoginService
+    private router: Router
   ) { }
 
   private _me: Me;
 
   me(force?: false): Observable<Me> {
     if (force || !this._me) { return this.http.get<IMe>('api/user/me').pipe(
-      tap({ error: () => this.login.logout(false) }),
+      tap({ error: () => this.logout(false) }),
       map(m => {
         this._me = new Me(m.user, m.session, m.groups, true);
         return this._me;
@@ -48,5 +49,30 @@ export class UserService {
     const params = new HttpParams()
       .set('includeInactive', includeInactive.toString());
     return this.http.get<SessionDetails[]>(`api/user/sessions`, { params });
+  }
+
+  loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
+
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedInSubject.asObservable().pipe(share());
+  }
+
+  logout(notifyServer = false): void {
+    if (environment.tokenName in localStorage) {
+      if (notifyServer) {
+        this.http.delete(`/api/user/logout/${this.getToken()}`).pipe(retry(2)).subscribe();
+      }
+      localStorage.removeItem(environment.tokenName);
+    }
+    this.loggedInSubject.next(false);
+    this.router.navigate(['/']);
+  }
+
+  getToken(): string {
+    return localStorage.getItem(environment.tokenName);
+  }
+
+  private hasToken(): boolean {
+    return !!localStorage.getItem(environment.tokenName);
   }
 }
