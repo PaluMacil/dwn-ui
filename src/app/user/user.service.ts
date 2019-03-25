@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { of, Observable, BehaviorSubject } from 'rxjs';
-import { map, tap, share, retry } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, tap, retry } from 'rxjs/operators';
 import { Me, IMe, User, SessionDetails } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
+import { ANONYMOUS_USER } from '../shared/builtins';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,29 @@ export class UserService {
     private router: Router
   ) { }
 
-  private _me: Me;
+  me$ = new BehaviorSubject<Me>(ANONYMOUS_USER);
 
-  me(force?: false): Observable<Me> {
-    if (force || !this._me) { return this.http.get<IMe>('api/user/me').pipe(
-      tap({ error: () => this.logout(false) }),
-      map(m => {
-        this._me = new Me(m.user, m.session, m.groups, true);
-        return this._me;
-      })
-    );
+  checkMe(): void {
+    const token = environment.tokenName;
+    if (!localStorage.getItem(token)) {
+      // not logged in
+      this.me$.next(ANONYMOUS_USER);
+      return;
     }
-    return of(this._me);
+    // has a token, so check it
+    this.http.get<IMe>('api/user/me').pipe(
+      tap({
+        next: (m) => {
+          // authenticated; construct and emit new Me
+          const me = new Me(m.user, m.session, m.groups, true);
+          this.me$.next(me);
+        },
+        error: () => {
+          // failed to get me, log out
+          this.logout(false);
+        }
+      })
+    ).subscribe();
   }
 
   userSuggestion(query: string): Observable<User[]> {
@@ -51,28 +63,20 @@ export class UserService {
     return this.http.get<SessionDetails[]>(`api/user/sessions`, { params });
   }
 
-  loggedInSubject = new BehaviorSubject<boolean>(this.hasToken());
-
-  isLoggedIn(): Observable<boolean> {
-    return this.loggedInSubject.asObservable().pipe(share());
-  }
-
+  // TODO: determine if default should be true
   logout(notifyServer = false): void {
-    if (environment.tokenName in localStorage) {
+    const token = environment.tokenName;
+    if (token in localStorage) {
       if (notifyServer) {
         this.http.delete(`/api/user/logout/${this.getToken()}`).pipe(retry(2)).subscribe();
       }
-      localStorage.removeItem(environment.tokenName);
+      localStorage.removeItem(token);
     }
-    this.loggedInSubject.next(false);
+    this.me$.next(ANONYMOUS_USER);
     this.router.navigate(['/']);
   }
 
   getToken(): string {
     return localStorage.getItem(environment.tokenName);
-  }
-
-  private hasToken(): boolean {
-    return !!localStorage.getItem(environment.tokenName);
   }
 }

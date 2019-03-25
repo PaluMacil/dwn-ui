@@ -19,37 +19,39 @@
     <div [ngbCollapse]="navbarCollapsed" class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Nav menu items -->
       <ul class="navbar-nav mr-auto" (click)="navbarCollapsed = true">
-        <ng-container *ngIf="!navbarCollapsed" class="d-block d-lg-none">
-          <ng-container *ngIf="userService.isLoggedIn() | async">
-            <li class="nav-item">
-              <a class="nav-link" (click)="userService.logout(true)">log out</a>
-            </li>
-            <app-tray-action-list [simple]="true" [me]="userService.me() | async"></app-tray-action-list>
+        <ng-container *ngIf="me$ | async as me">
+          <ng-container *ngIf="!navbarCollapsed" class="d-block d-lg-none">
+            <ng-container *ngIf="me.authenticated; else navLoginLink">
+              <li class="nav-item">
+                <a class="nav-link" (click)="userService.logout(true)">log out</a>
+              </li>
+              <app-tray-action-list [simple]="true" [me]="me"></app-tray-action-list>
+            </ng-container>
+            <ng-template #navLoginLink>
+              <li class="nav-item">
+                <a class="nav-link" href="/oauth/google/login">
+                  log in
+                </a>
+              </li>
+            </ng-template>
+            <div class="dropdown-divider"></div>
           </ng-container>
-          <ng-container *ngIf="!(userService.isLoggedIn() | async)">
-            <li class="nav-item">
-              <a class="nav-link" href="/oauth/google/login">
-                log in
-              </a>
-            </li>
-          </ng-container>
-          <div class="dropdown-divider"></div>
-        </ng-container>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/','policies','privacy']">Privacy Policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://visit.danwolf.net">
-            Visit Me!
-          </a>
-        </li>
-        <ng-container *ngIf="userService.isLoggedIn() | async">
-          <li *ngIf="(userService.me() | async) && (userService.me() | async).is('SPOUSE')" class="nav-item">
-            <a class="nav-link" [routerLink]="['/','shopping','list']">Shopping List</a>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']">About</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/','policies','privacy']">Privacy Policy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://visit.danwolf.net">
+              Visit Me!
+            </a>
+          </li>
+          <ng-container *ngIf="me.authenticated">
+            <li *ngIf="me.is('SPOUSE')" class="nav-item">
+              <a class="nav-link" [routerLink]="['/','shopping','list']">Shopping List</a>
+            </li>
+          </ng-container>
         </ng-container>
       </ul>
     </div>

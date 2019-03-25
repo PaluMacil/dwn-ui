@@ -1,11 +1,10 @@
-<a *ngIf="!(userService.isLoggedIn() | async)" class="btn btn-sm btn-outline-secondary"
+<a *ngIf="!(userService.me$ | async).authenticated" class="btn btn-sm btn-outline-secondary"
     href="/oauth/google/login">
     <fa-icon class="pr-2" [icon]="iconSignIn"></fa-icon>log in
 </a>
-<ng-container *ngIf="userService.isLoggedIn() | async">
-  <fa-icon transform="grow-6" class="mr-3" [icon]="iconAlert"></fa-icon>
-  <ng-container *ngIf="me">
+<ng-container *ngIf="me$ | async as me">
+  <ng-container *ngIf="me.authenticated">
+    <fa-icon transform="grow-6" class="mr-3" [icon]="iconAlert"></fa-icon>
     <app-profile-button [me]="me"></app-profile-button>
   </ng-container>
 </ng-container>
-      

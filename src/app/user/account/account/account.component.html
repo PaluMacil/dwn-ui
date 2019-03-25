@@ -1,36 +1,42 @@
 <div class="container-fluid">
   <h1>Account</h1>
+  <ng-container *ngIf="me$ | async as me">
+    <ng-container *ngIf="me.authenticated; else loadingAccount">
+      <div class="row mb-4">
+        <div class="col">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link"
+                (click)="tab='profile'"
+                [class.active]="tab==='profile'"
+                [routerLink]="['/', 'user', 'account']">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"
+                (click)="tab='security'"
+                [class.active]="tab==='security'" 
+                [routerLink]="['/', 'user','account', 'security']">Security</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" 
+                (click)="tab='notifications'"
+                [class.active]="tab==='notifications'" 
+                [routerLink]="['/', 'user','account', 'notifications']">Notifications</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <app-profile *ngIf="tab==='profile'" [me]="me"></app-profile>
+      <app-security *ngIf="tab==='security'" [me]="me"></app-security>
+      <div *ngIf="tab==='notifications'">
+        Notification settings coming soon!
+      </div>
+    </ng-container>
 
-  <div class="row mb-4">
-    <div class="col">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link"
-            (click)="tab='profile'"
-            [class.active]="tab==='profile'"
-            [routerLink]="['/', 'user', 'account']">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"
-            (click)="tab='security'"
-            [class.active]="tab==='security'" 
-            [routerLink]="['/', 'user','account', 'security']">Security</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" 
-            (click)="tab='notifications'"
-            [class.active]="tab==='notifications'" 
-            [routerLink]="['/', 'user','account', 'notifications']">Notifications</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <app-profile *ngIf="tab==='profile' && !!me" [me]="me"></app-profile>
-  <app-security *ngIf="tab==='security' && !!me" [me]="me"></app-security>
-  <div *ngIf="tab==='notifications' && !!me">
-    Notification settings coming soon!
-  </div>
-  <div *ngIf="!me">
-    Loading...
-  </div>
+    <ng-template #loadingAccount>
+      <div>
+        loading...
+      </div>
+    </ng-template>
+  </ng-container>
 </div>
