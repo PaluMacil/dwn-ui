@@ -25,7 +25,10 @@ export class ShoppingListComponent implements OnInit {
   add() {
     const newItem = this.itemForm.value as ShoppingItem;
     this.shoppingService.add(newItem).subscribe(
-      item => this.shoppingList.push(item)
+      item => {
+        this.shoppingList.push(item);
+        this.itemForm.reset();
+      }
     );
   }
 
@@ -44,8 +47,9 @@ export class ShoppingListComponent implements OnInit {
 
   itemNotListedValidator(shoppingList: ShoppingItem[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const t = control.parent;
-      if (shoppingList.filter(i => i.name.toLowerCase() === control.value.toLowerCase()).length > 0) {
+      const newItemName = typeof(control.value) === 'string' ? control.value.toLowerCase() : '';
+      // is the item already in the list?
+      if (shoppingList.filter(i => i.name.toLowerCase() === newItemName).length > 0) {
         return { 'itemNotListed': true };
       }
       return null;
