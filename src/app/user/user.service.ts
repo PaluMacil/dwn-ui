@@ -49,7 +49,8 @@ export class UserService {
       query = query.slice(1);
     }
     const params = new HttpParams()
-      .set('query', query);
+      // search is is indexed by lowercase terms
+      .set('query', query.toLowerCase());
     return this.http.get<User[]>(`api/typeahead/user`, { params });
   }
 
