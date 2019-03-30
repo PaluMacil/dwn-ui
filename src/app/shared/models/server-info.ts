@@ -37,7 +37,6 @@ export interface WebServerConfiguration {
     protocol: string;
     host: string;
     port: string;
-    baseURL: string;
     uiProxyPort: string;
     contentRoot: string;
 }
