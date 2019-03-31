@@ -6,3 +6,6 @@ export * from './models/session';
 export * from './models/shopping-item';
 export * from './models/user-group';
 export * from './models/user';
+
+// shared ui models
+export * from './models/ui/alert-message';

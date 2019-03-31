@@ -21,14 +21,14 @@ export class GroupUserSelectorComponent implements OnInit {
   ) { }
 
   search = (text$: Observable<string>) =>
-  text$.pipe(
-    debounceTime(300),
-    distinctUntilChanged(),
-    switchMap(query => query.length < (query.includes('@') ? 3 : 2) ? []
-      : this.us.userSuggestion(query))
-  )
+    text$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap(query => query.length < (query.includes('@') ? 3 : 2) ? []
+        : this.us.userSuggestion(query))
+    )
 
-  formatter = (x: {displayName: string}) => x.displayName;
+  formatter = (x: { displayName: string }) => x.displayName;
 
   addUser() {
     this.gs.addUser(this.selectedUser.email, this.group.name).subscribe(
