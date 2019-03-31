@@ -1,16 +1,16 @@
-import { User } from './user';
+import { UserInfo } from './user';
 import { Session } from './session';
 import { Group } from './group';
 
 export interface IMe {
-    user: User;
+    user: UserInfo;
     session: Session;
     groups: Group[];
 }
 
 export class Me implements IMe {
     constructor(
-        public user: User,
+        public user: UserInfo,
         public session: Session,
         public groups: Group[],
         public authenticated: boolean

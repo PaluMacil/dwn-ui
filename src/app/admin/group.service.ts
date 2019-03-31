@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
-import { Group, User, UserGroup } from '../shared/models';
+import { Group, UserInfo, UserGroup } from '../shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class GroupService {
   }
 
   usersFor(groupName: string) {
-    return this.http.get<User[]>(`api/group/users-for/${encodeURIComponent(groupName)}`);
+    return this.http.get<UserInfo[]>(`api/group/users-for/${encodeURIComponent(groupName)}`);
   }
 
   addUser(email: string, groupName: string) {

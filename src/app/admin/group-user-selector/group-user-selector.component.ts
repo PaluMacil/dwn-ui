@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from '../group.service';
-import { Group, User } from '../../shared/models';
+import { Group, UserInfo } from '../../shared/models';
 import { UserService } from '../../user/user.service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -12,8 +12,8 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 })
 export class GroupUserSelectorComponent implements OnInit {
   @Input() group: Group;
-  users = new Array<User>();
-  selectedUser: User;
+  users = new Array<UserInfo>();
+  selectedUser: UserInfo;
 
   constructor(
     public gs: GroupService,

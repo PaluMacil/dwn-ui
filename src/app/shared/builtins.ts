@@ -18,7 +18,10 @@ export const ANONYMOUS_USER: Readonly<Me> = new Me(
     tag: '',
     previousTags: [],
     verifiedEmail: false,
+    verifiedEmailDate: new Date(),
     locked: true,
+    loginAttempts: 0,
+    lastFailedLogin: new Date(),
     displayName: '',
     givenName: '',
     familyName: '',
@@ -28,7 +31,9 @@ export const ANONYMOUS_USER: Readonly<Me> = new Me(
     locale: '',
     lastLogin: new Date(),
     modifiedDate: new Date(),
-    createdDate: new Date()
+    createdDate: new Date(),
+    hasPassword: false,
+    hasVaultPIN: false
   },
   {
     token: '',

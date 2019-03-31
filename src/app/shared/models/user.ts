@@ -5,7 +5,10 @@ export interface User {
     tag: string;
     previousTags: string[];
     verifiedEmail: boolean;
+    verifiedEmailDate: Date;
     locked: boolean;
+    loginAttempts: number;
+    lastFailedLogin: Date;
     displayName: string;
     givenName: string;
     familyName: string;
@@ -16,4 +19,9 @@ export interface User {
     lastLogin: Date;
     modifiedDate: Date;
     createdDate: Date;
+}
+
+export interface UserInfo extends User {
+  hasPassword: boolean;
+  hasVaultPIN: boolean;
 }

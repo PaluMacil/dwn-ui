@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap, retry } from 'rxjs/operators';
-import { Me, IMe, User, SessionDetails } from '../shared/models';
+import { tap, retry } from 'rxjs/operators';
+import { Me, IMe, User, UserInfo, SessionDetails } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ANONYMOUS_USER } from '../shared/builtins';
@@ -54,8 +54,8 @@ export class UserService {
     return this.http.get<User[]>(`api/typeahead/user`, { params });
   }
 
-  all(): Observable<User[]> {
-    return this.http.get<User[]>('api/user/all');
+  all(): Observable<UserInfo[]> {
+    return this.http.get<UserInfo[]>('api/user/all');
   }
 
   sessions(includeInactive = false): Observable<SessionDetails[]> {

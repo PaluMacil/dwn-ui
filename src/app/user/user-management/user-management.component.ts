@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { User } from '../../shared/models';
+import { UserInfo } from '../../shared/models';
 
 @Component({
   selector: 'app-user-management',
@@ -9,14 +9,14 @@ import { User } from '../../shared/models';
 })
 export class UserManagementComponent implements OnInit {
 
-  users = new Array<User>();
+  users = new Array<UserInfo>();
   selectedUserEmail: string;
 
   constructor(
     private us: UserService
   ) { }
 
-  selectUser(user: User) {
+  selectUser(user: UserInfo) {
     this.selectedUserEmail = user.email;
   }
 
