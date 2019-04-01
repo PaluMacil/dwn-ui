@@ -7,6 +7,7 @@ export const GROUPS: Readonly<Record<string, string>> = {
     BuiltInGroupFriend: 'FRIEND',
     BuiltInGroupLandlord: 'LANDLORD',
     BuiltInGroupTenant: 'TENANT',
+    BuiltInGroupPowerUser: 'POWER_USER',
     BuiltInGroupUser: 'USER'
 };
 

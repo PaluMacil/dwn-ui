@@ -6,3 +6,9 @@ export interface Group {
     modifiedBy: string;
     modifiedDate: Date;
 }
+
+export interface GroupCreationRequest {
+  name: string;
+  requires2FA: boolean;
+  requiresVaultPIN: boolean;
+}

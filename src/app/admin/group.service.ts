@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
-import { Group, UserInfo, UserGroup } from '../shared/models';
+import { Group, UserInfo, UserGroup, GroupCreationRequest } from '../shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +40,9 @@ export class GroupService {
     const params = new HttpParams()
       .set('permission', permission);
     return this.http.delete<Group>(`api/group/permission/${groupName}`, { params });
+  }
+
+  create(group: GroupCreationRequest) {
+    return this.http.post<Group>('api/group', group);
   }
 }
