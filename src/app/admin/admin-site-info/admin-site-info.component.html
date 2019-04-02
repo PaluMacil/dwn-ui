@@ -1,6 +1,8 @@
-<button type="button" class="btn btn-primary mb-3" (click)="fetchInfo()">
-  <fa-icon [icon]="iconRefresh"></fa-icon> Refresh
-</button>
+<div class="row mb-3">
+  <button type="button" class="btn btn-primary" (click)="fetchInfo()">
+    <fa-icon [icon]="iconRefresh"></fa-icon> Refresh
+  </button>
+</div>
 <h3 *ngIf="loading" class="mb-3">Loading...</h3>
 
 <ngb-alert *ngIf="alertMessage" 
