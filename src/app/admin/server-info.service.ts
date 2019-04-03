@@ -5,11 +5,11 @@ import { ServerInfo } from '../shared/models';
 @Injectable({
   providedIn: 'root'
 })
-export class ServerInfoService {
+export class ServerService {
 
   constructor(private http: HttpClient) { }
 
-  server() {
+  info() {
     return this.http.get<ServerInfo>('api/info/server');
   }
 

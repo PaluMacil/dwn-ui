@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
 import { Group } from '../../shared/models';
-import { ServerInfoService } from '../server-info.service';
+import { ServerService } from '../server-info.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { GroupService } from '../group.service';
 
@@ -20,7 +20,7 @@ export class PermissionSelectorComponent implements OnInit {
   });
 
   constructor(
-    private info: ServerInfoService,
+    private info: ServerService,
     public gs: GroupService
   ) { }
 
