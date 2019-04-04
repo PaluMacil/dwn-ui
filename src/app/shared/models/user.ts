@@ -7,6 +7,7 @@ export interface User {
     verifiedEmail: boolean;
     verifiedEmailDate: Date;
     locked: boolean;
+    disabled: boolean;
     loginAttempts: number;
     lastFailedLogin: Date;
     displayName: string;
