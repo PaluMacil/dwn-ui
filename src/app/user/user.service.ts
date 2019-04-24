@@ -27,7 +27,7 @@ export class UserService {
       return;
     }
     // has a token, so check it
-    this.http.get<IMe>('api/user/me').pipe(
+    this.http.get<IMe>('/api/core/sessions/me').pipe(
       tap({
         next: (m) => {
           // authenticated; construct and emit new Me
@@ -51,17 +51,17 @@ export class UserService {
     const params = new HttpParams()
       // search is is indexed by lowercase terms
       .set('query', query.toLowerCase());
-    return this.http.get<User[]>(`api/typeahead/user`, { params });
+    return this.http.get<User[]>(`api/typeahead/users`, { params });
   }
 
   all(): Observable<UserInfo[]> {
-    return this.http.get<UserInfo[]>('api/user/all');
+    return this.http.get<UserInfo[]>('api/core/users');
   }
 
   sessions(includeInactive = false): Observable<SessionDetails[]> {
     const params = new HttpParams()
       .set('includeInactive', includeInactive.toString());
-    return this.http.get<SessionDetails[]>(`api/user/sessions`, { params });
+    return this.http.get<SessionDetails[]>(`api/core/sessions`, { params });
   }
 
   // TODO: determine if default should be true
@@ -69,7 +69,7 @@ export class UserService {
     const token = environment.tokenName;
     if (token in localStorage) {
       if (notifyServer) {
-        this.http.delete(`/api/user/logout/${this.getToken()}`).pipe(retry(2)).subscribe();
+        this.http.delete(`/api/core/sessions/${this.getToken()}`).pipe(retry(2)).subscribe();
       }
       localStorage.removeItem(token);
     }

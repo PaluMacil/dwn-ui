@@ -4,6 +4,8 @@ export interface User {
     email: string;
     tag: string;
     previousTags: string[];
+    mustChangePWNextLogin: boolean;
+    require2FA: boolean;
     verifiedEmail: boolean;
     verifiedEmailDate: Date;
     locked: boolean;
