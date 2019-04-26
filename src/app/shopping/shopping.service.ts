@@ -12,16 +12,16 @@ export class ShoppingService {
   ) { }
 
   list() {
-    return this.http.get<ShoppingItem[]>(`api/shopping/list`);
+    return this.http.get<ShoppingItem[]>(`api/shopping/items`);
   }
 
   add(item: ShoppingItem) {
-    return this.http.post<ShoppingItem>(`api/shopping/item`, item);
+    return this.http.post<ShoppingItem>(`api/shopping/items`, item);
   }
 
   remove(name: string) {
     const params = new HttpParams()
       .set('name', name);
-    return this.http.delete<void>(`api/shopping/item`, {params});
+    return this.http.delete<void>(`api/shopping/items`, {params});
   }
 }

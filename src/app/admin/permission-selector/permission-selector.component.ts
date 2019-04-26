@@ -25,7 +25,6 @@ export class PermissionSelectorComponent implements OnInit {
   ) { }
 
   addPermission(permission: string) {
-    const t = 'test';
     this.gs.addPermission(this.group.name, permission).subscribe(
       g => {
         this.change.emit(g);
@@ -34,7 +33,6 @@ export class PermissionSelectorComponent implements OnInit {
   }
 
   removePermission(permission: string) {
-    const t = 'test';
     this.gs.removePermission(this.group.name, permission).subscribe(
       g => {
         this.change.emit(g);

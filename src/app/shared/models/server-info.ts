@@ -1,6 +1,7 @@
 export interface ServerInfo {
     config: Configuration;
-    initializedDate: Date;
+    databaseInitDate: Date;
+    wizardComplete: boolean;
     goVersion: string;
     numCPUs: number;
     allocatedMemory: number;
