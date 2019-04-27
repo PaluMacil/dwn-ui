@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'shopping/list',
     component: ShoppingListComponent
+  },
+  {
+    path: 'dashboard',
+    loadChildren: '../dashboard/dashboard.module#DashboardModule'
   }
 ];
 

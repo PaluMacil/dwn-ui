@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../group.service';
 import { Group, GroupCreationRequest, AlertMessage } from '../../shared/models';
-import { faSyncAlt, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faSyncAlt, faPlusSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,7 @@ export class AdminGroupManagementComponent implements OnInit {
   alertMessage: AlertMessage;
   iconRefresh = faSyncAlt;
   iconAddGroup = faPlusSquare;
+  iconCancel = faWindowClose;
   loading = false;
   createGroupForm: FormGroup;
   showCreateGroupForm = false;

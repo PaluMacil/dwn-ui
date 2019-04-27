@@ -51,6 +51,9 @@
             <li *ngIf="me.is('SPOUSE')" class="nav-item">
               <a class="nav-link" [routerLink]="['/','shopping','list']">Shopping List</a>
             </li>
+            <li *ngIf="me.is('POWER_USER')" class="nav-item">
+              <a class="nav-link" [routerLink]="['/','dashboard']">Dashboard</a>
+            </li>
           </ng-container>
         </ng-container>
       </ul>
