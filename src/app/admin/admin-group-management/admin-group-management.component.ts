@@ -3,6 +3,7 @@ import { GroupService } from '../group.service';
 import { Group, GroupCreationRequest, AlertMessage } from '../../shared/models';
 import { faSyncAlt, faPlusSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-group-management',
@@ -49,16 +50,13 @@ export class AdminGroupManagementComponent implements OnInit {
 
   fetchInfo() {
     this.loading = true;
-    this.gs.groups().subscribe(
+    this.gs.groups().pipe(finalize(() => this.loading = false)).subscribe(
       g => {
         this.alertMessage = undefined;
         this.groups = g;
       },
       err => {
         this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
-      },
-      () => {
-        this.loading = false;
       }
     );
   }

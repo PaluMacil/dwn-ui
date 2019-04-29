@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server-info.service';
 import { ServerInfo, AlertMessage } from '../../shared/models';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-site-info',
@@ -24,16 +25,13 @@ export class AdminSiteInfoComponent implements OnInit {
 
   fetchInfo(): void {
     this.loading = true;
-    this.si.info().subscribe(
+    this.si.info().pipe(finalize(() => this.loading = false)).subscribe(
       res => {
         this.alertMessage = undefined;
         this.info = res;
       },
       err => {
         this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
-      },
-      () => {
-        this.loading = false;
       }
     );
   }

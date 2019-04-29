@@ -4,7 +4,7 @@ import { Project } from '../project/project.component';
 import { first } from 'rxjs/operators';
 
 export interface Dashboard {
-  Projects: Array<Project>;
+  projects: Array<Project>;
 }
 
 @Component({
@@ -14,7 +14,7 @@ export interface Dashboard {
 })
 export class DashboardComponent implements OnInit {
 
-  dashboard: Dashboard = { Projects: [] };
+  dashboard: Dashboard = { projects: [] };
 
   constructor(private dashboardService: DashboardService) { }
 
