@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'user/account',
-    loadChildren: '../user/account/account.module#AccountModule'
+    loadChildren: () => import('../user/account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'admin',
@@ -51,7 +51,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: '../dashboard/dashboard.module#DashboardModule'
+    loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
   }
 ];
 
