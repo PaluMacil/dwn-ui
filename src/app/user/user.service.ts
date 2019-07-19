@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap, retry } from 'rxjs/operators';
+import { tap, retry, map } from 'rxjs/operators';
 import { Me, IMe, User, UserInfo, SessionDetails } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -40,6 +40,19 @@ export class UserService {
         }
       })
     ).subscribe();
+  }
+
+  displayNames(userIDs: Array<number>): Observable<Map<number, string>> {
+    const params = new HttpParams()
+      .set('ids', userIDs.join(','));
+    return this.http.get<{ [key: string]: string }>('api/core/users/displayname', { params })
+      .pipe(
+        map(val => {
+          const nameMap = new Map<number, string>();
+          Object.keys(val).forEach(id => nameMap.set(Number(id), val[id]));
+          return nameMap;
+        })
+      );
   }
 
   userSuggestion(query: string): Observable<User[]> {

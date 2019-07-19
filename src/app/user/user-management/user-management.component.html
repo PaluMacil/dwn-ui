@@ -5,7 +5,6 @@
         <th scope="col">Display Name</th>
         <th scope="col">Tag</th>
         <th scope="col">Email</th>
-        <th scope="col">Verified</th>
         <th scope="col">Locked</th>
         <th scope="col">Given Name</th>
         <th scope="col">Family Name</th>
@@ -23,8 +22,7 @@
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ u.displayName }}</td>
           <td>{{ u.tag }}</td>
-          <td>{{ u.email }}</td>
-          <td>{{ u.verifiedEmail }}</td>
+          <td>{{ u.primaryEmail }}</td>
           <td>{{ u.locked }}</td>
           <td>{{ u.givenName }}</td>
           <td>{{ u.familyName }}</td>

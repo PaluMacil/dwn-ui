@@ -31,7 +31,7 @@ export class GroupUserSelectorComponent implements OnInit {
   formatter = (x: { displayName: string }) => x.displayName;
 
   addUser() {
-    this.gs.addUser(this.selectedUser.email, this.group.name).subscribe(
+    this.gs.addUser(this.selectedUser.id, this.group.name).subscribe(
       ug => {
         this.users.push(this.selectedUser);
         this.users = this.users.sort(
@@ -46,10 +46,10 @@ export class GroupUserSelectorComponent implements OnInit {
     );
   }
 
-  removeUser(email: string) {
-    this.gs.removeUser(email, this.group.name).subscribe(
+  removeUser(id: number) {
+    this.gs.removeUser(id, this.group.name).subscribe(
       ug => {
-        this.users = this.users.filter(u => u.email !== ug.email);
+        this.users = this.users.filter(u => u.id !== ug.userID);
       }
     );
   }

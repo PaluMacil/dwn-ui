@@ -29,7 +29,7 @@
       <ul class="list-group">
         <li *ngFor="let u of users" class="list-group-item text-primary">
           {{ u.displayName }}
-          <button (click)="removeUser(u.email)" type="button" class="close float-right" aria-label="Close">
+          <button (click)="removeUser(u.id)" type="button" class="close float-right" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </li>

@@ -1,5 +1,5 @@
 export interface UserGroup {
-    email: string;
+    userID: number;
     groupName: string;
     createdDate: Date;
 }

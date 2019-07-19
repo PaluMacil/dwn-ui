@@ -16,7 +16,7 @@
       <tr>
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ s.user.displayName }}</td>
-        <td>{{ s.user.email }}</td>
+        <td>{{ s.user.primaryEmail }}</td>
         <td>{{ s.session.token }}</td>
         <td>{{ s.user.lastLogin | date: 'medium' }}</td>
         <td>{{ s.session.ip }}</td>

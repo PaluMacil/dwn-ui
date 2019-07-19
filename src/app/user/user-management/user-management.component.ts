@@ -17,7 +17,7 @@ export class UserManagementComponent implements OnInit {
   ) { }
 
   selectUser(user: UserInfo) {
-    this.selectedUserEmail = user.email;
+    this.selectedUserEmail = user.primaryEmail;
   }
 
   ngOnInit() {
