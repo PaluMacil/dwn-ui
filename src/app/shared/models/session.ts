@@ -1,6 +1,6 @@
 export interface Session {
     token: string;
-    email: string;
+    userID: number;
     ip: string;
     proxy: boolean;
     vaultUnlocked: boolean;

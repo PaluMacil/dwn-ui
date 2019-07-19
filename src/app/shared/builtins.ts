@@ -1,5 +1,4 @@
 import { Me } from './models';
-import { faSleigh } from '@fortawesome/free-solid-svg-icons';
 
 export const GROUPS: Readonly<Record<string, string>> = {
     BuiltInGroupAdmin: 'ADMIN',
@@ -14,15 +13,15 @@ export const GROUPS: Readonly<Record<string, string>> = {
 
 export const ANONYMOUS_USER: Readonly<Me> = new Me(
   {
+    id: 0,
     googleId: '',
     googleImportDate: new Date(),
-    email: '',
+    primaryEmail: '',
+    emails: [],
     tag: '',
     previousTags: [],
     mustChangePWNextLogin: false,
     require2FA: false,
-    verifiedEmail: false,
-    verifiedEmailDate: new Date(),
     locked: true,
     disabled: false,
     loginAttempts: 0,
@@ -42,7 +41,7 @@ export const ANONYMOUS_USER: Readonly<Me> = new Me(
   },
   {
     token: '',
-    email: '',
+    userID: 0,
     ip: '',
     proxy: false,
     vaultUnlocked: false,
