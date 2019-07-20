@@ -43,13 +43,19 @@ export class UserService {
   }
 
   displayNames(userIDs: Array<number>): Observable<Map<number, string>> {
+    const nameMap = new Map<number, string>();
+    for (const id of userIDs) {
+      nameMap.set(id, '');
+    }
+    const uniqueIDs = Array.from(nameMap.keys());
     const params = new HttpParams()
-      .set('ids', userIDs.join(','));
+      .set('ids', Array.from(uniqueIDs).join(','));
     return this.http.get<{ [key: string]: string }>('api/core/users/displayname', { params })
       .pipe(
         map(val => {
-          const nameMap = new Map<number, string>();
-          Object.keys(val).forEach(id => nameMap.set(Number(id), val[id]));
+          for (const id of uniqueIDs) {
+            nameMap.set(id, val[id]);
+          }
           return nameMap;
         })
       );

@@ -1,17 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Group, UserInfo, UserGroup, GroupCreationRequest } from '../shared/models';
+import { Group, GroupDisplay, UserInfo, UserGroup, GroupCreationRequest } from '../shared/models';
+import { map, flatMap } from 'rxjs/operators';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) { }
 
-  groups(): Observable<Group[]> {
-    return this.http.get<Group[]>('api/core/groups');
+  groups(): Observable<GroupDisplay[]> {
+    return this.http.get<Group[]>('api/core/groups')
+      .pipe(
+        flatMap( groups => {
+          const ids = groups.map(g => g.modifiedBy);
+          return this.userService.displayNames(ids)
+            .pipe(map((displayNameLookup) => ({groups, displayNameLookup})));
+        }),
+        map(({groups, displayNameLookup}) => {
+          const groupDisplays = new Array<GroupDisplay>();
+          for (const group of groups) {
+            const groupDisplay: GroupDisplay = {
+              ...group,
+              modifiedByDisplayName: displayNameLookup.get(group.modifiedBy)
+            };
+            groupDisplays.push(groupDisplay);
+          }
+          return groupDisplays;
+        })
+      );
   }
 
   groupsFor(id: number) {
@@ -23,7 +46,7 @@ export class GroupService {
   }
 
   addUser(id: number, groupName: string) {
-    return this.http.post<UserGroup>('api/core/usergroups', {userID: id, groupName});
+    return this.http.post<UserGroup>('api/core/usergroups', { userID: id, groupName });
   }
 
   removeUser(id: number, groupName: string) {

@@ -65,7 +65,7 @@
         <td>{{ g.name }}</td>
         <td>{{ g.permissions ? g.permissions.join(', ') : '(none)' }}</td>
         <td>{{ g.modifiedDate | date: 'medium' }}</td>
-        <td>{{ g.modifiedBy }}</td>
+        <td>{{ g.modifiedByDisplayName }}</td>
       </tr>
       <ng-container *ngIf="selectedGroupName === g.name">
         <tr class="table-dark">
@@ -89,7 +89,7 @@
         </tr>
         <tr class="table-dark">
           <td>&nbsp;</td>
-          <td colspan="4"><em>Modified by {{ g.modifiedBy }} on {{ g.modifiedDate | date:"medium" }}.</em></td>
+          <td colspan="4"><em>Modified by {{ g.modifiedByDisplayName }} on {{ g.modifiedDate | date:"medium" }}.</em></td>
         </tr>
       </ng-container>
     </ng-container>
