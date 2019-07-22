@@ -7,3 +7,8 @@ export interface Session {
     createdDate: Date;
     heartbeat: Date;
 }
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
