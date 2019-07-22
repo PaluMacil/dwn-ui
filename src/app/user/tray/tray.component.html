@@ -1,3 +1,6 @@
+<a *ngIf="!(userService.me$ | async).authenticated" class="mr-2" [routerLink]="['/','register']">
+  Register
+</a>
 <a *ngIf="!(userService.me$ | async).authenticated" class="btn btn-sm btn-outline-secondary"
     href="/oauth/google/login">
     <fa-icon class="pr-2" [icon]="iconSignIn"></fa-icon>log in

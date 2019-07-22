@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../group.service';
 import { Group, GroupCreationRequest, AlertMessage, GroupDisplay, Me } from '../../shared/models';
 import { faSyncAlt, faPlusSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
-import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { finalize, map } from 'rxjs/operators';
 import { UserService } from 'src/app/user/user.service';
 
@@ -24,8 +24,8 @@ export class AdminGroupManagementComponent implements OnInit {
   me: Me;
 
   constructor(
-    private gs: GroupService,
-    private fb: FormBuilder,
+    private groupService: GroupService,
+    private formBuilder: FormBuilder,
     private userService: UserService
   ) {
     this.userService.me$.subscribe(me => this.me = me);
@@ -42,7 +42,7 @@ export class AdminGroupManagementComponent implements OnInit {
 
   createGroup() {
     const groupRequest = this.createGroupForm.value as GroupCreationRequest;
-    this.gs.create(groupRequest)
+    this.groupService.create(groupRequest)
       .pipe(
         map(g => {
           return {...g, modifiedByDisplayName: this.me.user.displayName };
@@ -61,7 +61,7 @@ export class AdminGroupManagementComponent implements OnInit {
 
   fetchInfo() {
     this.loading = true;
-    this.gs.groups().pipe(finalize(() => this.loading = false)).subscribe(
+    this.groupService.groups().pipe(finalize(() => this.loading = false)).subscribe(
       g => {
         this.alertMessage = undefined;
         this.groups = g;
@@ -79,7 +79,7 @@ export class AdminGroupManagementComponent implements OnInit {
 
   ngOnInit() {
     this.fetchInfo();
-    this.createGroupForm = this.fb.group({
+    this.createGroupForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(/[^_][A-Z_]+/)]],
       requires2FA: [false],
       requiresVaultPIN: [false]

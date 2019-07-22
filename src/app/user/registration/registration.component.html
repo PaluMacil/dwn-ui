@@ -1,0 +1,42 @@
+<section class="resume-section p-3 p-lg-5 d-flex d-column">
+  <div class="my-auto">
+    <h1 class="mb-4">
+      Register
+    </h1>
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="/assets/btn_google_signin_light_normal_web@2x.png" alt="login with google">
+      </div>
+    </div>
+    <div class="row">
+      ...or create an account
+    </div>
+    <div class="row">
+      <form (submit)="createGroup()" [formGroup]="createUserForm">
+        <div class="form-group">
+          <label for="name">Email:</label>
+          <input formControlName="email" required type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name">Password:</label>
+          <input formControlName="password" required type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name">Password Again:</label>
+          <input formControlName="passwordAgain" required type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name">First Name:</label>
+          <input formControlName="firstName" required type="text" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="name">Last Name:</label>
+          <input formControlName="lastName" required type="text" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <fa-icon [icon]="iconAddUser"></fa-icon> Register
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

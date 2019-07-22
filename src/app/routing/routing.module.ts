@@ -10,6 +10,7 @@ import { AdminModule } from '../admin/admin.module';
 import { ShoppingListComponent } from '../shopping/shopping-list/shopping-list.component';
 import { ShoppingModule } from '../shopping/shopping.module';
 import { AppPreloadingStrategy } from './app-preloading.strategy';
+import { RegistrationComponent } from '../user/registration/registration.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path: 'user/account',
     loadChildren: () => import('../user/account/account.module').then(m => m.AccountModule)
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent
   },
   {
     path: 'admin',
