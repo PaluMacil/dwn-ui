@@ -62,7 +62,7 @@ export class UserService {
   }
 
   createUser(request: UserCreationRequest): Observable<User> {
-    return this.http.post<User>('api/registration/user', )
+    return this.http.post<User>('api/registration/user', request);
   }
 
   userSuggestion(query: string): Observable<User[]> {

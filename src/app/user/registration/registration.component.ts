@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserCreationRequest } from 'src/app/shared/models';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,10 +13,11 @@ export class RegistrationComponent implements OnInit {
   iconAddUser = faUserPlus;
   createUserForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
 
-  createGroup() {
+  createUser() {
     const userRequest = this.createUserForm.value as UserCreationRequest;
+    this.userService.createUser(userRequest);
   }
 
   ngOnInit() {

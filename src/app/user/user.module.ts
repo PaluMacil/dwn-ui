@@ -8,10 +8,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { TrayActionListComponent } from './tray-action-list/tray-action-list.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([]),
     NgbModule,
     FontAwesomeModule
