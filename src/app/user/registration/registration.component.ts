@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserCreationRequest } from 'src/app/shared/models';
+import { UserCreationRequest, validatePasswordsMatch } from 'src/app/shared/models';
 import { UserService } from '../user.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit {
     this.createUserForm = this.formBuilder.group({
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      passwordAgain: ['', [Validators.required]],
+      passwordAgain: ['', [Validators.required], validatePasswordsMatch],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
     });

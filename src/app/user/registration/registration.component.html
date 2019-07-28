@@ -36,7 +36,7 @@
             <label for="name">Last Name:</label>
             <input formControlName="lastName" required type="text" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">
             <fa-icon [icon]="iconAddUser"></fa-icon> Register
           </button>
         </form>
