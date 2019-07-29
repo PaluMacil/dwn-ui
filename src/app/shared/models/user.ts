@@ -34,3 +34,8 @@ export interface Email {
   verified: boolean;
   verifiedDate: Date;
 }
+
+export interface VerificationRequest {
+  userID: number;
+  email: string;
+}

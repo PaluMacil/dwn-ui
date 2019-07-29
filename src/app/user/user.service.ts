@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, retry, map } from 'rxjs/operators';
-import { Me, IMe, User, UserInfo, SessionDetails, UserCreationRequest } from '../shared/models';
+import { Me, IMe, UserInfo, SessionDetails, UserCreationRequest, VerificationRequest } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ANONYMOUS_USER } from '../shared/builtins';
@@ -61,11 +61,19 @@ export class UserService {
       );
   }
 
-  createUser(request: UserCreationRequest): Observable<User> {
-    return this.http.post<User>('api/registration/user', request);
+  verifyUserEmail(id: number, email: string): Observable<UserInfo> {
+    const verificationRequest: VerificationRequest = {
+      userID: id,
+      email: email
+    };
+    return this.http.post<UserInfo>('api/registration/verify', verificationRequest);
   }
 
-  userSuggestion(query: string): Observable<User[]> {
+  createUser(request: UserCreationRequest): Observable<UserInfo> {
+    return this.http.post<UserInfo>('api/registration/user', request);
+  }
+
+  userSuggestion(query: string): Observable<UserInfo[]> {
     // check if query is a tag, and remove ampersand to allow backend
     // to search both as a general term and as tag.
     if (query.startsWith('@')) {
@@ -74,7 +82,7 @@ export class UserService {
     const params = new HttpParams()
       // search is is indexed by lowercase terms
       .set('query', query.toLowerCase());
-    return this.http.get<User[]>(`api/typeahead/users`, { params });
+    return this.http.get<UserInfo[]>(`api/typeahead/users`, { params });
   }
 
   all(): Observable<UserInfo[]> {
