@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, retry, map } from 'rxjs/operators';
-import { Me, IMe, UserInfo, SessionDetails, UserCreationRequest, VerificationRequest } from '../shared/models';
+import { Me, IMe, UserInfo, SessionDetails, UserCreationRequest, VerificationRequest, LoginRequest } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ANONYMOUS_USER } from '../shared/builtins';
@@ -71,6 +71,10 @@ export class UserService {
 
   createUser(request: UserCreationRequest): Observable<UserInfo> {
     return this.http.post<UserInfo>('api/registration/user', request);
+  }
+
+  login(credentials: LoginRequest) {
+    return this.http.post<void>('api/core/sessions/login', credentials);
   }
 
   userSuggestion(query: string): Observable<UserInfo[]> {

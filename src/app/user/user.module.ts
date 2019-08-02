@@ -9,6 +9,7 @@ import { UserManagementComponent } from './user-management/user-management.compo
 import { TrayActionListComponent } from './tray-action-list/tray-action-list.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileButtonComponent,
     UserManagementComponent,
     TrayActionListComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   exports: [
     TrayComponent, TrayActionListComponent, UserManagementComponent

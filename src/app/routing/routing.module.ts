@@ -11,6 +11,7 @@ import { ShoppingListComponent } from '../shopping/shopping-list/shopping-list.c
 import { ShoppingModule } from '../shopping/shopping.module';
 import { AppPreloadingStrategy } from './app-preloading.strategy';
 import { RegistrationComponent } from '../user/registration/registration.component';
+import { LoginComponent } from '../user/login/login.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'user/management',
     component: UserManagementComponent
+  },
+  {
+    path: 'user/login',
+    component: LoginComponent
   },
   {
     path: 'user/account',

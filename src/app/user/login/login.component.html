@@ -1,0 +1,46 @@
+<section class="resume-section p-3 p-lg-5">
+  <div class="my-auto">
+    <h1 class="mb-4">
+      Log <span class="text-primary">in</span>
+    </h1>
+    <div class="row">
+      <div class="col-sm-8">
+        <a href="/oauth/google/login">
+          <img src="/assets/btn_google_signin_light_normal_web.png" alt="login with google">
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 m-4">
+        ...or sign in with your DanWolf.net account
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <ngb-alert *ngIf="alertMessage" class="mb-3" [type]="alertMessage.type" (close)="alertMessage = undefined">
+          <strong>{{ alertMessage.title }}</strong>{{ alertMessage.body }}
+        </ngb-alert>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <form (submit)="login()" [formGroup]="loginForm">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input formControlName="email" required type="text" class="form-control">
+            <div *ngIf="loginForm.get('email').errors && !createUserForm.pristine" class="invalid-feedback d-block">
+              <div *ngIf="loginForm.get('email').errors['email']">email is invalid</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input formControlName="password" required type="password" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">
+            <fa-icon [icon]="iconLogin"></fa-icon> Log in
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
