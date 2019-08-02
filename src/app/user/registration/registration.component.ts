@@ -3,6 +3,7 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserCreationRequest, validatePasswordsMatch } from 'src/app/shared/models';
 import { UserService } from '../user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-registration',
@@ -17,16 +18,18 @@ export class RegistrationComponent implements OnInit {
 
   createUser() {
     const userRequest = this.createUserForm.value as UserCreationRequest;
-    this.userService.createUser(userRequest);
+    this.userService.createUser(userRequest).pipe(first()).subscribe(
+      (u) => console.log(u)
+    );
   }
 
   ngOnInit() {
     this.createUserForm = this.formBuilder.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      passwordAgain: ['', [Validators.required], validatePasswordsMatch],
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      passwordAgain: ['', [Validators.required, validatePasswordsMatch]],
+      givenName: ['', [Validators.required]],
+      familyName: ['', [Validators.required]],
     });
   }
 

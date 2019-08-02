@@ -2,7 +2,7 @@
   Register
 </a>
 <a *ngIf="!(userService.me$ | async).authenticated" class="btn btn-sm btn-outline-secondary"
-    href="/oauth/google/login">
+    [routerLink]="['/','user','login']">
     <fa-icon class="pr-2" [icon]="iconSignIn"></fa-icon>log in
 </a>
 <ng-container *ngIf="me$ | async as me">
