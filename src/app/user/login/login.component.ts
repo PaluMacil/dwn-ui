@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginRequest, AlertMessage } from 'src/app/shared/models';
+import { LoginRequest, AlertMessage, LoginResult } from 'src/app/shared/models';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -26,8 +26,14 @@ export class LoginComponent implements OnInit {
     this.userService.login(loginRequest)
       .pipe(first())
       .subscribe(
-        () => {
-          this.router.navigate(['/']);
+        (message) => {
+          switch (message.loginResult) {
+            case LoginResult.LoginResultSuccess:
+              this.router.navigate(['/']);
+              break;
+            default:
+              console.log(`Login Result: ${message.loginResult}`);
+          }
         },
         err => {
           this.alertMessage = AlertMessage.fromHttpErrorResponse(err);

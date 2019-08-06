@@ -39,3 +39,18 @@ export interface VerificationRequest {
   userID: number;
   email: string;
 }
+
+export const enum LoginResult {
+  LoginResultSuccess = 0,
+  LoginResultBadCredentials = 1,
+  LoginResultEmailNotVerified = 2,
+  LoginResult2FA = 3,
+  LoginResultChangePassword = 4,
+  LoginResultLockedOrDisabled = 5,
+  LoginResultError = 6
+}
+
+export interface LoginResultMessage {
+  loginResult: LoginResult;
+  intermediateToken?: string;
+}

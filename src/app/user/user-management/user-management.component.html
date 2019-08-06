@@ -1,38 +1,60 @@
 <table class="table table-sm table-hover">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Display Name</th>
-        <th scope="col">Tag</th>
-        <th scope="col">Email</th>
-        <th scope="col">Locked</th>
-        <th scope="col">Given Name</th>
-        <th scope="col">Family Name</th>
-        <th scope="col">Link</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Locale</th>
-        <th scope="col">Last Login</th>
-        <th scope="col">Modified Date</th>
-        <th scope="col">Created Date</th>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Display Name</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Email</th>
+      <th scope="col">Locked</th>
+      <th scope="col">Given Name</th>
+      <th scope="col">Family Name</th>
+      <th scope="col">Link</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Locale</th>
+      <th scope="col">Last Login</th>
+      <th scope="col">Modified Date</th>
+      <th scope="col">Created Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let u of users; let i = index">
+      <tr [ngClass]="{'table-dark': selectedUser === u}" (click)="selectUser(u)">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ u.displayName }}</td>
+        <td>{{ u.tag }}</td>
+        <td>{{ u.primaryEmail }}</td>
+        <td>{{ u.locked }}</td>
+        <td>{{ u.givenName }}</td>
+        <td>{{ u.familyName }}</td>
+        <td>{{ u.link }}</td>
+        <td>{{ u.gender }}</td>
+        <td>{{ u.locale }}</td>
+        <td>{{ u.lastLogin | date: 'medium' }}</td>
+        <td>{{ u.modifiedDate | date: 'medium' }}</td>
+        <td>{{ u.createdDate | date: 'medium' }}
+          <button *ngIf="selectedUser === u" (click)="deselectUser($event)" type="button" class="close float-right"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <ng-container *ngFor="let u of users; let i = index">
-        <tr>
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ u.displayName }}</td>
-          <td>{{ u.tag }}</td>
-          <td>{{ u.primaryEmail }}</td>
-          <td>{{ u.locked }}</td>
-          <td>{{ u.givenName }}</td>
-          <td>{{ u.familyName }}</td>
-          <td>{{ u.link }}</td>
-          <td>{{ u.gender }}</td>
-          <td>{{ u.locale }}</td>
-          <td>{{ u.lastLogin | date: 'medium' }}</td>
-          <td>{{ u.modifiedDate | date: 'medium' }}</td>
-          <td>{{ u.createdDate | date: 'medium' }}</td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
+      <tr *ngIf="selectedUser === u" class="table-dark">
+        <td>&nbsp;</td>
+        <td colspan="12">
+          <h4>Actions</h4>
+          <div class="row mb-3">
+            <div class="col-sm">
+              <div class="btn-toolbar">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-danger mr-3" (click)="openDeleteDialog()">
+                    <fa-icon [icon]="iconDelete"></fa-icon> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

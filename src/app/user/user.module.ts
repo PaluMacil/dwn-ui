@@ -10,6 +10,7 @@ import { TrayActionListComponent } from './tray-action-list/tray-action-list.com
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { UserConfirmDeleteComponent } from './user-confirm-delete/user-confirm-delete.component';
 
 @NgModule({
   imports: [
@@ -26,10 +27,14 @@ import { LoginComponent } from './login/login.component';
     UserManagementComponent,
     TrayActionListComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    UserConfirmDeleteComponent
   ],
   exports: [
     TrayComponent, TrayActionListComponent, UserManagementComponent
+  ],
+  entryComponents: [
+    UserConfirmDeleteComponent
   ]
 })
 export class UserModule { }

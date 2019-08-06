@@ -28,7 +28,7 @@
           <div class="form-group">
             <label for="email">Email:</label>
             <input formControlName="email" required type="text" class="form-control">
-            <div *ngIf="loginForm.get('email').errors && !createUserForm.pristine" class="invalid-feedback d-block">
+            <div *ngIf="loginForm.get('email').errors && !loginForm.pristine" class="invalid-feedback d-block">
               <div *ngIf="loginForm.get('email').errors['email']">email is invalid</div>
             </div>
           </div>
@@ -36,7 +36,7 @@
             <label for="password">Password:</label>
             <input formControlName="password" required type="password" class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
             <fa-icon [icon]="iconLogin"></fa-icon> Log in
           </button>
         </form>

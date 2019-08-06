@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, retry, map } from 'rxjs/operators';
-import { Me, IMe, UserInfo, SessionDetails, UserCreationRequest, VerificationRequest, LoginRequest } from '../shared/models';
+import {
+  Me, IMe, UserInfo, SessionDetails,
+  UserCreationRequest, VerificationRequest,
+  LoginRequest, LoginResultMessage
+} from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ANONYMOUS_USER } from '../shared/builtins';
@@ -73,8 +77,8 @@ export class UserService {
     return this.http.post<UserInfo>('api/registration/user', request);
   }
 
-  login(credentials: LoginRequest) {
-    return this.http.post<void>('api/core/sessions/login', credentials);
+  login(credentials: LoginRequest): Observable<LoginResultMessage> {
+    return this.http.post<LoginResultMessage>('api/core/sessions/login', credentials);
   }
 
   userSuggestion(query: string): Observable<UserInfo[]> {
@@ -97,6 +101,13 @@ export class UserService {
     const params = new HttpParams()
       .set('includeInactive', includeInactive.toString());
     return this.http.get<SessionDetails[]>(`api/core/sessions`, { params });
+  }
+
+  deleteUser(id: number): Observable<void> {
+    const params = new HttpParams()
+      // search is is indexed by lowercase terms
+      .set('id', String(id));
+    return this.http.delete<void>(`/api/core/users`, { params });
   }
 
   // TODO: determine if default should be true
