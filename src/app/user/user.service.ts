@@ -65,12 +65,19 @@ export class UserService {
       );
   }
 
-  verifyUserEmail(id: number, email: string): Observable<UserInfo> {
+  verifyUserEmail(userID: number, email: string): Observable<UserInfo> {
     const verificationRequest: VerificationRequest = {
-      userID: id,
-      email: email
+      userID, email
     };
     return this.http.post<UserInfo>('api/registration/verify', verificationRequest);
+  }
+
+  setLockedStatus(userID: number, locked: boolean): Observable<void> {
+    return this.http.put<void>('api/core/users/locked', {userID, status: locked});
+  }
+
+  setDisabledStatus(userID: number, disabled: boolean): Observable<void> {
+    return this.http.put<void>('api/core/users/disabled', {userID, status: disabled});
   }
 
   createUser(request: UserCreationRequest): Observable<UserInfo> {

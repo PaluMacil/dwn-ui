@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { UserInfo, AlertMessage } from '../../shared/models';
-import { faUserTimes } from '@fortawesome/free-solid-svg-icons';
+import { faUserTimes, faUserSlash, faUserCheck, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserConfirmDeleteComponent, UserDeletion } from '../user-confirm-delete/user-confirm-delete.component';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-management',
@@ -14,6 +15,10 @@ export class UserManagementComponent implements OnInit {
   selectedUser: UserInfo;
   users = new Array<UserInfo>();
   iconDelete = faUserTimes;
+  iconLock = faLock;
+  iconUnlock = faLockOpen;
+  iconDisable = faUserSlash;
+  iconEnable = faUserCheck;
   alertMessage: AlertMessage;
 
   constructor(
@@ -30,6 +35,24 @@ export class UserManagementComponent implements OnInit {
     event.stopPropagation();
   }
 
+  setDisabled(user: UserInfo, status: boolean) {
+    this.userService.setDisabledStatus(user.id, status)
+      .pipe(first())
+      .subscribe(
+        () => user.disabled = status,
+        (err) => this.alertMessage = AlertMessage.fromHttpErrorResponse(err)
+      );
+  }
+
+  setLocked(user: UserInfo, status: boolean) {
+    this.userService.setLockedStatus(user.id, status)
+      .pipe(first())
+      .subscribe(
+        () => user.locked = status,
+        (err) => this.alertMessage = AlertMessage.fromHttpErrorResponse(err)
+      );
+  }
+
   openDeleteDialog() {
     const modalRef = this._modalService.open(UserConfirmDeleteComponent);
     modalRef.componentInstance.user = this.selectedUser;
@@ -44,7 +67,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.all().subscribe(
+    this.userService.all().pipe(first()).subscribe(
       users => {
         this.users.push(...users);
       }
