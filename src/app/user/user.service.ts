@@ -103,11 +103,11 @@ export class UserService {
     return this.http.get<SessionDetails[]>(`api/core/sessions`, { params });
   }
 
-  deleteUser(id: number): Observable<void> {
+  deleteUser(id: number): Observable<boolean> {
     const params = new HttpParams()
       // search is is indexed by lowercase terms
       .set('id', String(id));
-    return this.http.delete<void>(`/api/core/users`, { params });
+    return this.http.delete<boolean>(`/api/core/users`, { params });
   }
 
   // TODO: determine if default should be true

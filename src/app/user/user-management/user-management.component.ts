@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { UserInfo } from '../../shared/models';
+import { UserInfo, AlertMessage } from '../../shared/models';
 import { faUserTimes } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserConfirmDeleteComponent } from '../user-confirm-delete/user-confirm-delete.component';
+import { UserConfirmDeleteComponent, UserDeletion } from '../user-confirm-delete/user-confirm-delete.component';
 
 @Component({
   selector: 'app-user-management',
@@ -14,9 +14,10 @@ export class UserManagementComponent implements OnInit {
   selectedUser: UserInfo;
   users = new Array<UserInfo>();
   iconDelete = faUserTimes;
+  alertMessage: AlertMessage;
 
   constructor(
-    private us: UserService,
+    private userService: UserService,
     private _modalService: NgbModal
   ) { }
 
@@ -32,12 +33,20 @@ export class UserManagementComponent implements OnInit {
   openDeleteDialog() {
     const modalRef = this._modalService.open(UserConfirmDeleteComponent);
     modalRef.componentInstance.user = this.selectedUser;
+    modalRef.result.then(
+      (result: UserDeletion) => {
+        this.users = this.users.filter((u) => result.userID !== u.id);
+      },
+      (err) => {
+        this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
+      }
+    );
   }
 
   ngOnInit() {
-    this.us.all().subscribe(
-      s => {
-        this.users.push(...s);
+    this.userService.all().subscribe(
+      users => {
+        this.users.push(...users);
       }
     );
   }

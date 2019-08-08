@@ -4,6 +4,8 @@ import { UserInfo } from 'src/app/shared/models';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
 
+export interface UserDeletion { userID: number; deleted: boolean; }
+
 @Component({
   selector: 'app-user-confirm-delete',
   templateUrl: './user-confirm-delete.component.html',
@@ -15,8 +17,14 @@ export class UserConfirmDeleteComponent implements OnInit {
   constructor(public modal: NgbActiveModal, private userService: UserService) { }
 
   delete() {
-    this.userService.deleteUser(this.user.id).pipe(first()).subscribe();
-    this.modal.close('Ok click');
+    this.userService.deleteUser(this.user.id)
+      .pipe(first())
+      .subscribe(
+        (deleted) => {
+          const deletionActionResult: UserDeletion = { userID: this.user.id, deleted };
+          this.modal.close(deletionActionResult);
+        }
+      );
   }
 
   ngOnInit() {
