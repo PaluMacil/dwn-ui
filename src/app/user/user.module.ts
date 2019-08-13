@@ -11,6 +11,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserConfirmDeleteComponent } from './user-confirm-delete/user-confirm-delete.component';
+import { EmailManagementComponent } from './email-management/email-management.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { UserConfirmDeleteComponent } from './user-confirm-delete/user-confirm-d
     TrayActionListComponent,
     RegistrationComponent,
     LoginComponent,
-    UserConfirmDeleteComponent
+    UserConfirmDeleteComponent,
+    EmailManagementComponent
   ],
   exports: [
     TrayComponent, TrayActionListComponent, UserManagementComponent

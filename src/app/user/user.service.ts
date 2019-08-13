@@ -5,7 +5,7 @@ import { tap, retry, map } from 'rxjs/operators';
 import {
   Me, IMe, UserInfo, SessionDetails,
   UserCreationRequest, VerificationRequest,
-  LoginRequest, LoginResultMessage
+  LoginRequest, LoginResultMessage, EmailAction
 } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -73,11 +73,11 @@ export class UserService {
   }
 
   setLockedStatus(userID: number, locked: boolean): Observable<void> {
-    return this.http.put<void>('api/core/users/locked', {userID, status: locked});
+    return this.http.put<void>('api/core/users/locked', { userID, status: locked });
   }
 
   setDisabledStatus(userID: number, disabled: boolean): Observable<void> {
-    return this.http.put<void>('api/core/users/disabled', {userID, status: disabled});
+    return this.http.put<void>('api/core/users/disabled', { userID, status: disabled });
   }
 
   createUser(request: UserCreationRequest): Observable<UserInfo> {
@@ -132,5 +132,11 @@ export class UserService {
 
   getToken(): string {
     return localStorage.getItem(environment.tokenName);
+  }
+
+  modifyEmailRecord(userID: number, email: string, action: EmailAction): Observable<UserInfo> {
+    const params = new HttpParams()
+      .set('action', action);
+    return this.http.post<UserInfo>(`api/core/email`, { userID, email }, { params });
   }
 }
