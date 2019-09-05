@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Email, UserInfo } from 'src/app/shared/models';
 import { faStar, faMailBulk, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-email-management',
@@ -20,18 +21,40 @@ export class EmailManagementComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   setPrimary(emailRecord: Email) {
-    // TODO: modal: explain why can't set to primary if not verified
     this.primaryChanged.emit(emailRecord.email);
   }
 
-  resendVerification (emailRecord: Email) {
+  resendVerification(emailRecord: Email) {
     // TODO: call service
   }
 
   deleteRecord(emailRecord: Email) {
-    // TODO: cannot delete primary email
-    const newEmails = this.user.emails.filter(email => emailRecord.email !== email.email);
-    this.emailsChanged.emit(newEmails);
+    this.userService.modifyEmailRecord(this.user.id, emailRecord.email, 'delete')
+    .pipe(first())
+    .subscribe(
+      (modifiedUser) => {
+        const newEmails = modifiedUser.emails.filter(email => emailRecord.email !== email.email);
+        this.emailsChanged.emit(newEmails);
+      }
+    );
+  }
+
+  verifyRecord(emailRecord: Email) {
+    this.userService.modifyEmailRecord(this.user.id, emailRecord.email, 'markVerified')
+      .pipe(first())
+      .subscribe(
+        (modifiedUser: UserInfo) => {
+          const newEmails = modifiedUser.emails.map(
+            (email) => {
+              if (email.email === emailRecord.email) {
+                email.verified = true;
+              }
+              return email;
+            }
+          );
+          this.emailsChanged.emit(newEmails);
+        }
+      );
   }
 
   ngOnInit() {

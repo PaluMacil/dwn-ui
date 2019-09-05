@@ -135,6 +135,9 @@ export class UserService {
   }
 
   modifyEmailRecord(userID: number, email: string, action: EmailAction): Observable<UserInfo> {
+    if (action === 'delete') {
+      return this.http.request<UserInfo>('delete', 'api/core/email', { body: { userID, email } });
+    }
     const params = new HttpParams()
       .set('action', action);
     return this.http.post<UserInfo>(`api/core/email`, { userID, email }, { params });
