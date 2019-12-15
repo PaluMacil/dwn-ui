@@ -40,7 +40,7 @@ export class EmailManagementComponent implements OnInit {
   }
 
   verifyRecord(emailRecord: Email) {
-    this.userService.modifyEmailRecord(this.user.id, emailRecord.email, 'markVerified')
+    this.userService.verifyUserEmail(this.user.id, emailRecord.email)
       .pipe(first())
       .subscribe(
         (modifiedUser: UserInfo) => {

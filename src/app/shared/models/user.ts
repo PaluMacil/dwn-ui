@@ -29,8 +29,8 @@ export interface UserInfo extends User {
   hasVaultPIN: boolean;
 }
 
-export type EmailAction = 'setPrimary' | 'add' |
-  'resendVerificationMessage' | 'markVerified' | 'delete';
+export type EmailAction = 'setPrimary' | 'add' | 'delete' |
+  'resendVerificationMessage';
 
 export interface Email {
   email: string;
