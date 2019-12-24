@@ -36,7 +36,11 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
-          this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
+          if (err.status === 401) {
+            this.alertMessage = new AlertMessage('danger', `${err.statusText}: `, 'Incorrect email or password.');
+          } else {
+            this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
+          }
         }
       );
   }

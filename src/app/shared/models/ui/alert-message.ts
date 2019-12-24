@@ -14,6 +14,8 @@ export class AlertMessage {
         } else {
           return new AlertMessage('danger', 'After response: ', err.message);
         }
+      case 401:
+        return new AlertMessage('danger', `${err.statusText}: `, 'You must be logged in.');
       case 500:
         return new AlertMessage('danger', `${err.statusText}: `, 'Check the logs for more info.');
       case 504:
