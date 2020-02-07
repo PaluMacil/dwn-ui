@@ -36,6 +36,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/dwn-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -59,6 +60,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -118,6 +125,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/gr",
             "index": "projects/gr/src/index.html",
             "main": "projects/gr/src/main.ts",
@@ -155,6 +163,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -247,6 +259,11 @@
           "options": {
             "tsConfig": "projects/ui/tsconfig.lib.json",
             "project": "projects/ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ui/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -272,5 +289,8 @@
       }
     }
   },
-  "defaultProject": "dwn-ui"
+  "defaultProject": "dwn-ui",
+  "cli": {
+    "analytics": "e3d74b2d-a299-43af-8b12-18c2c9eb00a4"
+  }
 }
