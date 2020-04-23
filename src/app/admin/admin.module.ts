@@ -12,7 +12,7 @@ import { GroupUserSelectorComponent } from './group-user-selector/group-user-sel
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AdminLogComponent } from './admin-log/admin-log.component';
-import { FileSizeModule } from 'ngx-filesize';
+import { NgxFilesizeModule } from 'ngx-filesize';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     UserModule,
-    FileSizeModule,
+    NgxFilesizeModule,
     NgbModule,
     FontAwesomeModule
   ],
