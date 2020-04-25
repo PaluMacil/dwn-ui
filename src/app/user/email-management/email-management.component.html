@@ -1,7 +1,12 @@
-<div *ngFor="let record of user.emails" class="row">
+<div *ngFor="let record of user.emails"
+     class="row">
   <div class="col-sm-1">
-    <fa-icon *ngIf="record.email === user.primaryEmail" [icon]="iconPrimary" title="primary email"></fa-icon>
-    <fa-icon *ngIf="record.verified" [icon]="iconResend" title="verified email"></fa-icon>
+    <fa-icon *ngIf="record.email === user.primaryEmail"
+             [icon]="iconPrimary"
+             title="primary email"></fa-icon>
+    <fa-icon *ngIf="record.verified"
+             [icon]="iconResend"
+             title="verified email"></fa-icon>
   </div>
   <div class="col-sm-3">
     {{ record.email }}
@@ -9,27 +14,35 @@
   <div class="col-sm-8">
     <div class="btn-toolbar">
       <div class="btn-group">
-        <button type="button" *ngIf="record.verified && record.email !== user.primaryEmail"
-          class="btn btn-sm btn-primary mr-2" (click)="setPrimary(record)">
+        <button type="button"
+                *ngIf="record.verified && record.email !== user.primaryEmail"
+                class="btn btn-sm btn-primary mr-2"
+                (click)="setPrimary(record)">
           <fa-icon [icon]="iconPrimary"></fa-icon> Set Primary
         </button>
       </div>
       <div class="btn-group">
-        <button type="button" *ngIf="!record.verified" class="btn btn-sm btn-primary mr-2"
-          (click)="resendVerification(record)">
+        <button type="button"
+                *ngIf="!record.verified"
+                class="btn btn-sm btn-primary mr-2"
+                (click)="resendVerification(record)">
           <fa-icon [icon]="iconResend"></fa-icon>
           Resend Verification
         </button>
       </div>
       <div class="btn-group">
-        <button type="button" *ngIf="!record.verified" class="btn btn-sm btn-primary mr-2"
-          (click)="verifyRecord(record)">
+        <button type="button"
+                *ngIf="!record.verified"
+                class="btn btn-sm btn-primary mr-2"
+                (click)="verifyRecord(record)">
           <fa-icon [icon]="iconResend"></fa-icon> Mark Verified
         </button>
       </div>
       <div class="btn-group">
-        <button type="button" *ngIf="record.email !== user.primaryEmail" class="btn btn-sm btn-danger mr-2"
-          (click)="deleteRecord(record)">
+        <button type="button"
+                *ngIf="record.email !== user.primaryEmail"
+                class="btn btn-sm btn-danger mr-2"
+                (click)="deleteRecord(record)">
           <fa-icon [icon]="iconDelete"></fa-icon> Delete
         </button>
       </div>

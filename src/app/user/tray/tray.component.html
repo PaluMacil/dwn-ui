@@ -1,13 +1,19 @@
-<a *ngIf="!(userService.me$ | async).authenticated" class="mr-2" [routerLink]="['/','register']">
+<a *ngIf="!(userService.me$ | async).authenticated"
+   class="mr-2"
+   [routerLink]="['/','register']">
   Register
 </a>
-<a *ngIf="!(userService.me$ | async).authenticated" class="btn btn-sm btn-outline-secondary"
-    [routerLink]="['/','user','login']">
-    <fa-icon class="pr-2" [icon]="iconSignIn"></fa-icon>log in
+<a *ngIf="!(userService.me$ | async).authenticated"
+   class="btn btn-sm btn-outline-secondary"
+   [routerLink]="['/','user','login']">
+  <fa-icon class="pr-2"
+           [icon]="iconSignIn"></fa-icon>log in
 </a>
 <ng-container *ngIf="me$ | async as me">
   <ng-container *ngIf="me.authenticated">
-    <fa-icon transform="grow-6" class="mr-3" [icon]="iconAlert"></fa-icon>
+    <fa-icon transform="grow-6"
+             class="mr-3"
+             [icon]="iconAlert"></fa-icon>
     <app-profile-button [me]="me"></app-profile-button>
   </ng-container>
 </ng-container>

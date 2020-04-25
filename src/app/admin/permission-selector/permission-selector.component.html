@@ -4,15 +4,19 @@
 <div class="row">
   <div class="col">
     <form [formGroup]="form">
-      <div >
+      <div>
         <div class="input-group">
-          <select class="custom-select" formControlName="permission">
-            <option *ngFor="let p of allPermissions" [ngValue]="p">
+          <select class="custom-select"
+                  formControlName="permission">
+            <option *ngFor="let p of allPermissions"
+                    [ngValue]="p">
               {{ p }}
             </option>
           </select>
           <div class="input-group-append">
-            <button (click)="addPermission(form.get('permission').value)" class="btn btn-primary" type="button">Add</button>
+            <button (click)="addPermission(form.get('permission').value)"
+                    class="btn btn-primary"
+                    type="button">Add</button>
           </div>
         </div>
       </div>
@@ -22,9 +26,13 @@
 <div class="row">
   <div class="col">
     <ul class="list-group">
-      <li *ngFor="let p of group.permissions" class="list-group-item text-primary">
+      <li *ngFor="let p of group.permissions"
+          class="list-group-item text-primary">
         {{ p }}
-        <button (click)="removePermission(p)" type="button" class="close float-right" aria-label="Close">
+        <button (click)="removePermission(p)"
+                type="button"
+                class="close float-right"
+                aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </li>

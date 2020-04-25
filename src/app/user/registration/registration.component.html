@@ -6,7 +6,8 @@
     <div class="row">
       <div class="col-sm-8">
         <a href="/oauth/google/login">
-          <img src="/assets/btn_google_signin_light_normal_web.png" alt="login with google">
+          <img src="/assets/btn_google_signin_light_normal_web.png"
+               alt="login with google">
         </a>
       </div>
     </div>
@@ -17,34 +18,54 @@
     </div>
     <div class="row">
       <div class="col-sm-8">
-        <form (submit)="createUser()" [formGroup]="createUserForm">
+        <form (submit)="createUser()"
+              [formGroup]="createUserForm">
           <div class="form-group">
             <label for="email">Email:</label>
-            <input formControlName="email" required type="text" class="form-control">
-            <div *ngIf="createUserForm.get('email').errors && !createUserForm.pristine" class="invalid-feedback d-block">
+            <input formControlName="email"
+                   required
+                   type="text"
+                   class="form-control">
+            <div *ngIf="createUserForm.get('email').errors && !createUserForm.pristine"
+                 class="invalid-feedback d-block">
               <div *ngIf="createUserForm.get('email').errors['email']">email is invalid</div>
             </div>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
-            <input formControlName="password" required type="password" class="form-control">
+            <input formControlName="password"
+                   required
+                   type="password"
+                   class="form-control">
           </div>
           <div class="form-group">
             <label for="passwordAgain">Password Again:</label>
-            <input formControlName="passwordAgain" required type="password" class="form-control">
-            <div *ngIf="createUserForm.get('passwordAgain').errors" class="invalid-feedback d-block">
+            <input formControlName="passwordAgain"
+                   required
+                   type="password"
+                   class="form-control">
+            <div *ngIf="createUserForm.get('passwordAgain').errors"
+                 class="invalid-feedback d-block">
               <div *ngIf="createUserForm.get('passwordAgain').errors['passwordsDoNotMatch']">passwords must match</div>
             </div>
           </div>
           <div class="form-group">
             <label for="givenName">First Name:</label>
-            <input formControlName="givenName" required type="text" class="form-control">
+            <input formControlName="givenName"
+                   required
+                   type="text"
+                   class="form-control">
           </div>
           <div class="form-group">
             <label for="familyName">Last Name:</label>
-            <input formControlName="familyName" required type="text" class="form-control">
+            <input formControlName="familyName"
+                   required
+                   type="text"
+                   class="form-control">
           </div>
-          <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">
+          <button type="submit"
+                  class="btn btn-primary"
+                  [disabled]="!createUserForm.valid">
             <fa-icon [icon]="iconAddUser"></fa-icon> Register
           </button>
         </form>

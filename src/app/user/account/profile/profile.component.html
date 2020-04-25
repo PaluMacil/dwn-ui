@@ -1,106 +1,126 @@
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Display Name</b>
-    </div>
-    <div class="col-sm-1">
-      <button type="button" class="btn btn-sm btn-primary mr-2"><fa-icon [icon]="iconEdit"></fa-icon></button>
-    </div>
-    <div class="col-sm-8">
-      {{ me.user.displayName }}
-    </div>
+  <div class="col-sm-3">
+    <b>Display Name</b>
+  </div>
+  <div class="col-sm-1">
+    <button type="button"
+            class="btn btn-sm btn-primary mr-2">
+      <fa-icon [icon]="iconEdit"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.displayName }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Email</b>
-    </div>
-    <div class="col-sm-1">
+  <div class="col-sm-3">
+    <b>Email</b>
+  </div>
+  <div class="col-sm-1">
 
-    </div>
-    <div class="col-sm-8">
-      {{ me.user.primaryEmail }}
-    </div>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.primaryEmail }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>First Name</b>
-    </div>
-    <div class="col-sm-1">
-        <button type="button" class="btn btn-sm btn-primary mr-2"><fa-icon [icon]="iconEdit"></fa-icon></button>
-    </div>
-    <div class="col-sm-8">
-      {{ me.user.givenName }}
-    </div>
+  <div class="col-sm-3">
+    <b>First Name</b>
+  </div>
+  <div class="col-sm-1">
+    <button type="button"
+            class="btn btn-sm btn-primary mr-2">
+      <fa-icon [icon]="iconEdit"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.givenName }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Last Name</b>
-    </div>
-    <div class="col-sm-1">
-      <button type="button" class="btn btn-sm btn-primary mr-2"><fa-icon [icon]="iconEdit"></fa-icon></button>
-    </div>
-    <div class="col-sm-8">
-      {{ me.user.familyName }}
-    </div>
+  <div class="col-sm-3">
+    <b>Last Name</b>
+  </div>
+  <div class="col-sm-1">
+    <button type="button"
+            class="btn btn-sm btn-primary mr-2">
+      <fa-icon [icon]="iconEdit"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.familyName }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Link</b>
-    </div>
-    <div class="col-sm-1">
-      <button type="button" class="btn btn-sm btn-primary mr-2"><fa-icon [icon]="iconEdit"></fa-icon></button>
-    </div>
-    <div class="col-sm-8 ellipsis" [title]="me.user.link">
-      <a [href]="me.user.link" target="_blank">{{ me.user.link }}</a>
-    </div>
+  <div class="col-sm-3">
+    <b>Link</b>
+  </div>
+  <div class="col-sm-1">
+    <button type="button"
+            class="btn btn-sm btn-primary mr-2">
+      <fa-icon [icon]="iconEdit"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-8 ellipsis"
+       [title]="me.user.link">
+    <a [href]="me.user.link"
+       target="_blank">{{ me.user.link }}</a>
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Gender</b>
-    </div>
-    <div class="col-sm-1">
-      <button type="button" class="btn btn-sm btn-primary mr-2"><fa-icon [icon]="iconEdit"></fa-icon></button>
-    </div>
-    <div class="col-sm-8">
-      {{ me.user.gender }}
-    </div>
+  <div class="col-sm-3">
+    <b>Gender</b>
+  </div>
+  <div class="col-sm-1">
+    <button type="button"
+            class="btn btn-sm btn-primary mr-2">
+      <fa-icon [icon]="iconEdit"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.gender }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Locale</b>
-    </div>
-    <div class="col-sm-1">
-      <button type="button" class="btn btn-sm btn-primary mr-2"><fa-icon [icon]="iconEdit"></fa-icon></button>
-    </div>
-    <div class="col-sm-8">
-      {{ me.user.locale }}
-    </div>
+  <div class="col-sm-3">
+    <b>Locale</b>
+  </div>
+  <div class="col-sm-1">
+    <button type="button"
+            class="btn btn-sm btn-primary mr-2">
+      <fa-icon [icon]="iconEdit"></fa-icon>
+    </button>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.locale }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Last Login</b>
-    </div>
-      <div class="col-sm-1">
+  <div class="col-sm-3">
+    <b>Last Login</b>
+  </div>
+  <div class="col-sm-1">
 
-      </div>
-      <div class="col-sm-8">
-        {{ me.user.lastLogin | date: 'medium' }}
-    </div>
+  </div>
+  <div class="col-sm-8">
+    {{ me.user.lastLogin | date: 'medium' }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Modified Date</b>
-    </div>
-    <div class="col-sm-1"></div>
-    <div class="col-sm-8">
-        {{ me.user.modifiedDate | date: 'medium' }}
-    </div>
+  <div class="col-sm-3">
+    <b>Modified Date</b>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-8">
+    {{ me.user.modifiedDate | date: 'medium' }}
+  </div>
 </div>
 <div class="row mb-2">
-    <div class="col-sm-3">
-      <b>Created Date</b>
-    </div>
-    <div class="col-sm-1"></div>
-    <div class="col-sm-8">
-        {{ me.user.createdDate | date: 'medium' }}
-    </div>
+  <div class="col-sm-3">
+    <b>Created Date</b>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-8">
+    {{ me.user.createdDate | date: 'medium' }}
+  </div>
 </div>

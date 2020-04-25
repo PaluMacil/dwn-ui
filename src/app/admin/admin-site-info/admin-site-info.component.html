@@ -1,13 +1,16 @@
 <div class="row mb-3">
   <div class="col-sm">
-    <button type="button" class="btn btn-primary" (click)="fetchInfo()">
+    <button type="button"
+            class="btn btn-primary"
+            (click)="fetchInfo()">
       <fa-icon [icon]="iconRefresh"></fa-icon> Refresh
     </button>
   </div>
 </div>
-<h3 *ngIf="loading" class="mb-3">Loading...</h3>
+<h3 *ngIf="loading"
+    class="mb-3">Loading...</h3>
 
-<ngb-alert *ngIf="alertMessage" 
+<ngb-alert *ngIf="alertMessage"
            class="mb-3"
            [type]="alertMessage.type"
            (close)="alertMessage = undefined">
@@ -71,7 +74,7 @@
   <div class="row mb-2">
     <div class="col-sm-3">
       <b>
-       Data Dir
+        Data Dir
       </b>
     </div>
     <div class="col-sm-1">
@@ -81,7 +84,8 @@
     </div>
   </div>
 
-  <div *ngIf="info.config.setup.initialAdmin" class="row mb-2">
+  <div *ngIf="info.config.setup.initialAdmin"
+       class="row mb-2">
     <div class="col-sm-3">
       <b>
         Initial Admin

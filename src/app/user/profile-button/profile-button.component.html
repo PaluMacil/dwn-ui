@@ -1,13 +1,29 @@
-<div id="profileButton" ngbDropdown placement="bottom-right" class="d-inline-block">
-  <button class="btn btn-sm btn-outline-secondary pl-4" id="profileDropdown" ngbDropdownToggle>
-    <img *ngIf="me.user.picture !== ''" alt="profile head" class="profile-head rounded-circle" [src]="me.user.picture">
-    <fa-icon *ngIf="me.user.picture === ''" alt="profile head" style="color: black;" [icon]="iconProfile" size="2x" class="profile-head"></fa-icon>
+<div id="profileButton"
+     ngbDropdown
+     placement="bottom-right"
+     class="d-inline-block">
+  <button class="btn btn-sm btn-outline-secondary pl-4"
+          id="profileDropdown"
+          ngbDropdownToggle>
+    <img *ngIf="me.user.picture !== ''"
+         alt="profile head"
+         class="profile-head rounded-circle"
+         [src]="me.user.picture">
+    <fa-icon *ngIf="me.user.picture === ''"
+             alt="profile head"
+             style="color: black;"
+             [icon]="iconProfile"
+             size="2x"
+             class="profile-head"></fa-icon>
     {{me.user.displayName}}
   </button>
-  <div ngbDropdownMenu aria-labelledby="profileDropdown">
+  <div ngbDropdownMenu
+       aria-labelledby="profileDropdown">
     <app-tray-action-list [me]="me"></app-tray-action-list>
-    <button (click)="userService.logout(true)" class="dropdown-item">
-      <fa-icon class="pr-2" [icon]="iconSignOut"></fa-icon>log out
+    <button (click)="userService.logout(true)"
+            class="dropdown-item">
+      <fa-icon class="pr-2"
+               [icon]="iconSignOut"></fa-icon>log out
     </button>
   </div>
 </div>

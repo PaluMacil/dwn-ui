@@ -1,4 +1,5 @@
 {
     "terminal.integrated.cwd": "src/app",
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "html.format.wrapAttributes": "force-aligned"
 }

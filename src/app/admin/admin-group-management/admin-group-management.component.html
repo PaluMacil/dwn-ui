@@ -2,22 +2,31 @@
   <div class="col-sm">
     <div class="btn-toolbar">
       <div class="btn-group">
-        <button type="button" class="btn btn-primary mr-3" (click)="fetchInfo()">
+        <button type="button"
+                class="btn btn-primary mr-3"
+                (click)="fetchInfo()">
           <fa-icon [icon]="iconRefresh"></fa-icon> Refresh
         </button>
       </div>
       <div class="btn-group">
-        <button *ngIf="!showCreateGroupForm" type="button" class="btn btn-primary" (click)="toggleCreateGroupForm()">
+        <button *ngIf="!showCreateGroupForm"
+                type="button"
+                class="btn btn-primary"
+                (click)="toggleCreateGroupForm()">
           <fa-icon [icon]="iconAddGroup"></fa-icon> New Group
         </button>
-        <button *ngIf="showCreateGroupForm" type="button" class="btn btn-primary" (click)="toggleCreateGroupForm()">
+        <button *ngIf="showCreateGroupForm"
+                type="button"
+                class="btn btn-primary"
+                (click)="toggleCreateGroupForm()">
           <fa-icon [icon]="iconCancel"></fa-icon> Cancel
         </button>
       </div>
     </div>
   </div>
 </div>
-<h3 *ngIf="loading" class="mb-3">Loading...</h3>
+<h3 *ngIf="loading"
+    class="mb-3">Loading...</h3>
 
 <ng-container *ngIf="showCreateGroupForm">
   <div class="card">
@@ -27,20 +36,31 @@
       </h4>
     </div>
     <div class="card-body">
-      <form (submit)="createGroup()" [formGroup]="createGroupForm">
+      <form (submit)="createGroup()"
+            [formGroup]="createGroupForm">
         <div class="form-group">
           <label for="name">Name:</label>
-          <input formControlName="name" required type="text" class="form-control" id="name">
+          <input formControlName="name"
+                 required
+                 type="text"
+                 class="form-control"
+                 id="name">
         </div>
         <div class="form-check form-check-inline">
-          <input type="checkbox" class="form-check-input" formControlName="requires2FA">
+          <input type="checkbox"
+                 class="form-check-input"
+                 formControlName="requires2FA">
           <label class="form-check-label">Requires two-factor auth</label>
         </div>
         <div class="form-check form-check-inline">
-          <input type="checkbox" class="form-check-input" formControlName="requiresVaultPIN">
+          <input type="checkbox"
+                 class="form-check-input"
+                 formControlName="requiresVaultPIN">
           <label class="form-check-label">Requires vault pin</label>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!createGroupForm.valid">
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="!createGroupForm.valid">
           <fa-icon [icon]="iconAddGroup"></fa-icon> Create
         </button>
       </form>
@@ -60,7 +80,8 @@
   </thead>
   <tbody>
     <ng-container *ngFor="let g of groups; let i = index">
-      <tr *ngIf="selectedGroupName !== g.name" (click)="selectGroup(g)">
+      <tr *ngIf="selectedGroupName !== g.name"
+          (click)="selectGroup(g)">
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ g.name }}</td>
         <td>{{ g.permissions ? g.permissions.join(', ') : '(none)' }}</td>
@@ -72,7 +93,10 @@
           <td>&nbsp;</td>
           <td colspan="4">
             <h3>{{ g.name }}
-              <button (click)="selectedGroupName = null" type="button" class="close float-right" aria-label="Close">
+              <button (click)="selectedGroupName = null"
+                      type="button"
+                      class="close float-right"
+                      aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </h3>
@@ -81,7 +105,8 @@
         <tr class="table-dark">
           <th scope="row">{{ i + 1 }}</th>
           <td colspan="2">
-            <app-permission-selector [group]="g" (change)="updateGroup($event)"></app-permission-selector>
+            <app-permission-selector [group]="g"
+                                     (change)="updateGroup($event)"></app-permission-selector>
           </td>
           <td colspan="2">
             <app-group-user-selector [group]="g"></app-group-user-selector>
@@ -89,7 +114,8 @@
         </tr>
         <tr class="table-dark">
           <td>&nbsp;</td>
-          <td colspan="4"><em>Modified by {{ g.modifiedByDisplayName }} on {{ g.modifiedDate | date:"medium" }}.</em></td>
+          <td colspan="4"><em>Modified by {{ g.modifiedByDisplayName }} on {{ g.modifiedDate | date:"medium" }}.</em>
+          </td>
         </tr>
       </ng-container>
     </ng-container>

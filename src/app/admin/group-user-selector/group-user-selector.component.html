@@ -1,39 +1,47 @@
 <div class="row">
-    <h4 class="col">Users</h4>
-  </div>
-  <div class="row">
-    <div class="col">
-      <!--<form [formGroup]="form">-->
-        <div >
-          <div class="input-group">
-            <ng-template #rt let-r="result" let-t="term">
-              <ngb-highlight [result]="r.displayName" [term]="t"></ngb-highlight>
-            </ng-template>
-            <input [ngbTypeahead]="search"
-                   [(ngModel)]="selectedUser"
-                   [resultTemplate]="rt"
-                   [inputFormatter]="formatter"
-                   type="text" 
-                   class="form-control" 
-                   placeholder="user">
-            <div class="input-group-append">
-              <button (click)="addUser()" class="btn btn-primary" type="button">Add</button>
-            </div>
-          </div>
+  <h4 class="col">Users</h4>
+</div>
+<div class="row">
+  <div class="col">
+    <!--<form [formGroup]="form">-->
+    <div>
+      <div class="input-group">
+        <ng-template #rt
+                     let-r="result"
+                     let-t="term">
+          <ngb-highlight [result]="r.displayName"
+                         [term]="t"></ngb-highlight>
+        </ng-template>
+        <input [ngbTypeahead]="search"
+               [(ngModel)]="selectedUser"
+               [resultTemplate]="rt"
+               [inputFormatter]="formatter"
+               type="text"
+               class="form-control"
+               placeholder="user">
+        <div class="input-group-append">
+          <button (click)="addUser()"
+                  class="btn btn-primary"
+                  type="button">Add</button>
         </div>
-      <!--</form>-->
+      </div>
     </div>
+    <!--</form>-->
   </div>
-  <div class="row">
-    <div class="col">
-      <ul class="list-group">
-        <li *ngFor="let u of users" class="list-group-item text-primary">
-          {{ u.displayName }}
-          <button (click)="removeUser(u.id)" type="button" class="close float-right" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </li>
-      </ul>
-    </div>
+</div>
+<div class="row">
+  <div class="col">
+    <ul class="list-group">
+      <li *ngFor="let u of users"
+          class="list-group-item text-primary">
+        {{ u.displayName }}
+        <button (click)="removeUser(u.id)"
+                type="button"
+                class="close float-right"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </li>
+    </ul>
   </div>
-  
+</div>
