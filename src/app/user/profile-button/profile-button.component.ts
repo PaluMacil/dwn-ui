@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Me } from '../../shared/models';
 import { UserService } from '../user.service';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faUserCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-button',
@@ -13,6 +13,8 @@ export class ProfileButtonComponent {
   @Input() me: Me;
 
   iconSignOut = faSignOutAlt;
+  iconProfile = faUserCircle;
+  iconSolidCircle = faCircle;
 
   constructor(public userService: UserService) { }
 }

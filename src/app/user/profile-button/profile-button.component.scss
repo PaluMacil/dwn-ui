@@ -3,10 +3,13 @@
     margin-left: 19px;
 }
 
-img.profile-head {
+.profile-head {
     position: absolute;
     top: 0;
     left: -15px;
     height: 31px;
-    width: auto;
+    width: 31px;
+    svg {
+        color: black;
+    }
 }

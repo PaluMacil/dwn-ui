@@ -5,7 +5,7 @@ import { tap, retry, map } from 'rxjs/operators';
 import {
   Me, IMe, UserInfo, SessionDetails,
   UserCreationRequest, VerificationRequest,
-  LoginRequest, LoginResultMessage, EmailAction
+  LoginRequest, LoginResponse, EmailAction
 } from '../shared/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
@@ -84,8 +84,8 @@ export class UserService {
     return this.http.post<UserInfo>('api/registration/user', request);
   }
 
-  login(credentials: LoginRequest): Observable<LoginResultMessage> {
-    return this.http.post<LoginResultMessage>('api/core/sessions/login', credentials);
+  login(credentials: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>('api/core/sessions/login', credentials);
   }
 
   userSuggestion(query: string): Observable<UserInfo[]> {
@@ -132,6 +132,10 @@ export class UserService {
 
   getToken(): string {
     return localStorage.getItem(environment.tokenName);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem(environment.tokenName, token);
   }
 
   modifyEmailRecord(userID: number, email: string, action: EmailAction): Observable<UserInfo> {

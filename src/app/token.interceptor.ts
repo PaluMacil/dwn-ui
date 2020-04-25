@@ -15,7 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
     const tokenName = environment.tokenName;
     // Don't attach a null token
-    const token = this.userService.getToken()
+    const token = this.userService.getToken();
     if (token) {
       request = request.clone({
         setHeaders: {

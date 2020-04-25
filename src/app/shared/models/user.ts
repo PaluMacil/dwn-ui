@@ -1,3 +1,5 @@
+import { Me } from './me';
+
 export interface User {
   id: number;
   googleId: string;
@@ -53,7 +55,8 @@ export const enum LoginResult {
   LoginResultError = 6
 }
 
-export interface LoginResultMessage {
+export interface LoginResponse {
   loginResult: LoginResult;
   intermediateToken?: string;
+  me?: Me;
 }

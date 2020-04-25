@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
         (message) => {
           switch (message.loginResult) {
             case LoginResult.LoginResultSuccess:
+              this.userService.setToken(message.me.session.token);
+              this.userService.checkMe();
               this.router.navigate(['/']);
               break;
             default:

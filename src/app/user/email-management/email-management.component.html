@@ -1,7 +1,7 @@
 <div *ngFor="let record of user.emails" class="row">
   <div class="col-sm-1">
-    <fa-icon *ngIf="record.email === user.primaryEmail" [icon]="iconPrimary"></fa-icon>
-    <fa-icon *ngIf="record.verified" [icon]="iconResend"></fa-icon>
+    <fa-icon *ngIf="record.email === user.primaryEmail" [icon]="iconPrimary" title="primary email"></fa-icon>
+    <fa-icon *ngIf="record.verified" [icon]="iconResend" title="verified email"></fa-icon>
   </div>
   <div class="col-sm-3">
     {{ record.email }}
