@@ -14,8 +14,8 @@
         <tr>
           <th>Item Name</th>
           <th>Quantity</th>
-          <th>Added By</th>
-          <th>Added</th>
+          <th class="details">Added By</th>
+          <th class="details">Added</th>
           <th>Notes</th>
         </tr>
       </thead>
@@ -28,8 +28,8 @@
             {{ i.name }}
           </td>
           <td>{{ i.quantity > 0 ? i.quantity : '' }}</td>
-          <td>{{ i.addedBy }}</td>
-          <td>{{ i.added | date: 'medium' }}</td>
+          <td class="details">{{ i.addedBy }}</td>
+          <td class="details">{{ i.added | date: 'medium' }}</td>
           <td>{{ i.note }}</td>
         </tr>
       </tbody>
