@@ -66,7 +66,9 @@
           </a>
           <a *ngIf="!isProd"
              class="nav-link"
-             href="/s/visit"></a>
+             href="/s/visit">
+             Visit Me!
+            </a>
         </li>
         <ng-container *ngIf="me.authenticated">
           <li *ngIf="me.is('SPOUSE')"
