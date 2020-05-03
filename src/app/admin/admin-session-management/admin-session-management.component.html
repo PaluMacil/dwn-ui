@@ -4,7 +4,6 @@
       <th scope="col">#</th>
       <th scope="col">Display Name</th>
       <th scope="col">Email</th>
-      <th scope="col">Token</th>
       <th scope="col">Last Login</th>
       <th scope="col">IP</th>
       <th scope="col">Session Start</th>
@@ -17,7 +16,6 @@
         <th scope="row">{{ i + 1 }}</th>
         <td>{{ s.user.displayName }}</td>
         <td>{{ s.user.primaryEmail }}</td>
-        <td>{{ s.session.token }}</td>
         <td>{{ s.user.lastLogin | date: 'medium' }}</td>
         <td>{{ s.session.ip }}</td>
         <td>{{ s.session.createdDate | date: 'medium' }}</td>
