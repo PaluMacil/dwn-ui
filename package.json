@@ -26,6 +26,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "core-js": "^2.5.7",
+    "export-to-csv": "^0.2.1",
     "ngx-filesize": "^2.0.13",
     "ngx-markdown": "^9.0.0",
     "rxjs": "^6.5.5",

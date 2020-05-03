@@ -3,6 +3,7 @@ import { ShoppingItem } from '../../shared/models';
 import { ShoppingService } from '../shopping.service';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-shopping-list',
@@ -47,7 +48,7 @@ export class ShoppingListComponent implements OnInit {
 
   itemNotListedValidator(shoppingList: ShoppingItem[]): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const newItemName = typeof(control.value) === 'string' ? control.value.toLowerCase() : '';
+      const newItemName = typeof (control.value) === 'string' ? control.value.toLowerCase() : '';
       // is the item already in the list?
       if (shoppingList.filter(i => i.name.toLowerCase() === newItemName).length > 0) {
         return { 'itemNotListed': true };
@@ -56,11 +57,43 @@ export class ShoppingListComponent implements OnInit {
     };
   }
 
+  export(): void {
+
+    const data = this.shoppingList.map(i => {
+      return {
+        name: i.name,
+        note: i.note,
+        quantity: i.quantity
+      };
+    });
+
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: false,
+      showTitle: false,
+      title: '',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+    };
+
+    const csvExporter = new ExportToCsv(options);
+
+    const csv = csvExporter.generateCsv(data);
+    console.log(csv);
+  }
+
+  import(): void {
+    
+  }
+
   ngOnInit() {
     this.itemForm = this.fb.group({
       name: ['', [Validators.required, this.itemNotListedValidator(this.shoppingList)]],
       quantity: [0],
-      note:  ['']
+      note: ['']
     });
     this.refresh();
   }
