@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ShoppingItem } from '../../shared/models';
 import { ShoppingService } from '../shopping.service';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ExportToCsv } from 'export-to-csv';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,6 +16,9 @@ export class ShoppingListComponent implements OnInit {
   shoppingList: ShoppingItem[];
   itemComplete = faCheck;
   itemForm: FormGroup;
+
+  csvFile: File;
+  @ViewChild('csvFileInput') csvFileInput: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -86,7 +90,15 @@ export class ShoppingListComponent implements OnInit {
   }
 
   import(): void {
-    
+    this.shoppingService.import(this.csvFile).pipe(first()).subscribe(items => {
+      this.shoppingList.push(...items);
+      this.csvFile = undefined;
+      this.csvFileInput.nativeElement.value = null;
+    });
+  }
+
+  onFileChange(event: Event) {
+    this.csvFile = (event.target as HTMLInputElement).files[0];
   }
 
   ngOnInit() {

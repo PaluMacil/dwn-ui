@@ -63,18 +63,28 @@
                id="note">
       </div>
       <button type="submit"
-              class="btn btn-primary mr-3"
+              class="btn btn-primary mr-3 mb-3"
               [disabled]="!itemForm.valid">
         Add
       </button>
       <button type="button"
-              class="btn btn-info mr-3 d-none d-sm-none"
+              class="btn btn-info mr-3 mb-3 d-none d-md-block"
               (click)="export()">
         Export CSV
       </button>
-      <button type="button"
-              class="btn btn-info d-none d-sm-none"
-              (click)="import()">
+    </form>
+    <form (submit)="import()"
+          class="d-none d-md-block">
+      <h3>Import</h3>
+      <div class="form-group">
+        <input #csvFileInput
+               type="file"
+               (change)="onFileChange($event)"
+               class="form-control-file border">
+      </div>
+      <button type="submit"
+              [disabled]="!csvFile"
+              class="btn btn-primary">
         Import CSV
       </button>
     </form>
