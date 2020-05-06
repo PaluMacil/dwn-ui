@@ -122,7 +122,7 @@ export class UserService {
     const token = environment.tokenName;
     if (token in localStorage) {
       if (notifyServer) {
-        this.http.delete(`/api/core/sessions/${this.getToken()}`).pipe(retry(2)).subscribe();
+        this.http.delete(`/api/core/sessions/logout/${this.getToken()}`).pipe(retry(2)).subscribe();
       }
       localStorage.removeItem(token);
     }
