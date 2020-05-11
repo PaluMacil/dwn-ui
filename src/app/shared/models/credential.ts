@@ -9,6 +9,7 @@ export interface AppCredential {
   name: string;
   type: string;
   id: string;
+  fromEnv: boolean;
   createdBy: number;
   createdDate: Date;
 }

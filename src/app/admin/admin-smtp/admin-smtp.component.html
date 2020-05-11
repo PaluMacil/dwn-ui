@@ -1,1 +1,6 @@
-<p>admin-smtp works!</p>
+<div class="credential" *ngFor="let cred of appCredentials$ | async">
+  <div class="name">{{ cred.name }}</div>
+  <div>ID: <span class="monospace">{{ cred.id }}</span></div>
+  <div>Secret: <span class="monospace">***********</span></div>
+  <div>created by {{ cred.createdBy | displayName$ | async }} on {{ cred.createdDate | date: 'medium' }}</div>
+</div>

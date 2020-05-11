@@ -14,14 +14,14 @@ import { TokenInterceptor } from './token.interceptor';
 import { UserModule } from './user/user.module';
 import { NavModule } from './nav/nav.module';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-
+import { SharedModule } from '@dwn/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageComponent,
-    PrivacyPolicyComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +31,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     RoutingModule,
     UserModule,
     NavModule,
+    SharedModule,
     MarkdownModule.forRoot({ loader: HttpClient })
   ],
   providers: [

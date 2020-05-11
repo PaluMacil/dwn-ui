@@ -21,7 +21,7 @@ export class ConfigurationService {
   fetchCredentials(fsType: ForeignSystemType): void {
     let params = new HttpParams();
     params = params.append('type', fsType);
-    this.http.get<Array<AppCredential>>('api/configuration/credentials')
+    this.http.get<Array<AppCredential>>('api/configuration/credentials', { params })
       .subscribe((credentials) => {
         switch (fsType) {
           case ForeignSystemType.Auth:

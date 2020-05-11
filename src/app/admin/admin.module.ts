@@ -16,6 +16,7 @@ import { NgxFilesizeModule } from 'ngx-filesize';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AdminSmtpComponent } from './admin-smtp/admin-smtp.component';
 import { AdminAuthComponent } from './admin-auth/admin-auth.component';
+import { SharedModule } from '@dwn/shared.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { AdminAuthComponent } from './admin-auth/admin-auth.component';
     UserModule,
     NgxFilesizeModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ],
   declarations: [
     AdminComponent,
