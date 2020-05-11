@@ -6,7 +6,7 @@ import {
   Me, IMe, UserInfo, SessionDetails,
   UserCreationRequest, VerificationRequest,
   LoginRequest, LoginResponse, EmailAction
-} from '../shared/models';
+} from '@dwn/models';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { ANONYMOUS_USER } from '../shared/builtins';
@@ -56,7 +56,7 @@ export class UserService {
       .set('ids', Array.from(uniqueIDs).join(','));
     return this.http.get<{ [key: string]: string }>('api/core/users/displayname', { params })
       .pipe(
-        map(val => {
+        map((val) => {
           for (const id of uniqueIDs) {
             nameMap.set(id, val[id]);
           }
@@ -88,7 +88,7 @@ export class UserService {
     return this.http.post<LoginResponse>('api/core/sessions/login', credentials);
   }
 
-  userSuggestion(query: string): Observable<UserInfo[]> {
+  userSuggestion(query: string): Observable<Array<UserInfo>> {
     // check if query is a tag, and remove ampersand to allow backend
     // to search both as a general term and as tag.
     if (query.startsWith('@')) {
@@ -97,17 +97,17 @@ export class UserService {
     const params = new HttpParams()
       // search is is indexed by lowercase terms
       .set('query', query.toLowerCase());
-    return this.http.get<UserInfo[]>(`api/typeahead/users`, { params });
+    return this.http.get<Array<UserInfo>>(`api/typeahead/users`, { params });
   }
 
-  all(): Observable<UserInfo[]> {
-    return this.http.get<UserInfo[]>('api/core/users');
+  all(): Observable<Array<UserInfo>> {
+    return this.http.get<Array<UserInfo>>('api/core/users');
   }
 
-  sessions(includeInactive = false): Observable<SessionDetails[]> {
+  sessions(includeInactive = false): Observable<Array<SessionDetails>> {
     const params = new HttpParams()
       .set('includeInactive', includeInactive.toString());
-    return this.http.get<SessionDetails[]>(`api/core/sessions`, { params });
+    return this.http.get<Array<SessionDetails>>(`api/core/sessions`, { params });
   }
 
   deleteUser(id: number): Observable<boolean> {
@@ -134,7 +134,7 @@ export class UserService {
     return localStorage.getItem(environment.tokenName);
   }
 
-  setToken(token: string) {
+  setToken(token: string): void {
     localStorage.setItem(environment.tokenName, token);
   }
 

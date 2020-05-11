@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'user/account',
-    loadChildren: () => import('../user/account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('../user/account/account.module').then((m) => m.AccountModule)
   },
   {
     path: 'register',
@@ -61,7 +61,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
+    loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule)
   }
 ];
 

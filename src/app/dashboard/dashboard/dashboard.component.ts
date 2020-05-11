@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.dashboardService.dashboard().pipe(first()).subscribe(
       (dashboard) => this.dashboard = dashboard
     );

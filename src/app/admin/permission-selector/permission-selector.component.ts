@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, Optional } from '@angular/core';
-import { Group } from '../../shared/models';
+import { Group } from '@dwn/models';
 import { ServerService } from '../server-info.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { GroupService } from '../group.service';
@@ -24,23 +24,23 @@ export class PermissionSelectorComponent implements OnInit {
     public gs: GroupService
   ) { }
 
-  addPermission(permission: string) {
+  addPermission(permission: string): void {
     this.gs.addPermission(this.group.name, permission).subscribe(
-      g => {
+      (g) => {
         this.change.emit(g);
       }
     );
   }
 
-  removePermission(permission: string) {
+  removePermission(permission: string): void {
     this.gs.removePermission(this.group.name, permission).subscribe(
-      g => {
+      (g) => {
         this.change.emit(g);
       }
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.info.permissions().subscribe(
       (p) => {
         this.allPermissions.push(...p);

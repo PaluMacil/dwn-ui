@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginRequest, AlertMessage, LoginResult } from 'src/app/shared/models';
+import { LoginRequest, AlertMessage, LoginResult } from '@dwn/models';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService) { }
 
-  login() {
+  login(): void {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.userService.login(loginRequest)
       .pipe(first())
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
               console.log(`Login Result: ${message.loginResult}`);
           }
         },
-        err => {
+        (err) => {
           if (err.status === 401) {
             this.alertMessage = new AlertMessage('danger', `${err.statusText}: `, 'Incorrect email or password.');
           } else {
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],

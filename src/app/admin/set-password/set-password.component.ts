@@ -9,7 +9,7 @@ export class SetPasswordComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

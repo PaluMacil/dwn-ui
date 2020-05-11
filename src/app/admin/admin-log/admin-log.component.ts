@@ -9,7 +9,7 @@ export class AdminLogComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

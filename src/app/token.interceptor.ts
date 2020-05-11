@@ -9,7 +9,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public userService: UserService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const attachToken = ['danwolf.net', 'visit.danwolf.net', 'staging.danwolf.net']
-      .some(url => url === location.host) || location.hostname === 'localhost';
+      .some((url) => url === location.host) || location.hostname === 'localhost';
     if (!attachToken) {
       return next.handle(request);
     }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user/user.service';
-import { SessionDetails } from '../../shared/models';
+import { SessionDetails } from '@dwn/models';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -16,13 +16,13 @@ export class AdminSessionManagementComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.sessions()
       .pipe(
         map(
-          sessionDetails => {
+          (sessionDetails) => {
             return sessionDetails.map(
-              detail => {
+              (detail) => {
                 const ipParts = detail.session.ip.split(':');
                 const ipString = ipParts.length <= 2 ? ipParts[0] : ipParts.slice(0, 3).join(':');
                 detail.session.ip = ipString;
@@ -33,7 +33,7 @@ export class AdminSessionManagementComponent implements OnInit {
         )
       )
       .subscribe(
-        s => {
+        (s) => {
           this.sessions.push(...s);
         }
       );

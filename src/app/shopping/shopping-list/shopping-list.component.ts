@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ShoppingItem } from '../../shared/models';
+import { ShoppingItem } from '@dwn/models';
 import { ShoppingService } from '../shopping.service';
 import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
 })
 export class ShoppingListComponent implements OnInit {
 
-  shoppingList: ShoppingItem[];
+  shoppingList: Array<ShoppingItem>;
   itemComplete = faCheck;
   itemForm: FormGroup;
 
@@ -27,34 +27,34 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList = new Array<ShoppingItem>();
   }
 
-  add() {
+  add(): void {
     const newItem = this.itemForm.value as ShoppingItem;
     this.shoppingService.add(newItem).subscribe(
-      item => {
+      (item) => {
         this.shoppingList.push(item);
         this.itemForm.reset();
       }
     );
   }
 
-  remove(name: string) {
+  remove(name: string): void {
     this.shoppingService.remove(name).subscribe(
-      () => this.shoppingList = this.shoppingList.filter(i => i.name !== name)
+      () => this.shoppingList = this.shoppingList.filter((i) => i.name !== name)
     );
   }
 
-  refresh() {
+  refresh(): void {
     this.shoppingList.length = 0;
     this.shoppingService.list().subscribe(
-      items => this.shoppingList.push(...items)
+      (items) => this.shoppingList.push(...items)
     );
   }
 
-  itemNotListedValidator(shoppingList: ShoppingItem[]): ValidatorFn {
+  itemNotListedValidator(shoppingList: Array<ShoppingItem>): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const newItemName = typeof (control.value) === 'string' ? control.value.toLowerCase() : '';
       // is the item already in the list?
-      if (shoppingList.filter(i => i.name.toLowerCase() === newItemName).length > 0) {
+      if (shoppingList.filter((i) => i.name.toLowerCase() === newItemName).length > 0) {
         return { 'itemNotListed': true };
       }
       return null;
@@ -63,7 +63,7 @@ export class ShoppingListComponent implements OnInit {
 
   export(): void {
 
-    const data = this.shoppingList.map(i => {
+    const data = this.shoppingList.map((i) => {
       return {
         name: i.name,
         note: i.note,
@@ -90,18 +90,18 @@ export class ShoppingListComponent implements OnInit {
   }
 
   import(): void {
-    this.shoppingService.import(this.csvFile).pipe(first()).subscribe(items => {
+    this.shoppingService.import(this.csvFile).pipe(first()).subscribe((items) => {
       this.shoppingList.push(...items);
       this.csvFile = undefined;
       this.csvFileInput.nativeElement.value = null;
     });
   }
 
-  onFileChange(event: Event) {
+  onFileChange(event: Event): void {
     this.csvFile = (event.target as HTMLInputElement).files[0];
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.itemForm = this.fb.group({
       name: ['', [Validators.required, this.itemNotListedValidator(this.shoppingList)]],
       quantity: [0],

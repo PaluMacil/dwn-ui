@@ -7,7 +7,7 @@ export interface User {
   primaryEmail: string;
   emails: Array<Email>;
   tag: string;
-  previousTags: string[];
+  previousTags: Array<string>;
   mustChangePWNextLogin: boolean;
   require2FA: boolean;
   locked: boolean;

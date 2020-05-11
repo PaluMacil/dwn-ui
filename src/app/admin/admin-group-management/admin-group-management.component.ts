@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../group.service';
-import { Group, GroupCreationRequest, AlertMessage, GroupDisplay, Me } from '../../shared/models';
+import { GroupCreationRequest, AlertMessage, GroupDisplay, Me } from '@dwn/models';
 import { faSyncAlt, faPlusSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { finalize, map } from 'rxjs/operators';
@@ -28,56 +28,56 @@ export class AdminGroupManagementComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService
   ) {
-    this.userService.me$.subscribe(me => this.me = me);
+    this.userService.me$.subscribe((me) => this.me = me);
   }
 
-  selectGroup(group: GroupDisplay) {
+  selectGroup(group: GroupDisplay): void {
     this.selectedGroupName = group.name;
   }
 
-  updateGroup(group: GroupDisplay) {
-    const idx = this.groups.findIndex(g => g.name === group.name);
+  updateGroup(group: GroupDisplay): void {
+    const idx = this.groups.findIndex((g) => g.name === group.name);
     this.groups[idx] = group;
   }
 
-  createGroup() {
+  createGroup(): void {
     const groupRequest = this.createGroupForm.value as GroupCreationRequest;
     this.groupService.create(groupRequest)
       .pipe(
-        map(g => {
+        map((g) => {
           return {...g, modifiedByDisplayName: this.me.user.displayName };
         })
       )
       .subscribe(
-        group => {
+        (group) => {
           this.alertMessage = undefined;
           this.groups.push(group);
         },
-        err => {
+        (err) => {
           this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
         }
       );
   }
 
-  fetchInfo() {
+  fetchInfo(): void {
     this.loading = true;
     this.groupService.groups().pipe(finalize(() => this.loading = false)).subscribe(
-      g => {
+      (g) => {
         this.alertMessage = undefined;
         this.groups = g;
       },
-      err => {
+      (err) => {
         this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
       }
     );
   }
 
-  toggleCreateGroupForm() {
+  toggleCreateGroupForm(): void {
     this.createGroupForm.reset();
     this.showCreateGroupForm = !this.showCreateGroupForm;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fetchInfo();
     this.createGroupForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern(/[^_][A-Z_]+/)]],

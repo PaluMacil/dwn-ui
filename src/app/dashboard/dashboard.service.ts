@@ -10,7 +10,7 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  dashboard() {
+  dashboard(): Observable<Dashboard> {
     return this.http.get<Dashboard>('api/dashboard/board');
   }
 }

@@ -9,7 +9,7 @@ export class NewProjectFormComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Me } from '../../../shared/models';
+import { Me } from '@dwn/models';
 import { UserService } from '../../user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Me } from '../../shared/models';
+import { Me } from '@dwn/models';
 import { faSignInAlt, faBell } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 
@@ -20,6 +20,6 @@ export class TrayComponent implements OnInit {
     this.me$ = userService.me$;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 }

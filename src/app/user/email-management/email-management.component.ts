@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Email, UserInfo } from 'src/app/shared/models';
+import { Email, UserInfo } from '@dwn/models';
 import { faStar, faMailBulk, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
@@ -20,26 +20,26 @@ export class EmailManagementComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
-  setPrimary(emailRecord: Email) {
+  setPrimary(emailRecord: Email): void {
     this.primaryChanged.emit(emailRecord.email);
   }
 
-  resendVerification(emailRecord: Email) {
+  resendVerification(emailRecord: Email): void {
     // TODO: call service
   }
 
-  deleteRecord(emailRecord: Email) {
+  deleteRecord(emailRecord: Email): void {
     this.userService.modifyEmailRecord(this.user.id, emailRecord.email, 'delete')
     .pipe(first())
     .subscribe(
       (modifiedUser) => {
-        const newEmails = modifiedUser.emails.filter(email => emailRecord.email !== email.email);
+        const newEmails = modifiedUser.emails.filter((email) => emailRecord.email !== email.email);
         this.emailsChanged.emit(newEmails);
       }
     );
   }
 
-  verifyRecord(emailRecord: Email) {
+  verifyRecord(emailRecord: Email): void {
     this.userService.verifyUserEmail(this.user.id, emailRecord.email)
       .pipe(first())
       .subscribe(
@@ -57,7 +57,7 @@ export class EmailManagementComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

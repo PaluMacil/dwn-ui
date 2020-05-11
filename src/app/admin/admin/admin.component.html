@@ -6,31 +6,36 @@
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link"
-              (click)="tab='siteinfo'"
               [class.active]="tab==='siteinfo'"
               [routerLink]="['/', 'admin', 'siteinfo']">Site Info</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"
-              (click)="tab='sessions'"
               [class.active]="tab==='sessions'" 
               [routerLink]="['/', 'admin','sessions']">Sessions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"
-              (click)="tab='users'"
               [class.active]="tab==='users'" 
               [routerLink]="['/', 'admin','users']">Users</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"
-              (click)="tab='groups'"
               [class.active]="tab==='groups'" 
               [routerLink]="['/', 'admin','groups']">Groups</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"
-              (click)="tab='logs'"
+              [class.active]="tab==='auth'" 
+              [routerLink]="['/', 'admin','auth']">Auth</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
+              [class.active]="tab==='smtp'" 
+              [routerLink]="['/', 'admin','smtp']">SMTP</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"
               [class.active]="tab==='logs'" 
               [routerLink]="['/', 'admin','logs']">Logs</a>
           </li>
@@ -41,5 +46,7 @@
     <app-admin-session-management *ngIf="tab==='sessions'"></app-admin-session-management>
     <app-user-management *ngIf="tab==='users'"></app-user-management>
     <app-admin-group-management *ngIf="tab==='groups'"></app-admin-group-management>
+    <app-admin-auth *ngIf="tab==='auth'"></app-admin-auth>
+    <app-admin-smtp *ngIf="tab==='smtp'"></app-admin-smtp>
     <app-admin-log *ngIf="tab==='logs'"></app-admin-log>
   </div>

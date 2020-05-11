@@ -21,7 +21,7 @@ export interface AuthProvider {
       TokenURL: string
   };
   RedirectURL: string;
-  Scopes: string[];
+  Scopes: Array<string>;
 }
 
 export interface WebServerConfiguration {

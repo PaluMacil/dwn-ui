@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server-info.service';
-import { ServerInfo, AlertMessage } from '../../shared/models';
+import { ServerInfo, AlertMessage } from '@dwn/models';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs/operators';
 
@@ -16,21 +16,21 @@ export class AdminSiteInfoComponent implements OnInit {
   loading = false;
 
   constructor(
-    private si: ServerService
+    private serverService: ServerService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fetchInfo();
   }
 
   fetchInfo(): void {
     this.loading = true;
-    this.si.info().pipe(finalize(() => this.loading = false)).subscribe(
-      res => {
+    this.serverService.info().pipe(finalize(() => this.loading = false)).subscribe(
+      (res) => {
         this.alertMessage = undefined;
         this.info = res;
       },
-      err => {
+      (err) => {
         this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
       }
     );

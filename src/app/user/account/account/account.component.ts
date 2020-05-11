@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Me } from '../../../shared/models';
+import { Me } from '@dwn/models';
 import { UserService } from '../../user.service';
 import { BehaviorSubject } from 'rxjs';
 

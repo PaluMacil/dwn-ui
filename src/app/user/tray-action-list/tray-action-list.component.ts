@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Me } from '../../shared/models';
+import { Me } from '@dwn/models';
 import { faTachometerAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { GROUPS } from '../../shared/builtins';
 
@@ -22,7 +22,7 @@ export class TrayActionListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.listItemStyle = {
       'nav-item': this.simple,
       '': !this.simple

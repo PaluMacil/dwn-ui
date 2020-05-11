@@ -12,6 +12,15 @@
             "element",
             "app",
             "kebab-case"
-        ]
+        ],
+        "typedef": [
+            true,
+            "call-signature"
+        ],
+        "array-type": [
+            true,
+            "generic"
+        ],
+        "arrow-parens": true
     }
 }

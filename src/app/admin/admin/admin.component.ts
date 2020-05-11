@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd, RoutesRecognized } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   tab = 'siteinfo';
+  ngUnsubscribe = new Subject<void>();
 
-  constructor(public r: ActivatedRoute
+  constructor(
+    public router: Router,
+    activatedRoute: ActivatedRoute
   ) {
-    if (r.snapshot.params.tab) {
-      this.tab = r.snapshot.params.tab;
-    }
+    this.tab = activatedRoute.snapshot.params.tab;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.router.events
+      .pipe(
+        takeUntil(this.ngUnsubscribe),
+        filter<RoutesRecognized>((event) => event instanceof RoutesRecognized))
+      .subscribe((event) => {
+        this.tab = event.state.root.firstChild.params.tab;
+      });
   }
 
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }

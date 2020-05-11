@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { AdminLogComponent } from './admin-log/admin-log.component';
 import { NgxFilesizeModule } from 'ngx-filesize';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AdminSmtpComponent } from './admin-smtp/admin-smtp.component';
+import { AdminAuthComponent } from './admin-auth/admin-auth.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AdminSessionManagementComponent,
     PermissionSelectorComponent,
     GroupUserSelectorComponent,
-    AdminLogComponent
+    AdminLogComponent,
+    AdminSmtpComponent,
+    AdminAuthComponent
   ]
 })
 export class AdminModule { }

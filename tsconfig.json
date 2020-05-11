@@ -15,7 +15,7 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es2020",
       "dom"
     ],
     "paths": {
@@ -24,6 +24,9 @@
       ],
       "ui/*": [
         "dist/ui/*"
+      ],
+      "@dwn/*": [
+        "src/app/shared/*"
       ]
     }
   }

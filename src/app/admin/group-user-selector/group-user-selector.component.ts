@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from '../group.service';
-import { Group, UserInfo } from '../../shared/models';
+import { Group, UserInfo } from '@dwn/models';
 import { UserService } from '../../user/user.service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -16,23 +16,23 @@ export class GroupUserSelectorComponent implements OnInit {
   selectedUser: UserInfo;
 
   constructor(
-    public gs: GroupService,
-    private us: UserService
+    public groupService: GroupService,
+    private userService: UserService
   ) { }
 
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(query => query.length < (query.includes('@') ? 3 : 2) ? []
-        : this.us.userSuggestion(query))
+      switchMap((query) => query.length < (query.includes('@') ? 3 : 2) ? []
+        : this.userService.userSuggestion(query))
     )
 
-  formatter = (x: { displayName: string }) => x.displayName;
+  formatter = (x: { displayName: string }): string => x.displayName;
 
-  addUser() {
-    this.gs.addUser(this.selectedUser.id, this.group.name).subscribe(
-      ug => {
+  addUser(): void {
+    this.groupService.addUser(this.selectedUser.id, this.group.name).subscribe(
+      (ug) => {
         this.users.push(this.selectedUser);
         this.users = this.users.sort(
           (a, b) => {
@@ -46,17 +46,17 @@ export class GroupUserSelectorComponent implements OnInit {
     );
   }
 
-  removeUser(id: number) {
-    this.gs.removeUser(id, this.group.name).subscribe(
-      ug => {
-        this.users = this.users.filter(u => u.id !== ug.userID);
+  removeUser(id: number): void {
+    this.groupService.removeUser(id, this.group.name).subscribe(
+      (usergroup) => {
+        this.users = this.users.filter((u) => u.id !== usergroup.userID);
       }
     );
   }
 
-  ngOnInit() {
-    this.gs.usersFor(this.group.name).subscribe(
-      users => {
+  ngOnInit(): void {
+    this.groupService.usersFor(this.group.name).subscribe(
+      (users) => {
         this.users.push(...users);
       }
     );

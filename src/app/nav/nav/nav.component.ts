@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user/user.service';
 import { BehaviorSubject } from 'rxjs';
-import { Me } from '../../shared/models';
+import { Me } from '@dwn/models';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
     this.isProd = environment.production;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

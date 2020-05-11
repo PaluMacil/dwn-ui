@@ -1,6 +1,6 @@
 export interface Group {
     name: string;
-    permissions: string[] | null;
+    permissions: Array<string> | null;
     requires2FA: boolean;
     requiresVaultPIN: boolean;
     modifiedBy: number;

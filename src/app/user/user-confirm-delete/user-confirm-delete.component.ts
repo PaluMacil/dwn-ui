@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserInfo } from 'src/app/shared/models';
+import { UserInfo } from '@dwn/models';
 import { UserService } from '../user.service';
 import { first } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ export class UserConfirmDeleteComponent implements OnInit {
 
   constructor(public modal: NgbActiveModal, private userService: UserService) { }
 
-  delete() {
+  delete(): void {
     this.userService.deleteUser(this.user.id)
       .pipe(first())
       .subscribe(
@@ -27,7 +27,7 @@ export class UserConfirmDeleteComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 

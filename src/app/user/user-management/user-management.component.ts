@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { UserInfo, AlertMessage } from '../../shared/models';
+import { UserInfo, AlertMessage } from '@dwn/models';
 import { faUserTimes, faUserSlash, faUserCheck, faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserConfirmDeleteComponent, UserDeletion } from '../user-confirm-delete/user-confirm-delete.component';
@@ -26,16 +26,16 @@ export class UserManagementComponent implements OnInit {
     private _modalService: NgbModal
   ) { }
 
-  selectUser(user: UserInfo) {
+  selectUser(user: UserInfo): void {
     this.selectedUser = user;
   }
 
-  deselectUser(event: MouseEvent) {
+  deselectUser(event: MouseEvent): void {
     this.selectedUser = null;
     event.stopPropagation();
   }
 
-  setDisabled(user: UserInfo, status: boolean) {
+  setDisabled(user: UserInfo, status: boolean): void {
     this.userService.setDisabledStatus(user.id, status)
       .pipe(first())
       .subscribe(
@@ -44,7 +44,7 @@ export class UserManagementComponent implements OnInit {
       );
   }
 
-  setLocked(user: UserInfo, status: boolean) {
+  setLocked(user: UserInfo, status: boolean): void {
     this.userService.setLockedStatus(user.id, status)
       .pipe(first())
       .subscribe(
@@ -53,7 +53,7 @@ export class UserManagementComponent implements OnInit {
       );
   }
 
-  openDeleteDialog() {
+  openDeleteDialog(): void {
     const modalRef = this._modalService.open(UserConfirmDeleteComponent);
     modalRef.componentInstance.user = this.selectedUser;
     modalRef.result.then(
@@ -66,9 +66,9 @@ export class UserManagementComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userService.all().pipe(first()).subscribe(
-      users => {
+      (users) => {
         this.users.push(...users);
       }
     );
