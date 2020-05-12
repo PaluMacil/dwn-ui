@@ -13,8 +13,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   iconLogin = faArrowRight;
-  loginForm: FormGroup;
-  alertMessage: AlertMessage;
+  loginForm?: FormGroup;
+  alertMessage?: AlertMessage;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,29 +22,33 @@ export class LoginComponent implements OnInit {
     private userService: UserService) { }
 
   login(): void {
-    const loginRequest = this.loginForm.value as LoginRequest;
-    this.userService.login(loginRequest)
-      .pipe(first())
-      .subscribe(
-        (message) => {
-          switch (message.loginResult) {
-            case LoginResult.LoginResultSuccess:
-              this.userService.setToken(message.me.session.token);
-              this.userService.checkMe();
-              this.router.navigate(['/']);
-              break;
-            default:
-              console.log(`Login Result: ${message.loginResult}`);
+    if (this.loginForm) {
+      const loginRequest = this.loginForm.value as LoginRequest;
+      this.userService.login(loginRequest)
+        .pipe(first())
+        .subscribe(
+          (message) => {
+            switch (message.loginResult) {
+              case LoginResult.LoginResultSuccess:
+                if (message.me) {
+                  this.userService.setToken(message.me.session.token);
+                  this.userService.checkMe();
+                  this.router.navigate(['/']);
+                }
+                break;
+              default:
+                console.log(`Login Result: ${message.loginResult}`);
+            }
+          },
+          (err) => {
+            if (err.status === 401) {
+              this.alertMessage = new AlertMessage('danger', `${err.statusText}: `, 'Incorrect email or password.');
+            } else {
+              this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
+            }
           }
-        },
-        (err) => {
-          if (err.status === 401) {
-            this.alertMessage = new AlertMessage('danger', `${err.statusText}: `, 'Incorrect email or password.');
-          } else {
-            this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
-          }
-        }
-      );
+        );
+    }
   }
 
   ngOnInit(): void {

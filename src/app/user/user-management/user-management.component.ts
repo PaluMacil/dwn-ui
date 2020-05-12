@@ -12,14 +12,14 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
-  selectedUser: UserInfo;
+  selectedUser?: UserInfo;
   users = new Array<UserInfo>();
   iconDelete = faUserTimes;
   iconLock = faLock;
   iconUnlock = faLockOpen;
   iconDisable = faUserSlash;
   iconEnable = faUserCheck;
-  alertMessage: AlertMessage;
+  alertMessage?: AlertMessage;
 
   constructor(
     private userService: UserService,
@@ -31,7 +31,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   deselectUser(event: MouseEvent): void {
-    this.selectedUser = null;
+    this.selectedUser = undefined;
     event.stopPropagation();
   }
 

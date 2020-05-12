@@ -26,9 +26,9 @@
                    required
                    type="text"
                    class="form-control">
-            <div *ngIf="createUserForm.get('email').errors && !createUserForm.pristine"
+            <div *ngIf="createUserForm?.get('email')?.errors && !createUserForm!.pristine"
                  class="invalid-feedback d-block">
-              <div *ngIf="createUserForm.get('email').errors['email']">email is invalid</div>
+              <div *ngIf="createUserForm?.get('email')?.errors['email']">email is invalid</div>
             </div>
           </div>
           <div class="form-group">
@@ -44,7 +44,7 @@
                    required
                    type="password"
                    class="form-control">
-            <div *ngIf="createUserForm.get('passwordAgain').errors"
+            <div *ngIf="createUserForm?.get('passwordAgain')?.errors"
                  class="invalid-feedback d-block">
               <div *ngIf="createUserForm.get('passwordAgain').errors['passwordsDoNotMatch']">passwords must match</div>
             </div>
@@ -65,7 +65,7 @@
           </div>
           <button type="submit"
                   class="btn btn-primary"
-                  [disabled]="!createUserForm.valid">
+                  [disabled]="!createUserForm?.valid">
             <fa-icon [icon]="iconAddUser"></fa-icon> Register
           </button>
         </form>

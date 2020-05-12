@@ -14,7 +14,6 @@ export class AccountComponent implements OnInit {
   me$: BehaviorSubject<Me>;
 
   ngOnInit(): void {
-    this.me$ = this.userService.me$;
   }
 
   constructor(public r: ActivatedRoute, public userService: UserService
@@ -22,5 +21,6 @@ export class AccountComponent implements OnInit {
     if (r.snapshot.params.tab) {
       this.tab = r.snapshot.params.tab;
     }
+    this.me$ = this.userService.me$;
   }
 }

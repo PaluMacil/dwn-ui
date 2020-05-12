@@ -7,7 +7,7 @@ import { Me } from '@dwn/models';
   styleUrls: ['./security.component.scss']
 })
 export class SecurityComponent implements OnInit {
-  @Input() me: Me;
+  @Input() me?: Me;
 
   constructor() { }
 

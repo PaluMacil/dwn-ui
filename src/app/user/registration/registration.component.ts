@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
   iconAddUser = faUserPlus;
-  createUserForm: FormGroup;
+  createUserForm?: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,14 +21,16 @@ export class RegistrationComponent implements OnInit {
     private router: Router) { }
 
   createUser(): void {
-    const userRequest = this.createUserForm.value as UserCreationRequest;
-    this.userService.createUser(userRequest).pipe(first()).subscribe(
-      (u) => {
-        if (u.emails[0].verified) {
-          this.router.navigate(['/user/login']);
+    if (this.createUserForm) {
+      const userRequest = this.createUserForm.value as UserCreationRequest;
+      this.userService.createUser(userRequest).pipe(first()).subscribe(
+        (u) => {
+          if (u.emails[0].verified) {
+            this.router.navigate(['/user/login']);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   ngOnInit(): void {

@@ -10,15 +10,15 @@ import { GROUPS } from '../../shared/builtins';
 })
 export class TrayActionListComponent implements OnInit {
 
-  @Input() me: Me;
+  @Input() me?: Me;
   @Input() simple = false;
 
   iconProfile = faUserCircle;
   iconAdmin = faTachometerAlt;
   admin = GROUPS.BuiltInGroupAdmin;
 
-  listItemStyle: Record<string, boolean>;
-  linkStyle: Record<string, boolean>;
+  listItemStyle?: Record<string, boolean>;
+  linkStyle?: Record<string, boolean>;
 
   constructor() { }
 

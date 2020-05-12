@@ -25,7 +25,9 @@ export class AdminComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe),
         filter<RoutesRecognized>((event) => event instanceof RoutesRecognized))
       .subscribe((event) => {
-        this.tab = event.state.root.firstChild.params.tab;
+        if (event.state.root.firstChild) {
+          this.tab = event.state.root.firstChild.params.tab;
+        }
       });
   }
 

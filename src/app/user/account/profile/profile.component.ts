@@ -1,8 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Me } from '@dwn/models';
-import { UserService } from '../../user.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,7 +8,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  @Input() me: Me;
+  @Input() me?: Me;
 
   iconEdit = faEdit;
 

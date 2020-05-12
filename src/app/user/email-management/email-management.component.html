@@ -1,7 +1,7 @@
-<div *ngFor="let record of user.emails"
+<div *ngFor="let record of user!.emails"
      class="row">
   <div class="col-sm-1">
-    <fa-icon *ngIf="record.email === user.primaryEmail"
+    <fa-icon *ngIf="record.email === user!.primaryEmail"
              [icon]="iconPrimary"
              title="primary email"></fa-icon>
     <fa-icon *ngIf="record.verified"
@@ -15,7 +15,7 @@
     <div class="btn-toolbar">
       <div class="btn-group">
         <button type="button"
-                *ngIf="record.verified && record.email !== user.primaryEmail"
+                *ngIf="record.verified && record.email !== user!.primaryEmail"
                 class="btn btn-sm btn-primary mr-2"
                 (click)="setPrimary(record)">
           <fa-icon [icon]="iconPrimary"></fa-icon> Set Primary
@@ -40,7 +40,7 @@
       </div>
       <div class="btn-group">
         <button type="button"
-                *ngIf="record.email !== user.primaryEmail"
+                *ngIf="record.email !== user!.primaryEmail"
                 class="btn btn-sm btn-danger mr-2"
                 (click)="deleteRecord(record)">
           <fa-icon [icon]="iconDelete"></fa-icon> Delete

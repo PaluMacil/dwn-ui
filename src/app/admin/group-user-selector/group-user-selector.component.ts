@@ -11,9 +11,9 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
   styleUrls: ['./group-user-selector.component.scss']
 })
 export class GroupUserSelectorComponent implements OnInit {
-  @Input() group: Group;
+  @Input() group?: Group;
   users = new Array<UserInfo>();
-  selectedUser: UserInfo;
+  selectedUser?: UserInfo;
 
   constructor(
     public groupService: GroupService,
@@ -31,35 +31,43 @@ export class GroupUserSelectorComponent implements OnInit {
   formatter = (x: { displayName: string }): string => x.displayName;
 
   addUser(): void {
-    this.groupService.addUser(this.selectedUser.id, this.group.name).subscribe(
-      (ug) => {
-        this.users.push(this.selectedUser);
-        this.users = this.users.sort(
-          (a, b) => {
-            if (a.displayName < b.displayName) { return -1; }
-            if (a.displayName > b.displayName) { return 1; }
-            return 0;
+    if (this.selectedUser && this.group) {
+      this.groupService.addUser(this.selectedUser.id, this.group.name).subscribe(
+        (ug) => {
+          if (this.selectedUser) {
+            this.users.push(this.selectedUser);
+            this.users = this.users.sort(
+              (a, b) => {
+                if (a.displayName < b.displayName) { return -1; }
+                if (a.displayName > b.displayName) { return 1; }
+                return 0;
+              }
+            );
+            this.selectedUser = undefined;
           }
-        );
-        this.selectedUser = null;
-      }
-    );
+        }
+      );
+    }
   }
 
   removeUser(id: number): void {
-    this.groupService.removeUser(id, this.group.name).subscribe(
-      (usergroup) => {
-        this.users = this.users.filter((u) => u.id !== usergroup.userID);
-      }
-    );
+    if (this.group) {
+      this.groupService.removeUser(id, this.group.name).subscribe(
+        (usergroup) => {
+          this.users = this.users.filter((u) => u.id !== usergroup.userID);
+        }
+      );
+    }
   }
 
   ngOnInit(): void {
-    this.groupService.usersFor(this.group.name).subscribe(
-      (users) => {
-        this.users.push(...users);
-      }
-    );
+    if (this.group) {
+      this.groupService.usersFor(this.group.name).subscribe(
+        (users) => {
+          this.users.push(...users);
+        }
+      );
+    }
   }
 
 }

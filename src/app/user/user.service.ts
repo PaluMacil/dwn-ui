@@ -131,7 +131,7 @@ export class UserService {
   }
 
   getToken(): string {
-    return localStorage.getItem(environment.tokenName);
+    return localStorage.getItem(environment.tokenName) ?? '';
   }
 
   setToken(token: string): void {

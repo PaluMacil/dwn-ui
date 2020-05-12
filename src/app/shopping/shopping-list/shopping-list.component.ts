@@ -5,6 +5,7 @@ import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ExportToCsv } from 'export-to-csv';
 import { first } from 'rxjs/operators';
+import { FileSizePipe } from 'ngx-filesize';
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,10 +16,10 @@ export class ShoppingListComponent implements OnInit {
 
   shoppingList: Array<ShoppingItem>;
   itemComplete = faCheck;
-  itemForm: FormGroup;
+  itemForm?: FormGroup;
 
-  csvFile: File;
-  @ViewChild('csvFileInput') csvFileInput: ElementRef;
+  csvFile: File | null = null;
+  @ViewChild('csvFileInput') csvFileInput?: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -28,13 +29,17 @@ export class ShoppingListComponent implements OnInit {
   }
 
   add(): void {
-    const newItem = this.itemForm.value as ShoppingItem;
-    this.shoppingService.add(newItem).subscribe(
-      (item) => {
-        this.shoppingList.push(item);
-        this.itemForm.reset();
-      }
-    );
+    if (this.itemForm) {
+      const newItem = this.itemForm.value as ShoppingItem;
+      this.shoppingService.add(newItem).subscribe(
+        (item) => {
+          if (this.itemForm) {
+            this.shoppingList.push(item);
+            this.itemForm.reset();
+          }
+        }
+      );
+    }
   }
 
   remove(name: string): void {
@@ -90,15 +95,21 @@ export class ShoppingListComponent implements OnInit {
   }
 
   import(): void {
-    this.shoppingService.import(this.csvFile).pipe(first()).subscribe((items) => {
-      this.shoppingList.push(...items);
-      this.csvFile = undefined;
-      this.csvFileInput.nativeElement.value = null;
-    });
+    if (this.csvFile) {
+      this.shoppingService.import(this.csvFile).pipe(first()).subscribe((items) => {
+        this.shoppingList.push(...items);
+        this.csvFile = null;
+        if (this.csvFileInput) {
+          this.csvFileInput.nativeElement.value = null;
+        }
+      });
+    }
   }
 
   onFileChange(event: Event): void {
-    this.csvFile = (event.target as HTMLInputElement).files[0];
+    if (event.target instanceof HTMLInputElement && event.target.files) {
+      this.csvFile = event.target.files[0];
+    }
   }
 
   ngOnInit(): void {

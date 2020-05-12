@@ -1,6 +1,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "alwaysStrict": true,
     "baseUrl": "./",
     "importHelpers": true,
     "module": "esnext",

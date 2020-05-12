@@ -13,15 +13,15 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class AdminGroupManagementComponent implements OnInit {
   groups = new Array<GroupDisplay>();
-  selectedGroupName: string;
-  alertMessage: AlertMessage;
+  selectedGroupName = '';
+  alertMessage?: AlertMessage;
   iconRefresh = faSyncAlt;
   iconAddGroup = faPlusSquare;
   iconCancel = faWindowClose;
   loading = false;
-  createGroupForm: FormGroup;
+  createGroupForm?: FormGroup;
   showCreateGroupForm = false;
-  me: Me;
+  me?: Me;
 
   constructor(
     private groupService: GroupService,
@@ -41,22 +41,24 @@ export class AdminGroupManagementComponent implements OnInit {
   }
 
   createGroup(): void {
-    const groupRequest = this.createGroupForm.value as GroupCreationRequest;
-    this.groupService.create(groupRequest)
-      .pipe(
-        map((g) => {
-          return {...g, modifiedByDisplayName: this.me.user.displayName };
-        })
-      )
-      .subscribe(
-        (group) => {
-          this.alertMessage = undefined;
-          this.groups.push(group);
-        },
-        (err) => {
-          this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
-        }
-      );
+    if (this.createGroupForm) {
+      const groupRequest = this.createGroupForm.value as GroupCreationRequest;
+      this.groupService.create(groupRequest)
+        .pipe(
+          map((g) => {
+            return {...g, modifiedByDisplayName: this.me?.user.displayName ?? 'me'};
+          })
+        )
+        .subscribe(
+          (group) => {
+            this.alertMessage = undefined;
+            this.groups.push(group);
+          },
+          (err) => {
+            this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
+          }
+        );
+    }
   }
 
   fetchInfo(): void {
@@ -73,8 +75,10 @@ export class AdminGroupManagementComponent implements OnInit {
   }
 
   toggleCreateGroupForm(): void {
-    this.createGroupForm.reset();
-    this.showCreateGroupForm = !this.showCreateGroupForm;
+    if (this.createGroupForm) {
+      this.createGroupForm.reset();
+      this.showCreateGroupForm = !this.showCreateGroupForm;
+    }
   }
 
   ngOnInit(): void {

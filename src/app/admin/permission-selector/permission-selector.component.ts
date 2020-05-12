@@ -10,7 +10,7 @@ import { GroupService } from '../group.service';
   styleUrls: ['./permission-selector.component.scss']
 })
 export class PermissionSelectorComponent implements OnInit {
-  @Input() group: Group;
+  @Input() group?: Group;
   @Output() change = new EventEmitter<Group>();
 
   allPermissions = new Array<string>();
@@ -24,20 +24,24 @@ export class PermissionSelectorComponent implements OnInit {
     public gs: GroupService
   ) { }
 
-  addPermission(permission: string): void {
-    this.gs.addPermission(this.group.name, permission).subscribe(
-      (g) => {
-        this.change.emit(g);
-      }
-    );
+  addPermission(permission?: string): void {
+    if (permission && this.group) {
+      this.gs.addPermission(this.group.name, permission).subscribe(
+        (g) => {
+          this.change.emit(g);
+        }
+      );
+    }
   }
 
   removePermission(permission: string): void {
-    this.gs.removePermission(this.group.name, permission).subscribe(
-      (g) => {
-        this.change.emit(g);
-      }
-    );
+    if (this.group) {
+      this.gs.removePermission(this.group.name, permission).subscribe(
+        (g) => {
+          this.change.emit(g);
+        }
+      );
+    }
   }
 
   ngOnInit(): void {

@@ -28,7 +28,7 @@ export class GroupService {
           for (const group of groups) {
             const groupDisplay: GroupDisplay = {
               ...group,
-              modifiedByDisplayName: displayNameLookup.get(group.modifiedBy)
+              modifiedByDisplayName: displayNameLookup.get(group.modifiedBy) ?? '?'
             };
             groupDisplays.push(groupDisplay);
           }

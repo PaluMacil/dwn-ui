@@ -10,8 +10,8 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./admin-site-info.component.scss']
 })
 export class AdminSiteInfoComponent implements OnInit {
-  info: ServerInfo;
-  alertMessage: AlertMessage;
+  info?: ServerInfo;
+  alertMessage?: AlertMessage;
   iconRefresh = faSyncAlt;
   loading = false;
 

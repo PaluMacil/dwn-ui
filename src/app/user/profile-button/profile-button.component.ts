@@ -10,7 +10,7 @@ import { faSignOutAlt, faUserCircle, faCircle } from '@fortawesome/free-solid-sv
 })
 export class ProfileButtonComponent {
 
-  @Input() me: Me;
+  @Input() me?: Me;
 
   iconSignOut = faSignOutAlt;
   iconProfile = faUserCircle;

@@ -10,7 +10,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./email-management.component.scss']
 })
 export class EmailManagementComponent implements OnInit {
-  @Input() user: UserInfo;
+  @Input() user?: UserInfo;
   @Output() emailsChanged = new EventEmitter<Array<Email>>();
   @Output() primaryChanged = new EventEmitter<string>();
 
@@ -29,32 +29,36 @@ export class EmailManagementComponent implements OnInit {
   }
 
   deleteRecord(emailRecord: Email): void {
-    this.userService.modifyEmailRecord(this.user.id, emailRecord.email, 'delete')
-    .pipe(first())
-    .subscribe(
-      (modifiedUser) => {
-        const newEmails = modifiedUser.emails.filter((email) => emailRecord.email !== email.email);
-        this.emailsChanged.emit(newEmails);
-      }
-    );
-  }
-
-  verifyRecord(emailRecord: Email): void {
-    this.userService.verifyUserEmail(this.user.id, emailRecord.email)
+    if (this.user) {
+      this.userService.modifyEmailRecord(this.user.id, emailRecord.email, 'delete')
       .pipe(first())
       .subscribe(
-        (modifiedUser: UserInfo) => {
-          const newEmails = modifiedUser.emails.map(
-            (email) => {
-              if (email.email === emailRecord.email) {
-                email.verified = true;
-              }
-              return email;
-            }
-          );
+        (modifiedUser) => {
+          const newEmails = modifiedUser.emails.filter((email) => emailRecord.email !== email.email);
           this.emailsChanged.emit(newEmails);
         }
       );
+    }
+  }
+
+  verifyRecord(emailRecord: Email): void {
+    if (this.user) {
+      this.userService.verifyUserEmail(this.user.id, emailRecord.email)
+        .pipe(first())
+        .subscribe(
+          (modifiedUser: UserInfo) => {
+            const newEmails = modifiedUser.emails.map(
+              (email) => {
+                if (email.email === emailRecord.email) {
+                  email.verified = true;
+                }
+                return email;
+              }
+            );
+            this.emailsChanged.emit(newEmails);
+          }
+        );
+    }
   }
 
   ngOnInit(): void {

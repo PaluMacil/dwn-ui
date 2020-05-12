@@ -12,7 +12,7 @@ export interface UserDeletion { userID: number; deleted: boolean; }
   styleUrls: ['./user-confirm-delete.component.scss']
 })
 export class UserConfirmDeleteComponent implements OnInit {
-  user: UserInfo;
+  user!: UserInfo;
 
   constructor(public modal: NgbActiveModal, private userService: UserService) { }
 
