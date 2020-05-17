@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "downlevelIteration": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
