@@ -1,9 +1,9 @@
-<a *ngIf="!(userService.me$ | async).authenticated"
+<a *ngIf="!(userService.me$ | async)?.authenticated"
    class="mr-2"
    [routerLink]="['/','register']">
   Register
 </a>
-<a *ngIf="!(userService.me$ | async).authenticated"
+<a *ngIf="!(userService.me$ | async)?.authenticated"
    class="btn btn-sm btn-outline-secondary"
    [routerLink]="['/','user','login']">
   <fa-icon class="pr-2"

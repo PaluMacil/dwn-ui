@@ -56,6 +56,9 @@ export class GroupService {
     return this.http.delete<UserGroup>('api/core/usergroups', { params });
   }
 
+  // TODO: I need to make sure the backend returns username info via a GroupDisplay
+  // instead of just a Group or I need to improve the lookup caching and fix this on
+  // the frontend.
   addPermission(groupName: string, permission: string): Observable<Group> {
     const params = new HttpParams()
       .set('permission', permission)

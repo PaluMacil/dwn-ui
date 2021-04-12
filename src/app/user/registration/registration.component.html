@@ -26,10 +26,12 @@
                    required
                    type="text"
                    class="form-control">
-            <div *ngIf="createUserForm?.get('email')?.errors && !createUserForm!.pristine"
-                 class="invalid-feedback d-block">
-              <div *ngIf="createUserForm?.get('email')?.errors['email']">email is invalid</div>
-            </div>
+            <ng-container *ngIf="!createUserForm.pristine">
+              <div *ngIf="createUserForm.get('email')?.errors as err"
+                   class="invalid-feedback d-block">
+                <div *ngIf="err?.email">email is invalid</div>
+              </div>
+            </ng-container>
           </div>
           <div class="form-group">
             <label for="password">Password:</label>
@@ -44,9 +46,9 @@
                    required
                    type="password"
                    class="form-control">
-            <div *ngIf="createUserForm?.get('passwordAgain')?.errors"
+            <div *ngIf="createUserForm.get('passwordAgain')?.errors as err"
                  class="invalid-feedback d-block">
-              <div *ngIf="createUserForm.get('passwordAgain').errors['passwordsDoNotMatch']">passwords must match</div>
+              <div *ngIf="err.passwordsDoNotMatch">passwords must match</div>
             </div>
           </div>
           <div class="form-group">

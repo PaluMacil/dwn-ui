@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserCreationRequest, validatePasswordsMatch } from '@dwn/models';
@@ -11,9 +11,15 @@ import { Router } from '@angular/router';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent {
   iconAddUser = faUserPlus;
-  createUserForm?: FormGroup;
+  createUserForm: FormGroup = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      passwordAgain: ['', [Validators.required, validatePasswordsMatch]],
+      givenName: ['', [Validators.required]],
+      familyName: ['', [Validators.required]],
+    });;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,15 +37,5 @@ export class RegistrationComponent implements OnInit {
         }
       );
     }
-  }
-
-  ngOnInit(): void {
-    this.createUserForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-      passwordAgain: ['', [Validators.required, validatePasswordsMatch]],
-      givenName: ['', [Validators.required]],
-      familyName: ['', [Validators.required]],
-    });
   }
 }

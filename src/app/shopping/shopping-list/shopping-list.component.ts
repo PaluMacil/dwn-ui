@@ -16,7 +16,7 @@ export class ShoppingListComponent implements OnInit {
 
   shoppingList: Array<ShoppingItem>;
   itemComplete = faCheck;
-  itemForm?: FormGroup;
+  itemForm: FormGroup;
 
   csvFile: File | null = null;
   @ViewChild('csvFileInput') csvFileInput?: ElementRef;
@@ -26,6 +26,11 @@ export class ShoppingListComponent implements OnInit {
     private shoppingService: ShoppingService
   ) {
     this.shoppingList = new Array<ShoppingItem>();
+    this.itemForm = this.fb.group({
+      name: ['', [Validators.required, this.itemNotListedValidator(this.shoppingList)]],
+      quantity: [0],
+      note: ['']
+    });
   }
 
   add(): void {
@@ -113,11 +118,6 @@ export class ShoppingListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.itemForm = this.fb.group({
-      name: ['', [Validators.required, this.itemNotListedValidator(this.shoppingList)]],
-      quantity: [0],
-      note: ['']
-    });
     this.refresh();
   }
 }

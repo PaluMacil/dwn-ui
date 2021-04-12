@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../group.service';
-import { GroupCreationRequest, AlertMessage, GroupDisplay, Me } from '@dwn/models';
+import { GroupCreationRequest, AlertMessage, GroupDisplay, Me, Group } from '@dwn/models';
 import { faSyncAlt, faPlusSquare, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { finalize, map } from 'rxjs/operators';
@@ -13,13 +13,17 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class AdminGroupManagementComponent implements OnInit {
   groups = new Array<GroupDisplay>();
-  selectedGroupName = '';
+  selectedGroupName? = '';
   alertMessage?: AlertMessage;
   iconRefresh = faSyncAlt;
   iconAddGroup = faPlusSquare;
   iconCancel = faWindowClose;
   loading = false;
-  createGroupForm?: FormGroup;
+  createGroupForm: FormGroup = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.pattern(/[^_][A-Z_]+/)]],
+      requires2FA: [false],
+      requiresVaultPIN: [false]
+    });;
   showCreateGroupForm = false;
   me?: Me;
 
@@ -35,38 +39,36 @@ export class AdminGroupManagementComponent implements OnInit {
     this.selectedGroupName = group.name;
   }
 
-  updateGroup(group: GroupDisplay): void {
+  updateGroup(group: Group): void {
     const idx = this.groups.findIndex((g) => g.name === group.name);
-    this.groups[idx] = group;
+    this.groups[idx] = {...group, modifiedByDisplayName: this.me?.user.displayName ?? 'me'};
   }
 
   createGroup(): void {
-    if (this.createGroupForm) {
-      const groupRequest = this.createGroupForm.value as GroupCreationRequest;
-      this.groupService.create(groupRequest)
-        .pipe(
-          map((g) => {
-            return {...g, modifiedByDisplayName: this.me?.user.displayName ?? 'me'};
-          })
-        )
-        .subscribe(
-          (group) => {
-            this.alertMessage = undefined;
-            this.groups.push(group);
-          },
-          (err) => {
-            this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
-          }
-        );
-    }
+    const groupRequest = this.createGroupForm.value as GroupCreationRequest;
+    this.groupService.create(groupRequest)
+      .pipe(
+        map((group) => {
+          return {...group, modifiedByDisplayName: this.me?.user.displayName ?? 'me'};
+        })
+      )
+      .subscribe(
+        (group: GroupDisplay) => {
+          this.alertMessage = undefined;
+          this.groups.push(group);
+        },
+        (err) => {
+          this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
+        }
+      );
   }
 
   fetchInfo(): void {
     this.loading = true;
     this.groupService.groups().pipe(finalize(() => this.loading = false)).subscribe(
-      (g) => {
+      (groups) => {
         this.alertMessage = undefined;
-        this.groups = g;
+        this.groups = groups;
       },
       (err) => {
         this.alertMessage = AlertMessage.fromHttpErrorResponse(err);
@@ -75,18 +77,11 @@ export class AdminGroupManagementComponent implements OnInit {
   }
 
   toggleCreateGroupForm(): void {
-    if (this.createGroupForm) {
       this.createGroupForm.reset();
       this.showCreateGroupForm = !this.showCreateGroupForm;
-    }
   }
 
   ngOnInit(): void {
     this.fetchInfo();
-    this.createGroupForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern(/[^_][A-Z_]+/)]],
-      requires2FA: [false],
-      requiresVaultPIN: [false]
-    });
   }
 }

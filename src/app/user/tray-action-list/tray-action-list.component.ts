@@ -17,8 +17,8 @@ export class TrayActionListComponent implements OnInit {
   iconAdmin = faTachometerAlt;
   admin = GROUPS.BuiltInGroupAdmin;
 
-  listItemStyle?: Record<string, boolean>;
-  linkStyle?: Record<string, boolean>;
+  listItemStyle: Record<string, boolean> = {};
+  linkStyle: Record<string, boolean> = {};
 
   constructor() { }
 

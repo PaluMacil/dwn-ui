@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginRequest, AlertMessage, LoginResult } from '@dwn/models';
@@ -11,15 +11,20 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   iconLogin = faArrowRight;
-  loginForm?: FormGroup;
+  loginForm: FormGroup;
   alertMessage?: AlertMessage;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService) { 
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+  }
 
   login(): void {
     if (this.loginForm) {
@@ -50,12 +55,4 @@ export class LoginComponent implements OnInit {
         );
     }
   }
-
-  ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    });
-  }
-
 }

@@ -21,12 +21,12 @@ export class PermissionSelectorComponent implements OnInit {
 
   constructor(
     private info: ServerService,
-    public gs: GroupService
+    public groupService: GroupService
   ) { }
 
   addPermission(permission?: string): void {
     if (permission && this.group) {
-      this.gs.addPermission(this.group.name, permission).subscribe(
+      this.groupService.addPermission(this.group.name, permission).subscribe(
         (g) => {
           this.change.emit(g);
         }
@@ -36,7 +36,7 @@ export class PermissionSelectorComponent implements OnInit {
 
   removePermission(permission: string): void {
     if (this.group) {
-      this.gs.removePermission(this.group.name, permission).subscribe(
+      this.groupService.removePermission(this.group.name, permission).subscribe(
         (g) => {
           this.change.emit(g);
         }
@@ -46,8 +46,8 @@ export class PermissionSelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.info.permissions().subscribe(
-      (p) => {
-        this.allPermissions.push(...p);
+      (permissions) => {
+        this.allPermissions.push(...permissions);
       }
     );
   }
