@@ -23,7 +23,7 @@ export class AdminGroupManagementComponent implements OnInit {
       name: ['', [Validators.required, Validators.pattern(/[^_][A-Z_]+/)]],
       requires2FA: [false],
       requiresVaultPIN: [false]
-    });;
+    });
   showCreateGroupForm = false;
   me?: Me;
 
@@ -40,6 +40,7 @@ export class AdminGroupManagementComponent implements OnInit {
   }
 
   updateGroup(group: Group): void {
+    console.debug("updating", group);
     const idx = this.groups.findIndex((g) => g.name === group.name);
     this.groups[idx] = {...group, modifiedByDisplayName: this.me?.user.displayName ?? 'me'};
   }

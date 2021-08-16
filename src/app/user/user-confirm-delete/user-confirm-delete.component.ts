@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserInfo } from '@dwn/models';
 import { UserService } from '../user.service';
@@ -11,7 +11,7 @@ export interface UserDeletion { userID: number; deleted: boolean; }
   templateUrl: './user-confirm-delete.component.html',
   styleUrls: ['./user-confirm-delete.component.scss']
 })
-export class UserConfirmDeleteComponent implements OnInit {
+export class UserConfirmDeleteComponent {
   user!: UserInfo;
 
   constructor(public modal: NgbActiveModal, private userService: UserService) { }
@@ -26,9 +26,4 @@ export class UserConfirmDeleteComponent implements OnInit {
         }
       );
   }
-
-  ngOnInit(): void {
-
-  }
-
 }

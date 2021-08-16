@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Me } from '@dwn/models';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,14 +7,8 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   @Input() me?: Me;
 
   iconEdit = faEdit;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 }

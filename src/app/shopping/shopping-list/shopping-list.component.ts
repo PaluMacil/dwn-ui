@@ -5,7 +5,6 @@ import { FormBuilder, Validators, AbstractControl, ValidatorFn, FormGroup } from
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ExportToCsv } from 'export-to-csv';
 import { first } from 'rxjs/operators';
-import { FileSizePipe } from 'ngx-filesize';
 
 @Component({
   selector: 'app-shopping-list',

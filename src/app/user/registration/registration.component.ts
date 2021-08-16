@@ -19,7 +19,7 @@ export class RegistrationComponent {
       passwordAgain: ['', [Validators.required, validatePasswordsMatch]],
       givenName: ['', [Validators.required]],
       familyName: ['', [Validators.required]],
-    });;
+    });
 
   constructor(
     private formBuilder: FormBuilder,

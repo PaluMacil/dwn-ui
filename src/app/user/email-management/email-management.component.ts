@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Email, UserInfo } from '@dwn/models';
 import { faStar, faMailBulk, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../user.service';
@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
   templateUrl: './email-management.component.html',
   styleUrls: ['./email-management.component.scss']
 })
-export class EmailManagementComponent implements OnInit {
+export class EmailManagementComponent {
   @Input() user?: UserInfo;
   @Output() emailsChanged = new EventEmitter<Array<Email>>();
   @Output() primaryChanged = new EventEmitter<string>();
@@ -60,8 +60,4 @@ export class EmailManagementComponent implements OnInit {
         );
     }
   }
-
-  ngOnInit(): void {
-  }
-
 }

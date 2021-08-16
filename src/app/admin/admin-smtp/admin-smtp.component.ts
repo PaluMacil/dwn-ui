@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfigurationService } from '../configuration.service';
 
 @Component({
@@ -6,12 +6,8 @@ import { ConfigurationService } from '../configuration.service';
   templateUrl: './admin-smtp.component.html',
   styleUrls: ['./admin-smtp.component.scss']
 })
-export class AdminSmtpComponent implements OnInit {
+export class AdminSmtpComponent {
   appCredentials$ = this.configurationService.smtpCredentials;
 
   constructor(private configurationService: ConfigurationService) { }
-
-  ngOnInit(): void {
-  }
-
 }

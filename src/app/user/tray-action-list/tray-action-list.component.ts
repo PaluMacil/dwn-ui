@@ -20,8 +20,6 @@ export class TrayActionListComponent implements OnInit {
   listItemStyle: Record<string, boolean> = {};
   linkStyle: Record<string, boolean> = {};
 
-  constructor() { }
-
   ngOnInit(): void {
     this.listItemStyle = {
       'nav-item': this.simple,

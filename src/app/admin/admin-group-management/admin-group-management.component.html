@@ -106,7 +106,7 @@
           <th scope="row">{{ i + 1 }}</th>
           <td colspan="2">
             <app-permission-selector [group]="g"
-                                     (change)="updateGroup($event)"></app-permission-selector>
+                                     (groupChange)="updateGroup($event)"></app-permission-selector>
           </td>
           <td colspan="2">
             <app-group-user-selector [group]="g"></app-group-user-selector>

@@ -20,7 +20,7 @@ export class GroupUserSelectorComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  search = (text$: Observable<string>) =>
+  search = (text$: Observable<string>): Observable<Array<UserInfo>> =>
     text$.pipe(
       debounceTime(300),
       distinctUntilChanged(),
@@ -33,7 +33,7 @@ export class GroupUserSelectorComponent implements OnInit {
   addUser(): void {
     if (this.selectedUser && this.group) {
       this.groupService.addUser(this.selectedUser.id, this.group.name).subscribe(
-        (ug) => {
+        () => {
           if (this.selectedUser) {
             this.users.push(this.selectedUser);
             this.users = this.users.sort(

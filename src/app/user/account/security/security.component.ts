@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Me } from '@dwn/models';
 
 @Component({
@@ -6,12 +6,6 @@ import { Me } from '@dwn/models';
   templateUrl: './security.component.html',
   styleUrls: ['./security.component.scss']
 })
-export class SecurityComponent implements OnInit {
+export class SecurityComponent {
   @Input() me?: Me;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

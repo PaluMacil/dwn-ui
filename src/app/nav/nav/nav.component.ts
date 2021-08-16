@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../user/user.service';
 import { BehaviorSubject } from 'rxjs';
 import { Me } from '@dwn/models';
@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
   navbarCollapsed = true;
   me$: BehaviorSubject<Me>;
   isProd = true;
@@ -20,8 +20,4 @@ export class NavComponent implements OnInit {
     this.me$ = userService.me$;
     this.isProd = environment.production;
   }
-
-  ngOnInit(): void {
-  }
-
 }

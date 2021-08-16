@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd, RoutesRecognized } from '@angular/router';
+import { Router, ActivatedRoute, RoutesRecognized } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import { takeUntil, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin',
@@ -22,8 +22,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.router.events
       .pipe(
-        takeUntil(this.ngUnsubscribe),
-        filter<RoutesRecognized>((event) => event instanceof RoutesRecognized))
+        filter((event) => event instanceof RoutesRecognized),
+        map((event) => event as RoutesRecognized),
+        takeUntil(this.ngUnsubscribe)
+      )
       .subscribe((event) => {
         if (event.state.root.firstChild) {
           this.tab = event.state.root.firstChild.params.tab;

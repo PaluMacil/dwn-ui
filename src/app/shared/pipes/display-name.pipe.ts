@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
-import { single, map, first } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Pipe({
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class DisplayNamePipe implements PipeTransform {
   constructor(private userService: UserService) { }
 
-  transform(value: unknown, ...args: Array<unknown>): Observable<string> | null {
+  transform(value: unknown): Observable<string> | null {
     const numValue = value as number;
     return this.userService.displayNames([numValue])
       .pipe(

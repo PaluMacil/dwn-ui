@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Me } from '@dwn/models';
 import { UserService } from '../../user.service';
@@ -9,12 +9,9 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent {
   tab = 'profile';
   me$: BehaviorSubject<Me>;
-
-  ngOnInit(): void {
-  }
 
   constructor(public r: ActivatedRoute, public userService: UserService
   ) {
