@@ -1,6 +1,6 @@
 # Dwn Ui
 
-This project is the frontend for DWN.
+This project was the frontend for DWN. It's no longer in use.
 
 ## Development server
 
@@ -9,3 +9,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 ## Build
 
 Run `ng build` to build the project for prod.
+
+## Troubleshooting
+
+- esbuild wasn't listed but an error was showing it as broken, so I added it to dev deps. Not sure where it came from before that.
+- The proxy or some other tool seems to use a deprecated cipher for https, so before upgrading, try something like `NODE_OPTIONS=--openssl-legacy-provider ng serve`. `ng build` will need this option too for now.
